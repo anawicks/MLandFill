@@ -20,8 +20,7 @@ namespace MLandfill.Controllers
 
         // GET: GridMvc
         public ActionResult Index()
-        {//some comments for git hub
-
+        {
             MDockets objDockets = new MDockets();
 
             DataAccessLayer objDb = new DataAccessLayer();
