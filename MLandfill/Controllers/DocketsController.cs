@@ -25,6 +25,17 @@ namespace MLandfill.Controllers
             
             return View(AllspDockets);
         }
+        public ActionResult GitHubTEST()
+        {
+            MDockets objDockets = new MDockets();
+
+            DataAccessLayer objDb = new DataAccessLayer();
+
+            List<ModelDockets> AllspDockets = objDb.docketsAllGet().ToList();
+
+
+            return View(AllspDockets);
+        }
         public ActionResult IndexGridMvc()
         {
             MDockets objDockets = new MDockets();
