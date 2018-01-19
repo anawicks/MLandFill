@@ -1,0 +1,82 @@
+﻿@model MLandfill.tblGenerator
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblGenerator</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneratorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneratorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GenaratorAddr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GenaratorAddr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneratorCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneratorCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneratorProv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneratorProv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneratorPostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneratorPostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneratorPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneratorPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneratorComments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneratorComments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GeneratorExcldInterest)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GeneratorExcldInterest)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.GeneratorId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

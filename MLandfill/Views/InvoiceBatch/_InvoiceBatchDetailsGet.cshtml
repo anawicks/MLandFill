@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MLandfill.Models.InvoiceBatchGrid>
+
+
+@using GridMvc.Html
+@{
+    ViewBag.Title = "List";
+}
+
+
+
+@{
+    Layout = null;
+}
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .Fontsize {
+        font-size: small;
+    }
+
+    p.ex1 {
+        margin-left: 2cm;
+    }
+</style>
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+
+<h3 style="margin-left:45px;color:#0ab7b2;">Batch Invoice</h3>
+
+<div style="width:100%;margin-left:45px;height:100%;border:1px solid">
+    @Html.Grid(Model).Columns(columns =>
+{
+
+
+
+    //http://mvc-grid.azurewebsites.net/Home/Installation
+
+    columns.Add(c => c.GeneratorName).Titled("Generator Name").Filterable(true).SetWidth(125).Css("Fontsize");
+
+    columns.Add(c => c.WApApprovalcode).Titled("Waste App. Code").Filterable(true).SetWidth(50).Css("Fontsize");
+    columns.Add(c => c.WApWasteDescrip).Titled("Waste Description").Filterable(false).SetWidth(70).Css("Fontsize");
+    columns.Add(c => c.WApRate).Titled("Rate").Format("${0:#,###0.00}").Filterable(true).SetWidth(40).Css("Fontsize");
+    columns.Add(c => c.NetTotal).Titled("Total").Format("${0:#,###0.00}").SetWidth(40).Css("Fontsize");
+    columns.Add(c => c.Amount).Titled("Amount").Format("${0:#,###0.00}").SetWidth(40).Css("Fontsize");
+    //columns.Add(c => c.GeneratorId).Titled("Generator Id").SetWidth(40).Css("Fontsize");
+    columns.Add(c => c.WApComments).Titled("WApComments").Titled("Comments").SetWidth(140).Css("Fontsize");
+    //.Format("{0:dd-MMM-yyyy}")
+
+}).WithPaging(20).Sortable(true)
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+</div>
+
+

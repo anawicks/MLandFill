@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MLandfill.Models.DocketGrid>
+@using GridMvc.Html
+@{
+    ViewBag.Title = "List";
+}
+
+
+
+@{
+    Layout = null;
+}
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .Fontsize {
+        font-size:small;
+    }
+    p.ex1 {
+    margin-left: 2cm;
+}
+</style> 
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+
+<h3 style="margin-left:45px;color:#0ab7b2;">Waste Docket List</h3>
+
+<div    style="width:100%;margin-left:45px;height:100%;border:1px solid">
+    @Html.Grid(Model).Columns(columns =>
+{
+
+    columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .SetWidth(30)
+            .Css("Fontsize")
+            .RenderValueAs(o => Html.ActionLink("Details", "Details", new { id = o.DocketId }));
+
+    //http://mvc-grid.azurewebsites.net/Home/Installation
+
+    columns.Add(c => c.ManifestNo).Titled("Manifest No").Filterable(true).SetWidth(45).Css("Fontsize");
+
+    columns.Add(c => c.Producer).Titled("Generator").Filterable(true).SetWidth(180).Css("Fontsize");
+    columns.Add(c => c.Lsd).Titled("LSD").Filterable(false).SetWidth(140).Css("Fontsize");
+    //columns.Add(c => c.WasteDescription).Titled("Waste Descrip");
+    columns.Add(c => c.ApprovalCode).Titled("Approval Code").SetWidth(50).SetWidth(150).Css("Fontsize");
+    columns.Add(c => c.Substance).Titled("Substance").Filterable(true).SetWidth(290).Css("Fontsize");
+    columns.Add(c => c.DriverName).Titled("Driver Name").SetWidth(40).Css("Fontsize");
+    columns.Add(c => c.ScaleTicket).Titled("Scale Ticket").SetWidth(40).Css("Fontsize");
+    //columns.Add(c => c.Gross).Titled("Gross");
+    //columns.Add(c => c.Tare).Titled("Tare");
+    //columns.Add(c => c.Net).Titled("Net");
+    columns.Add(c => c.Elevation).Titled("Elevation").SetWidth(40).Css("Fontsize");
+    columns.Add(c => c.JobDate).Titled("JobDate").Format("{0:dd-MMM-yyyy}").Css("Fontsize");
+
+    //columns.Add()
+    //.Encoded(false)
+    //.Sanitized(false)
+    //// .SetWidth(30)
+    // .RenderValueAs(o => Html.ActionLink("Edit", "Edit", new { id = o.DocketId }));
+
+}).WithPaging(20).Sortable(true)
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+</div>
+
+
+
+
+
+
+

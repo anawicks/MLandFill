@@ -1,0 +1,201 @@
+﻿@model MLandfill.ViewModel.DocketViewModel
+
+<style>
+    .marbot {
+        margin-bottom: 12px;
+    }
+
+    body {
+        padding-top: 40px;
+    }
+
+    .with-margin {
+        margin-bottom: 10px;
+    }
+
+    .spacer5 {
+        height: 5px;
+    }
+    div p{
+ 
+        font-weight:600;
+         
+    }
+
+   .text-on-pannel {
+  background: #fff none repeat scroll 0 0;
+  height: auto;
+  margin-left: 20px;
+  padding: 3px 5px;
+  position: absolute;
+  margin-top: -47px;
+  border: 1px solid #ff6a00;
+  border-radius: 5px;
+}
+
+.panel {
+  /* for text on pannel */
+  margin-top: 21px !important;
+  
+}
+
+.panel-body {
+  padding-top: 27px !important;
+  margin-left:30px;
+}
+legend.scheduler-border {
+   width: auto;  
+   border-bottom: none;  
+}
+ 
+</style>
+ 
+   <h3 style="margin-left:45px;color:#1e2a89;">Waste Docket Details</h3>
+
+    <hr/>
+@using (Html.BeginForm())
+{
+    <div class="inner">
+ 
+
+ 
+       
+    <div class="panel panel-primary ">
+        <div class="panel-body">
+            <h6 class="text-on-pannel text-primary"><strong class="text-uppercase">  Docket No : @Html.DisplayFor(model => model.DocketNo)  - Project Information:</strong></h6>
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WasteApprovalCode):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WasteApprovalCode)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.SubstanceName):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.SubstanceName)</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.GeneratorName):</div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.GeneratorName)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.GenerLocationLsd):</p></div>
+                    <div class="col-md-4"><p>@Html.DisplayFor(model => model.GenerLocationLsd)</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApWasteDescrip):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApWasteDescrip)</div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="panel panel-primary ">
+        <div class="panel-body">
+            <h5 class="text-on-pannel text-primary"><strong class="text-uppercase">Landfill Destination</strong></h5>
+
+            <div class="row">
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.DestinatedFor):</p></div>
+                <div class="col-md-4"> @Html.DisplayFor(model => model.DestinatedFor) </div>
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.ScaleTicket):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.ScaleTicket)</div>
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.Gross):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.Gross)</div>
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.Tare):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.Tare)</div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.Net):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.Net)</div>
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.Net):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.Net)</div>
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="panel panel-primary ">
+        <div class="panel-body">
+            <h5 class="text-on-pannel text-primary"><strong class="text-uppercase">Waste Location</strong></h5>
+            <div class="row">
+
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.Cell):</div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.Cell)</div>
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.Grid):</div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.Grid)</div>
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.GridNo):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.GridNo)</div>
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.DateReceived):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.DateReceived)</div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-primary ">
+        <div class="panel-body">
+            <h5 class="text-on-pannel text-primary"><strong class="text-uppercase">Transporter Information</strong></h5>
+            <div class="marbot"><div class="col-md-1"></div></div>
+            <div class="row">
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.TruckCompName):</div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.TruckCompName)</div>
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.DriverName):</div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.DriverName)</div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.TruckCompAddr):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.TruckCompAddr)</div>
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.TruckCompCity):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.TruckCompCity)</div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.TruckCompProv):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.TruckCompProv)</div>
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.TruckCompPostal):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.TruckCompPostal)</div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.TruckCompPhone):</p></div>
+                <div class="col-md-4">@Html.DisplayFor(model => model.TruckCompPhone)</div>
+                <div class="col-md-2"> </div>
+                <div class="col-md-4"> </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DocketId })  ; <br /> 
+        @Html.ActionLink("Back to List", "IndexGridMvc");
+}
+
+
+   
+

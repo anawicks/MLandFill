@@ -1,0 +1,60 @@
+﻿@model MLandfill.tblTruckCompany
+
+<div>
+    <h4>tblTruckCompany</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckCompName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckCompName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckCompAddr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckCompAddr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckCompCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckCompCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckCompProv)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckCompProv)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckCompPostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckCompPostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TruckCompPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TruckCompPhone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TruckCompId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

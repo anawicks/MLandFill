@@ -1,0 +1,153 @@
+﻿@model IEnumerable<MLandfill.tblWasteApproval>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WApApprovalId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApWasteDescrip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApCreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApGenContactId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApExpiryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApExtQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApMailMerge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApJobNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApAfeNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApPoNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApConsultantId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApConContactID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApAdcApproved)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApInvoicee)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApWasteDescriptionMailMerge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApMinCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblGeneratorLocation.GenerLocationLsd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblGenerator.GeneratorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblSubstance.SubstanceName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApApprovalId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApWasteDescrip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApCreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApGenContactId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApExpiryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApExtQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApApproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApMailMerge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApJobNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApAfeNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApPoNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApConsultantId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApConContactID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApAdcApproved)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApInvoicee)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApWasteDescriptionMailMerge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApMinCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblGeneratorLocation.GenerLocationLsd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblGenerator.GeneratorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblSubstance.SubstanceName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.WApApprovalcode }) |
+            @Html.ActionLink("Details", "Details", new { id=item.WApApprovalcode }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.WApApprovalcode })
+        </td>
+    </tr>
+}
+
+</table>

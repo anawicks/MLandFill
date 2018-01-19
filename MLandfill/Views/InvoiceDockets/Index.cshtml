@@ -1,0 +1,76 @@
+﻿@model IEnumerable<MLandfill.Models.InvoiceDocket>
+
+@using GridMvc.Html
+@{
+    ViewBag.Title = "List";
+}
+
+
+
+@{
+    Layout = null;
+}
+<style>
+    .hidden {
+        display: none;
+    }
+
+    .Fontsize {
+        font-size: small;
+    }
+
+    p.ex1 {
+        margin-left: 2cm;
+    }
+ 
+</style>
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+<div class="row">
+    <div class="element1 col-md-3"><h6 style="margin-left:45px;color:#0ab7b2;">Invoice Generate - Waste Approwal Code: </h6>
+    </div>
+    <div class="element2 col-md-9"><h6>@ViewBag.WasteAppCode</h6>
+    </div>
+
+
+</div>
+   
+
+
+<div style="width:100%;margin-left:45px;height:100%;border:1px solid">
+    @Html.Grid(Model).Columns(columns =>
+{
+
+    columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .SetWidth(30)
+            .Css("Fontsize")
+            .RenderValueAs(o => Html.ActionLink("Details", "Details", new { id = o.DocketId }));
+
+    //http://mvc-grid.azurewebsites.net/Home/Installation
+
+    columns.Add(c => c.DocketNo).Titled("Docket No").Filterable(true).SetWidth(35).Css("Fontsize");
+    columns.Add(c => c.DateReceived).Titled("Date Received ").SetWidth(40).Filterable(true).Format("{0:dd-MMM-yyyy}").Css("Fontsize");
+    columns.Add(c => c.WasteDescription).Titled("Waste Description").SetWidth(130).Css("Fontsize");
+    columns.Add(c => c.Net).Titled("Net").Filterable(false).SetWidth(40).Css("Fontsize");
+    columns.Add(c => c.ScaleTicket).Titled("Scale Ticket").SetWidth(30).Css("Fontsize");
+    columns.Add(c => c.Rate).Titled("Rate").Filterable(true).SetWidth(40).Css("Fontsize");
+
+    columns.Add(c => c.Amount).Titled("Amount").SetWidth(40).Css("Fontsize");
+
+    //columns.Add(c => c.WasteApprovalCode).Titled("Waste App Code").SetWidth(30).Css("Fontsize");
+    columns.Add(c => c.GenerLocationLsd).Titled("Location Lsd ").SetWidth(40).Css("Fontsize");
+
+    //columns.Add(c => c.Comments).Titled("Comments ").SetWidth(40).Css("Fontsize");
+
+}).WithPaging(15).Sortable(true)
+
+   
+</div>
+
+

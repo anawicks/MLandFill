@@ -1,0 +1,830 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="LandFillNRLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblChangeLog">
+          <Key>
+            <PropertyRef Name="logId" />
+          </Key>
+          <Property Name="logId" Type="int" Nullable="false" />
+          <Property Name="FormID" Type="int" />
+          <Property Name="TableId" Type="int" />
+          <Property Name="ActivityID" Type="int" />
+          <Property Name="OldValue" Type="varchar" MaxLength="250" />
+          <Property Name="NewValue" Type="varchar" MaxLength="250" />
+          <Property Name="PerformedBy" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="tblConsultants">
+          <Key>
+            <PropertyRef Name="ConsultantId" />
+          </Key>
+          <Property Name="ConsultantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsultantName" Type="nvarchar(max)" />
+          <Property Name="ConsultantAddr" Type="nvarchar(max)" />
+          <Property Name="ConsultantCity" Type="nvarchar(max)" />
+          <Property Name="ConsultantProv" Type="nvarchar(max)" />
+          <Property Name="ConsultantPostal" Type="nvarchar(max)" />
+          <Property Name="ConsultantPhone" Type="nvarchar(max)" />
+          <Property Name="ConsultantNotes" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblConsultContacts">
+          <Key>
+            <PropertyRef Name="ConsultantContactId" />
+          </Key>
+          <Property Name="ConsultantContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConsultantContactConsultId" Type="int" Nullable="false" />
+          <Property Name="ConsultantContactName" Type="nvarchar(max)" />
+          <Property Name="ConsultantContactPhone" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblGeneratorContacts">
+          <Key>
+            <PropertyRef Name="GenerContactId" />
+          </Key>
+          <Property Name="GenerContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenerContactGenerId" Type="int" Nullable="false" />
+          <Property Name="GenerContactName" Type="nvarchar(max)" />
+          <Property Name="GenerContactPhone" Type="nvarchar(max)" />
+          <Property Name="GenerContactCell" Type="nvarchar(max)" />
+          <Property Name="GenerContactFax" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblGeneratorLocations">
+          <Key>
+            <PropertyRef Name="GenerLocationId" />
+          </Key>
+          <Property Name="GenerLocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenerLocationGenID" Type="int" Nullable="false" />
+          <Property Name="GenerLocationLsd" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblGenerators">
+          <Key>
+            <PropertyRef Name="GeneratorId" />
+          </Key>
+          <Property Name="GeneratorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GeneratorName" Type="nvarchar(max)" />
+          <Property Name="GenaratorAddr" Type="nvarchar(max)" />
+          <Property Name="GeneratorCity" Type="nvarchar(max)" />
+          <Property Name="GeneratorProv" Type="nvarchar(max)" />
+          <Property Name="GeneratorPostal" Type="nvarchar(max)" />
+          <Property Name="GeneratorPhone" Type="nvarchar(max)" />
+          <Property Name="GeneratorComments" Type="nvarchar(max)" />
+          <Property Name="GeneratorExcldInterest" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblInterestCharges">
+          <Key>
+            <PropertyRef Name="IntAmount" />
+          </Key>
+          <Property Name="IntAmount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IntDaysOverdue" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblInvoice">
+          <Key>
+            <PropertyRef Name="InvoiceNumber" />
+          </Key>
+          <Property Name="InvoiceNumber" Type="int" Nullable="false" />
+          <Property Name="InvoiceCreate_Date" Type="datetime" />
+          <Property Name="ApprovalId" Type="int" />
+          <Property Name="VtTotal" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NetTotal" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="GstTotal" Type="money" />
+          <Property Name="PaymentMade" Type="bit" />
+          <Property Name="InvoicePrinted" Type="bit" />
+          <Property Name="Credit" Type="money" />
+          <Property Name="Modified" Type="bit" />
+          <Property Name="Comments" Type="varchar(max)" />
+          <Property Name="Balance" Type="money" />
+          <Property Name="ChequeRefNo" Type="varchar" MaxLength="50" />
+          <Property Name="InvoiceDate" Type="datetime" />
+          <Property Name="PaidDate" Type="datetime" />
+          <Property Name="InvoicedManually" Type="bit" />
+          <Property Name="Deleted" Type="bit" />
+          <Property Name="InterestCharged" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblInvoicees">
+          <Key>
+            <PropertyRef Name="InvoiceeID" />
+          </Key>
+          <Property Name="InvoiceeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceeName" Type="varchar" MaxLength="75" />
+          <Property Name="InvoiceeAddr" Type="varchar" MaxLength="100" />
+          <Property Name="InvoiceeCity" Type="varchar" MaxLength="100" />
+          <Property Name="InvoiceeProv" Type="varchar" MaxLength="15" />
+          <Property Name="InvoiceePostal" Type="varchar" MaxLength="10" />
+          <Property Name="InvoiceePhone" Type="varchar" MaxLength="20" />
+          <Property Name="InvoiceeAttnTo" Type="varchar" MaxLength="100" />
+          <Property Name="InvoiceeCareOf" Type="varchar" MaxLength="100" />
+          <Property Name="InvoiceeConsultId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblInvoiceesDd">
+          <Key>
+            <PropertyRef Name="InvoiceeID" />
+          </Key>
+          <Property Name="InvoiceeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceeName" Type="varchar" MaxLength="75" />
+        </EntityType>
+        <EntityType Name="tblLandFillWasteDockets">
+          <Key>
+            <PropertyRef Name="DocketId" />
+          </Key>
+          <Property Name="DocketId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DocketNo" Type="varchar" MaxLength="30" />
+          <Property Name="WasteApprovalCode" Type="varchar" MaxLength="100" />
+          <Property Name="InvoiceeId" Type="int" />
+          <Property Name="TurckCompanyId" Type="int" />
+          <Property Name="DriverName" Type="varchar" MaxLength="50" />
+          <Property Name="DestinatedFor" Type="varchar" MaxLength="20" />
+          <Property Name="ScaleTicket" Type="varchar" MaxLength="30" />
+          <Property Name="Gross" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Tare" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Net" Type="decimal" Precision="20" Scale="4" />
+          <Property Name="Cell" Type="varchar" MaxLength="30" />
+          <Property Name="Grid" Type="varchar" MaxLength="30" />
+          <Property Name="GridNo" Type="varchar" MaxLength="30" />
+          <Property Name="Elevation" Type="varchar" MaxLength="30" />
+          <Property Name="DateReceived" Type="datetime" />
+          <Property Name="Memo" Type="varchar(max)" />
+          <Property Name="InvoiceNo" Type="varchar" MaxLength="50" />
+          <Property Name="LoadReceivingDate" Type="datetime" />
+          <Property Name="WasteApprovalId" Type="int" />
+        </EntityType>
+        <EntityType Name="tblSubstances">
+          <Key>
+            <PropertyRef Name="SubstanceId" />
+          </Key>
+          <Property Name="SubstanceId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubstanceName" Type="nvarchar(max)" />
+          <Property Name="SubstanceCode" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblTruckCompanies">
+          <Key>
+            <PropertyRef Name="TruckCompId" />
+          </Key>
+          <Property Name="TruckCompId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TruckCompName" Type="nvarchar(max)" />
+          <Property Name="TruckCompAddr" Type="nvarchar(max)" />
+          <Property Name="TruckCompCity" Type="nvarchar(max)" />
+          <Property Name="TruckCompProv" Type="nvarchar(max)" />
+          <Property Name="TruckCompPostal" Type="nvarchar(max)" />
+          <Property Name="TruckCompPhone" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="tblWasteApproval">
+          <Key>
+            <PropertyRef Name="WApApprovalId" />
+          </Key>
+          <Property Name="WApApprovalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WApApprovalcode" Type="varchar" MaxLength="100" />
+          <Property Name="WApGeneratorId" Type="int" />
+          <Property Name="WApWasteDescrip" Type="varchar" MaxLength="100" />
+          <Property Name="WApSubId" Type="int" />
+          <Property Name="WApLocationId" Type="int" />
+          <Property Name="WApCreateDate" Type="date" />
+          <Property Name="WApGenContactId" Type="int" />
+          <Property Name="WApExpiryDate" Type="date" />
+          <Property Name="WApRate" Type="money" />
+          <Property Name="WApComments" Type="varchar(max)" />
+          <Property Name="WApExtQuantity" Type="float" />
+          <Property Name="WApApproved" Type="bit" />
+          <Property Name="WApMailMerge" Type="bit" />
+          <Property Name="WApJobNo" Type="varchar" MaxLength="30" />
+          <Property Name="WApAfeNo" Type="varchar" MaxLength="100" />
+          <Property Name="WApPoNo" Type="varchar" MaxLength="50" />
+          <Property Name="WApConsultantId" Type="int" />
+          <Property Name="WApConContactID" Type="int" />
+          <Property Name="WApAdcApproved" Type="bit" />
+          <Property Name="WApInvoicee" Type="int" />
+          <Property Name="WApWasteDescriptionMailMerge" Type="varchar" MaxLength="100" />
+          <Property Name="WApMinCharge" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblWasteDescriptionCodes">
+          <Key>
+            <PropertyRef Name="WasteDescriptionId" />
+          </Key>
+          <Property Name="WasteDescriptionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WasteDescription" Type="nvarchar(max)" />
+          <Property Name="WasteDescriptionCode" Type="nvarchar(max)" />
+          <Property Name="WasteDescriptionInvoice" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK__WASTE_APP__SUB_I__431N6F928">
+          <End Role="tblSubstances" Type="Self.tblSubstances" Multiplicity="0..1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSubstances">
+              <PropertyRef Name="SubstanceId" />
+            </Principal>
+            <Dependent Role="tblWasteApproval">
+              <PropertyRef Name="WApSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandFillWasteDockets_tblTruckCompanies">
+          <End Role="tblTruckCompanies" Type="Self.tblTruckCompanies" Multiplicity="0..1" />
+          <End Role="tblLandFillWasteDockets" Type="Self.tblLandFillWasteDockets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTruckCompanies">
+              <PropertyRef Name="TruckCompId" />
+            </Principal>
+            <Dependent Role="tblLandFillWasteDockets">
+              <PropertyRef Name="TurckCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblWasteApprovalNew_tblGenerator">
+          <End Role="tblGenerators" Type="Self.tblGenerators" Multiplicity="0..1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGenerators">
+              <PropertyRef Name="GeneratorId" />
+            </Principal>
+            <Dependent Role="tblWasteApproval">
+              <PropertyRef Name="WApGeneratorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblWasteApprovalNew_tblGeneratorLocations">
+          <End Role="tblGeneratorLocations" Type="Self.tblGeneratorLocations" Multiplicity="0..1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGeneratorLocations">
+              <PropertyRef Name="GenerLocationId" />
+            </Principal>
+            <Dependent Role="tblWasteApproval">
+              <PropertyRef Name="WApLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LandFillNRLModelStoreContainer">
+          <EntitySet Name="tblChangeLog" EntityType="Self.tblChangeLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblConsultants" EntityType="Self.tblConsultants" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblConsultContacts" EntityType="Self.tblConsultContacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGeneratorContacts" EntityType="Self.tblGeneratorContacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGeneratorLocations" EntityType="Self.tblGeneratorLocations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGenerators" EntityType="Self.tblGenerators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInterestCharges" EntityType="Self.tblInterestCharges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInvoice" EntityType="Self.tblInvoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInvoicees" EntityType="Self.tblInvoicees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInvoiceesDd" EntityType="Self.tblInvoiceesDd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLandFillWasteDockets" EntityType="Self.tblLandFillWasteDockets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSubstances" EntityType="Self.tblSubstances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTruckCompanies" EntityType="Self.tblTruckCompanies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWasteApproval" EntityType="Self.tblWasteApproval" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblWasteDescriptionCodes" EntityType="Self.tblWasteDescriptionCodes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__WASTE_APP__SUB_I__431N6F928" Association="Self.FK__WASTE_APP__SUB_I__431N6F928">
+            <End Role="tblSubstances" EntitySet="tblSubstances" />
+            <End Role="tblWasteApproval" EntitySet="tblWasteApproval" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandFillWasteDockets_tblTruckCompanies" Association="Self.FK_tblLandFillWasteDockets_tblTruckCompanies">
+            <End Role="tblTruckCompanies" EntitySet="tblTruckCompanies" />
+            <End Role="tblLandFillWasteDockets" EntitySet="tblLandFillWasteDockets" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblWasteApprovalNew_tblGenerator" Association="Self.FK_tblWasteApprovalNew_tblGenerator">
+            <End Role="tblGenerators" EntitySet="tblGenerators" />
+            <End Role="tblWasteApproval" EntitySet="tblWasteApproval" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblWasteApprovalNew_tblGeneratorLocations" Association="Self.FK_tblWasteApprovalNew_tblGeneratorLocations">
+            <End Role="tblGeneratorLocations" EntitySet="tblGeneratorLocations" />
+            <End Role="tblWasteApproval" EntitySet="tblWasteApproval" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LandFillNRLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblChangeLog">
+          <Key>
+            <PropertyRef Name="logId" />
+          </Key>
+          <Property Name="logId" Type="Int32" Nullable="false" />
+          <Property Name="FormID" Type="Int32" />
+          <Property Name="TableId" Type="Int32" />
+          <Property Name="ActivityID" Type="Int32" />
+          <Property Name="OldValue" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="NewValue" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="PerformedBy" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblConsultant">
+          <Key>
+            <PropertyRef Name="ConsultantId" />
+          </Key>
+          <Property Name="ConsultantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsultantName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConsultantAddr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConsultantCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConsultantProv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConsultantPostal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConsultantPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConsultantNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblConsultContact">
+          <Key>
+            <PropertyRef Name="ConsultantContactId" />
+          </Key>
+          <Property Name="ConsultantContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConsultantContactConsultId" Type="Int32" Nullable="false" />
+          <Property Name="ConsultantContactName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConsultantContactPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblGeneratorContact">
+          <Key>
+            <PropertyRef Name="GenerContactId" />
+          </Key>
+          <Property Name="GenerContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenerContactGenerId" Type="Int32" Nullable="false" />
+          <Property Name="GenerContactName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GenerContactPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GenerContactCell" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GenerContactFax" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblGeneratorLocation">
+          <Key>
+            <PropertyRef Name="GenerLocationId" />
+          </Key>
+          <Property Name="GenerLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenerLocationGenID" Type="Int32" Nullable="false" />
+          <Property Name="GenerLocationLsd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblWasteApprovals" Relationship="Self.FK_tblWasteApprovalNew_tblGeneratorLocations" FromRole="tblGeneratorLocations" ToRole="tblWasteApproval" />
+        </EntityType>
+        <EntityType Name="tblGenerator">
+          <Key>
+            <PropertyRef Name="GeneratorId" />
+          </Key>
+          <Property Name="GeneratorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GeneratorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GenaratorAddr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GeneratorCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GeneratorProv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GeneratorPostal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GeneratorPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GeneratorComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GeneratorExcldInterest" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tblWasteApprovals" Relationship="Self.FK_tblWasteApprovalNew_tblGenerator" FromRole="tblGenerators" ToRole="tblWasteApproval" />
+        </EntityType>
+        <EntityType Name="tblInterestCharge">
+          <Key>
+            <PropertyRef Name="IntAmount" />
+          </Key>
+          <Property Name="IntAmount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IntDaysOverdue" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblInvoice">
+          <Key>
+            <PropertyRef Name="InvoiceNumber" />
+          </Key>
+          <Property Name="InvoiceNumber" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceCreate_Date" Type="DateTime" Precision="3" />
+          <Property Name="ApprovalId" Type="Int32" />
+          <Property Name="VtTotal" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NetTotal" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="GstTotal" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PaymentMade" Type="Boolean" />
+          <Property Name="InvoicePrinted" Type="Boolean" />
+          <Property Name="Credit" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Modified" Type="Boolean" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Balance" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ChequeRefNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+          <Property Name="PaidDate" Type="DateTime" Precision="3" />
+          <Property Name="InvoicedManually" Type="Boolean" />
+          <Property Name="Deleted" Type="Boolean" />
+          <Property Name="InterestCharged" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblInvoicee">
+          <Key>
+            <PropertyRef Name="InvoiceeID" />
+          </Key>
+          <Property Name="InvoiceeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceeName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceeAddr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceeCity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceeProv" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceePostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceeAttnTo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceeCareOf" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceeConsultId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblInvoiceesDd">
+          <Key>
+            <PropertyRef Name="InvoiceeID" />
+          </Key>
+          <Property Name="InvoiceeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceeName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblLandFillWasteDocket">
+          <Key>
+            <PropertyRef Name="DocketId" />
+          </Key>
+          <Property Name="DocketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DocketNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WasteApprovalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceeId" Type="Int32" />
+          <Property Name="TurckCompanyId" Type="Int32" />
+          <Property Name="DriverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DestinatedFor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ScaleTicket" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Gross" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Tare" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Net" Type="Decimal" Precision="20" Scale="4" />
+          <Property Name="Cell" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Grid" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="GridNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Elevation" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="DateReceived" Type="DateTime" Precision="3" />
+          <Property Name="Memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LoadReceivingDate" Type="DateTime" Precision="3" />
+          <Property Name="WasteApprovalId" Type="Int32" />
+          <NavigationProperty Name="tblTruckCompany" Relationship="Self.FK_tblLandFillWasteDockets_tblTruckCompanies" FromRole="tblLandFillWasteDockets" ToRole="tblTruckCompanies" />
+        </EntityType>
+        <EntityType Name="tblSubstance">
+          <Key>
+            <PropertyRef Name="SubstanceId" />
+          </Key>
+          <Property Name="SubstanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubstanceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubstanceCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblWasteApprovals" Relationship="Self.FK__WASTE_APP__SUB_I__431N6F928" FromRole="tblSubstances" ToRole="tblWasteApproval" />
+        </EntityType>
+        <EntityType Name="tblTruckCompany">
+          <Key>
+            <PropertyRef Name="TruckCompId" />
+          </Key>
+          <Property Name="TruckCompId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TruckCompName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TruckCompAddr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TruckCompCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TruckCompProv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TruckCompPostal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TruckCompPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblLandFillWasteDockets" Relationship="Self.FK_tblLandFillWasteDockets_tblTruckCompanies" FromRole="tblTruckCompanies" ToRole="tblLandFillWasteDockets" />
+        </EntityType>
+        <EntityType Name="tblWasteApproval">
+          <Key>
+            <PropertyRef Name="WApApprovalId" />
+          </Key>
+          <Property Name="WApApprovalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WApApprovalcode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WApGeneratorId" Type="Int32" />
+          <Property Name="WApWasteDescrip" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WApSubId" Type="Int32" />
+          <Property Name="WApLocationId" Type="Int32" />
+          <Property Name="WApCreateDate" Type="DateTime" Precision="0" />
+          <Property Name="WApGenContactId" Type="Int32" />
+          <Property Name="WApExpiryDate" Type="DateTime" Precision="0" />
+          <Property Name="WApRate" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="WApComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="WApExtQuantity" Type="Double" />
+          <Property Name="WApApproved" Type="Boolean" />
+          <Property Name="WApMailMerge" Type="Boolean" />
+          <Property Name="WApJobNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="WApAfeNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WApPoNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="WApConsultantId" Type="Int32" />
+          <Property Name="WApConContactID" Type="Int32" />
+          <Property Name="WApAdcApproved" Type="Boolean" />
+          <Property Name="WApInvoicee" Type="Int32" />
+          <Property Name="WApWasteDescriptionMailMerge" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="WApMinCharge" Type="Boolean" />
+          <NavigationProperty Name="tblGeneratorLocation" Relationship="Self.FK_tblWasteApprovalNew_tblGeneratorLocations" FromRole="tblWasteApproval" ToRole="tblGeneratorLocations" />
+          <NavigationProperty Name="tblGenerator" Relationship="Self.FK_tblWasteApprovalNew_tblGenerator" FromRole="tblWasteApproval" ToRole="tblGenerators" />
+          <NavigationProperty Name="tblSubstance" Relationship="Self.FK__WASTE_APP__SUB_I__431N6F928" FromRole="tblWasteApproval" ToRole="tblSubstances" />
+        </EntityType>
+        <EntityType Name="tblWasteDescriptionCode">
+          <Key>
+            <PropertyRef Name="WasteDescriptionId" />
+          </Key>
+          <Property Name="WasteDescriptionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WasteDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WasteDescriptionCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="WasteDescriptionInvoice" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tblWasteApprovalNew_tblGeneratorLocations">
+          <End Role="tblGeneratorLocations" Type="Self.tblGeneratorLocation" Multiplicity="0..1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGeneratorLocations">
+              <PropertyRef Name="GenerLocationId" />
+            </Principal>
+            <Dependent Role="tblWasteApproval">
+              <PropertyRef Name="WApLocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblWasteApprovalNew_tblGenerator">
+          <End Role="tblGenerators" Type="Self.tblGenerator" Multiplicity="0..1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGenerators">
+              <PropertyRef Name="GeneratorId" />
+            </Principal>
+            <Dependent Role="tblWasteApproval">
+              <PropertyRef Name="WApGeneratorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblLandFillWasteDockets_tblTruckCompanies">
+          <End Role="tblTruckCompanies" Type="Self.tblTruckCompany" Multiplicity="0..1" />
+          <End Role="tblLandFillWasteDockets" Type="Self.tblLandFillWasteDocket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTruckCompanies">
+              <PropertyRef Name="TruckCompId" />
+            </Principal>
+            <Dependent Role="tblLandFillWasteDockets">
+              <PropertyRef Name="TurckCompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__WASTE_APP__SUB_I__431N6F928">
+          <End Role="tblSubstances" Type="Self.tblSubstance" Multiplicity="0..1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSubstances">
+              <PropertyRef Name="SubstanceId" />
+            </Principal>
+            <Dependent Role="tblWasteApproval">
+              <PropertyRef Name="WApSubId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LandFill_DBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblChangeLogs" EntityType="Self.tblChangeLog" />
+          <EntitySet Name="tblConsultants" EntityType="Self.tblConsultant" />
+          <EntitySet Name="tblConsultContacts" EntityType="Self.tblConsultContact" />
+          <EntitySet Name="tblGeneratorContacts" EntityType="Self.tblGeneratorContact" />
+          <EntitySet Name="tblGeneratorLocations" EntityType="Self.tblGeneratorLocation" />
+          <EntitySet Name="tblGenerators" EntityType="Self.tblGenerator" />
+          <EntitySet Name="tblInterestCharges" EntityType="Self.tblInterestCharge" />
+          <EntitySet Name="tblInvoices" EntityType="Self.tblInvoice" />
+          <EntitySet Name="tblInvoicees" EntityType="Self.tblInvoicee" />
+          <EntitySet Name="tblInvoiceesDds" EntityType="Self.tblInvoiceesDd" />
+          <EntitySet Name="tblLandFillWasteDockets" EntityType="Self.tblLandFillWasteDocket" />
+          <EntitySet Name="tblSubstances" EntityType="Self.tblSubstance" />
+          <EntitySet Name="tblTruckCompanies" EntityType="Self.tblTruckCompany" />
+          <EntitySet Name="tblWasteApprovals" EntityType="Self.tblWasteApproval" />
+          <EntitySet Name="tblWasteDescriptionCodes" EntityType="Self.tblWasteDescriptionCode" />
+          <AssociationSet Name="FK_tblWasteApprovalNew_tblGeneratorLocations" Association="Self.FK_tblWasteApprovalNew_tblGeneratorLocations">
+            <End Role="tblGeneratorLocations" EntitySet="tblGeneratorLocations" />
+            <End Role="tblWasteApproval" EntitySet="tblWasteApprovals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblWasteApprovalNew_tblGenerator" Association="Self.FK_tblWasteApprovalNew_tblGenerator">
+            <End Role="tblGenerators" EntitySet="tblGenerators" />
+            <End Role="tblWasteApproval" EntitySet="tblWasteApprovals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblLandFillWasteDockets_tblTruckCompanies" Association="Self.FK_tblLandFillWasteDockets_tblTruckCompanies">
+            <End Role="tblTruckCompanies" EntitySet="tblTruckCompanies" />
+            <End Role="tblLandFillWasteDockets" EntitySet="tblLandFillWasteDockets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__WASTE_APP__SUB_I__431N6F928" Association="Self.FK__WASTE_APP__SUB_I__431N6F928">
+            <End Role="tblSubstances" EntitySet="tblSubstances" />
+            <End Role="tblWasteApproval" EntitySet="tblWasteApprovals" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LandFillNRLModelStoreContainer" CdmEntityContainer="LandFill_DBContext">
+          <EntitySetMapping Name="tblChangeLogs">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblChangeLog">
+              <MappingFragment StoreEntitySet="tblChangeLog">
+                <ScalarProperty Name="logId" ColumnName="logId" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
+                <ScalarProperty Name="OldValue" ColumnName="OldValue" />
+                <ScalarProperty Name="NewValue" ColumnName="NewValue" />
+                <ScalarProperty Name="PerformedBy" ColumnName="PerformedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblConsultants">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblConsultant">
+              <MappingFragment StoreEntitySet="tblConsultants">
+                <ScalarProperty Name="ConsultantId" ColumnName="ConsultantId" />
+                <ScalarProperty Name="ConsultantName" ColumnName="ConsultantName" />
+                <ScalarProperty Name="ConsultantAddr" ColumnName="ConsultantAddr" />
+                <ScalarProperty Name="ConsultantCity" ColumnName="ConsultantCity" />
+                <ScalarProperty Name="ConsultantProv" ColumnName="ConsultantProv" />
+                <ScalarProperty Name="ConsultantPostal" ColumnName="ConsultantPostal" />
+                <ScalarProperty Name="ConsultantPhone" ColumnName="ConsultantPhone" />
+                <ScalarProperty Name="ConsultantNotes" ColumnName="ConsultantNotes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblConsultContacts">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblConsultContact">
+              <MappingFragment StoreEntitySet="tblConsultContacts">
+                <ScalarProperty Name="ConsultantContactId" ColumnName="ConsultantContactId" />
+                <ScalarProperty Name="ConsultantContactConsultId" ColumnName="ConsultantContactConsultId" />
+                <ScalarProperty Name="ConsultantContactName" ColumnName="ConsultantContactName" />
+                <ScalarProperty Name="ConsultantContactPhone" ColumnName="ConsultantContactPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGeneratorContacts">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblGeneratorContact">
+              <MappingFragment StoreEntitySet="tblGeneratorContacts">
+                <ScalarProperty Name="GenerContactId" ColumnName="GenerContactId" />
+                <ScalarProperty Name="GenerContactGenerId" ColumnName="GenerContactGenerId" />
+                <ScalarProperty Name="GenerContactName" ColumnName="GenerContactName" />
+                <ScalarProperty Name="GenerContactPhone" ColumnName="GenerContactPhone" />
+                <ScalarProperty Name="GenerContactCell" ColumnName="GenerContactCell" />
+                <ScalarProperty Name="GenerContactFax" ColumnName="GenerContactFax" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGeneratorLocations">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblGeneratorLocation">
+              <MappingFragment StoreEntitySet="tblGeneratorLocations">
+                <ScalarProperty Name="GenerLocationId" ColumnName="GenerLocationId" />
+                <ScalarProperty Name="GenerLocationGenID" ColumnName="GenerLocationGenID" />
+                <ScalarProperty Name="GenerLocationLsd" ColumnName="GenerLocationLsd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGenerators">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblGenerator">
+              <MappingFragment StoreEntitySet="tblGenerators">
+                <ScalarProperty Name="GeneratorId" ColumnName="GeneratorId" />
+                <ScalarProperty Name="GeneratorName" ColumnName="GeneratorName" />
+                <ScalarProperty Name="GenaratorAddr" ColumnName="GenaratorAddr" />
+                <ScalarProperty Name="GeneratorCity" ColumnName="GeneratorCity" />
+                <ScalarProperty Name="GeneratorProv" ColumnName="GeneratorProv" />
+                <ScalarProperty Name="GeneratorPostal" ColumnName="GeneratorPostal" />
+                <ScalarProperty Name="GeneratorPhone" ColumnName="GeneratorPhone" />
+                <ScalarProperty Name="GeneratorComments" ColumnName="GeneratorComments" />
+                <ScalarProperty Name="GeneratorExcldInterest" ColumnName="GeneratorExcldInterest" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInterestCharges">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblInterestCharge">
+              <MappingFragment StoreEntitySet="tblInterestCharges">
+                <ScalarProperty Name="IntAmount" ColumnName="IntAmount" />
+                <ScalarProperty Name="IntDaysOverdue" ColumnName="IntDaysOverdue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInvoices">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblInvoice">
+              <MappingFragment StoreEntitySet="tblInvoice">
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="InvoiceCreate_Date" ColumnName="InvoiceCreate_Date" />
+                <ScalarProperty Name="ApprovalId" ColumnName="ApprovalId" />
+                <ScalarProperty Name="VtTotal" ColumnName="VtTotal" />
+                <ScalarProperty Name="NetTotal" ColumnName="NetTotal" />
+                <ScalarProperty Name="GstTotal" ColumnName="GstTotal" />
+                <ScalarProperty Name="PaymentMade" ColumnName="PaymentMade" />
+                <ScalarProperty Name="InvoicePrinted" ColumnName="InvoicePrinted" />
+                <ScalarProperty Name="Credit" ColumnName="Credit" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="ChequeRefNo" ColumnName="ChequeRefNo" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="PaidDate" ColumnName="PaidDate" />
+                <ScalarProperty Name="InvoicedManually" ColumnName="InvoicedManually" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="InterestCharged" ColumnName="InterestCharged" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInvoicees">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblInvoicee">
+              <MappingFragment StoreEntitySet="tblInvoicees">
+                <ScalarProperty Name="InvoiceeID" ColumnName="InvoiceeID" />
+                <ScalarProperty Name="InvoiceeName" ColumnName="InvoiceeName" />
+                <ScalarProperty Name="InvoiceeAddr" ColumnName="InvoiceeAddr" />
+                <ScalarProperty Name="InvoiceeCity" ColumnName="InvoiceeCity" />
+                <ScalarProperty Name="InvoiceeProv" ColumnName="InvoiceeProv" />
+                <ScalarProperty Name="InvoiceePostal" ColumnName="InvoiceePostal" />
+                <ScalarProperty Name="InvoiceePhone" ColumnName="InvoiceePhone" />
+                <ScalarProperty Name="InvoiceeAttnTo" ColumnName="InvoiceeAttnTo" />
+                <ScalarProperty Name="InvoiceeCareOf" ColumnName="InvoiceeCareOf" />
+                <ScalarProperty Name="InvoiceeConsultId" ColumnName="InvoiceeConsultId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblInvoiceesDds">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblInvoiceesDd">
+              <MappingFragment StoreEntitySet="tblInvoiceesDd">
+                <ScalarProperty Name="InvoiceeID" ColumnName="InvoiceeID" />
+                <ScalarProperty Name="InvoiceeName" ColumnName="InvoiceeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLandFillWasteDockets">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblLandFillWasteDocket">
+              <MappingFragment StoreEntitySet="tblLandFillWasteDockets">
+                <ScalarProperty Name="DocketId" ColumnName="DocketId" />
+                <ScalarProperty Name="DocketNo" ColumnName="DocketNo" />
+                <ScalarProperty Name="WasteApprovalCode" ColumnName="WasteApprovalCode" />
+                <ScalarProperty Name="InvoiceeId" ColumnName="InvoiceeId" />
+                <ScalarProperty Name="TurckCompanyId" ColumnName="TurckCompanyId" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="DestinatedFor" ColumnName="DestinatedFor" />
+                <ScalarProperty Name="ScaleTicket" ColumnName="ScaleTicket" />
+                <ScalarProperty Name="Gross" ColumnName="Gross" />
+                <ScalarProperty Name="Tare" ColumnName="Tare" />
+                <ScalarProperty Name="Net" ColumnName="Net" />
+                <ScalarProperty Name="Cell" ColumnName="Cell" />
+                <ScalarProperty Name="Grid" ColumnName="Grid" />
+                <ScalarProperty Name="GridNo" ColumnName="GridNo" />
+                <ScalarProperty Name="Elevation" ColumnName="Elevation" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="LoadReceivingDate" ColumnName="LoadReceivingDate" />
+                <ScalarProperty Name="WasteApprovalId" ColumnName="WasteApprovalId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSubstances">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblSubstance">
+              <MappingFragment StoreEntitySet="tblSubstances">
+                <ScalarProperty Name="SubstanceId" ColumnName="SubstanceId" />
+                <ScalarProperty Name="SubstanceName" ColumnName="SubstanceName" />
+                <ScalarProperty Name="SubstanceCode" ColumnName="SubstanceCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTruckCompanies">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblTruckCompany">
+              <MappingFragment StoreEntitySet="tblTruckCompanies">
+                <ScalarProperty Name="TruckCompId" ColumnName="TruckCompId" />
+                <ScalarProperty Name="TruckCompName" ColumnName="TruckCompName" />
+                <ScalarProperty Name="TruckCompAddr" ColumnName="TruckCompAddr" />
+                <ScalarProperty Name="TruckCompCity" ColumnName="TruckCompCity" />
+                <ScalarProperty Name="TruckCompProv" ColumnName="TruckCompProv" />
+                <ScalarProperty Name="TruckCompPostal" ColumnName="TruckCompPostal" />
+                <ScalarProperty Name="TruckCompPhone" ColumnName="TruckCompPhone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWasteApprovals">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblWasteApproval">
+              <MappingFragment StoreEntitySet="tblWasteApproval">
+                <ScalarProperty Name="WApApprovalId" ColumnName="WApApprovalId" />
+                <ScalarProperty Name="WApApprovalcode" ColumnName="WApApprovalcode" />
+                <ScalarProperty Name="WApGeneratorId" ColumnName="WApGeneratorId" />
+                <ScalarProperty Name="WApWasteDescrip" ColumnName="WApWasteDescrip" />
+                <ScalarProperty Name="WApSubId" ColumnName="WApSubId" />
+                <ScalarProperty Name="WApLocationId" ColumnName="WApLocationId" />
+                <ScalarProperty Name="WApCreateDate" ColumnName="WApCreateDate" />
+                <ScalarProperty Name="WApGenContactId" ColumnName="WApGenContactId" />
+                <ScalarProperty Name="WApExpiryDate" ColumnName="WApExpiryDate" />
+                <ScalarProperty Name="WApRate" ColumnName="WApRate" />
+                <ScalarProperty Name="WApComments" ColumnName="WApComments" />
+                <ScalarProperty Name="WApExtQuantity" ColumnName="WApExtQuantity" />
+                <ScalarProperty Name="WApApproved" ColumnName="WApApproved" />
+                <ScalarProperty Name="WApMailMerge" ColumnName="WApMailMerge" />
+                <ScalarProperty Name="WApJobNo" ColumnName="WApJobNo" />
+                <ScalarProperty Name="WApAfeNo" ColumnName="WApAfeNo" />
+                <ScalarProperty Name="WApPoNo" ColumnName="WApPoNo" />
+                <ScalarProperty Name="WApConsultantId" ColumnName="WApConsultantId" />
+                <ScalarProperty Name="WApConContactID" ColumnName="WApConContactID" />
+                <ScalarProperty Name="WApAdcApproved" ColumnName="WApAdcApproved" />
+                <ScalarProperty Name="WApInvoicee" ColumnName="WApInvoicee" />
+                <ScalarProperty Name="WApWasteDescriptionMailMerge" ColumnName="WApWasteDescriptionMailMerge" />
+                <ScalarProperty Name="WApMinCharge" ColumnName="WApMinCharge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblWasteDescriptionCodes">
+            <EntityTypeMapping TypeName="LandFillNRLModel.tblWasteDescriptionCode">
+              <MappingFragment StoreEntitySet="tblWasteDescriptionCodes">
+                <ScalarProperty Name="WasteDescriptionId" ColumnName="WasteDescriptionId" />
+                <ScalarProperty Name="WasteDescription" ColumnName="WasteDescription" />
+                <ScalarProperty Name="WasteDescriptionCode" ColumnName="WasteDescriptionCode" />
+                <ScalarProperty Name="WasteDescriptionInvoice" ColumnName="WasteDescriptionInvoice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

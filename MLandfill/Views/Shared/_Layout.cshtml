@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Land Fill Service Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <meta name="description" content="The description of my page" />
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            <div class="navbar-collapse collapse">
+                @*<ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>*@
+
+
+                
+                <ul>
+                    <li class="btn-group nav">
+                        <button type="button" class="btn navbar-btn" style="background-color:rgba(245, 229, 201, 0.90)">Maintaining Tasks</button>
+                        <button type="button" class="btn navbar-btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+
+
+                            <li>@Html.ActionLink("Generators", "LoadGenerators", "lkGenerator")</li>
+                            <li>@Html.ActionLink("Generator Contacts", "LoadGeneratorContacts", "lkGeneratorContact")</li>
+                            <li>@Html.ActionLink("Generator Locations", "LoadGeneratorLocation", "lkGeneratorLocation")</li>
+                            <li>@Html.ActionLink("Substance", "LoadSubstances", "lkSubstance")</li>
+                            <li>@Html.ActionLink("Trucking Companies", "LoadTruckCompanies", "lkTruckCompany")</li>
+                            <li>@Html.ActionLink("Consultants", "LoadConsultants", "lkConsultant")</li>
+                            <li>@Html.ActionLink("Consultant Contacts", "LoadConsultContacts", "lkConsultContacts")</li>
+                            <li>@Html.ActionLink("Waste Approval Codes", "Index", "MaintWasteApproval")</li>
+                            <li>@Html.ActionLink("Waste Descip Codes", "LoadWasteDescCodes", "lkWasteDescCodes")</li>
+                            <li>@Html.ActionLink("Invoicee", "LoadInvoicee", "lkInvoicee")</li>
+                            <li>@Html.ActionLink("XInterest Charge", "Index", "Home")</li>
+
+
+
+                        </ul>
+                    </li>
+
+
+                    <li class="btn-group nav">
+                        <button type="button" class="btn navbar-btn" style="background-color:rgba(245, 229, 201, 0.90)">Reports</button>
+                        <button type="button" class="btn navbar-btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Daily Landfill Summary", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("General Summary", "About", "Home")</li>
+                            <li>@Html.ActionLink("Monthly Load Summary", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Load Summary by Substance", "About", "Home")</li>
+                            <li>@Html.ActionLink("Load Summary by Locations", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Sales by Customer Summary", "Index", "Home")</li>
+                            <li>@Html.ActionLink("GST", "Index", "TruckingCompanies")</li>
+                            <li>@Html.ActionLink("Invoice Audit", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Cenovus", "Index", "TruckingCompanies")</li>
+                        </ul>
+                    </li>
+
+                    <li class="btn-group nav">
+                        <button type="button" class="btn navbar-btn" style="background-color:rgba(245, 229, 201, 0.90)">Invoicing</button>
+                        <button type="button" class="btn navbar-btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Invoice Generator", "IndexNew", "InvoiceDockets")</li>
+                            <li>@Html.ActionLink("Batch Invoice", "IndexInvNew", "InvoiceBatch")</li>
+                            <li>@Html.ActionLink("Manage Invoice", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Batch NGO", "About", "Home")</li>
+                            <li>@Html.ActionLink("Invoice Minimum Charge", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Customer Statement", "Index", "Home")</li>
+
+                        </ul>
+                    </li>
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer></footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

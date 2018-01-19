@@ -1,0 +1,90 @@
+﻿@model IEnumerable<MLandfill.Models.InvoiceDocket>
+
+<div class="container">
+     
+     
+    <button type="button" onclick="TestButtonClick()" class="btn btn-info">Create Invoice</button>
+    <h4>@ViewBag.InvoiceGenerated</h4>
+</div>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+
+        <button  type="button" onclick="location.href='@Url.Action("Register","Account")'"> Register>/button>
+    
+        </p>*@
+
+@*@using (Html.BeginForm("Create"))*@
+@if (Model != null)
+{
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DocketId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocketNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WasteDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Net)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScaleTicket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateReceived)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.GenerLocationLsd)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocketId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocketNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WasteDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Net)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScaleTicket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateReceived)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+  
+        <td>
+            @Html.DisplayFor(modelItem => item.GenerLocationLsd)
+        </td>
+
+
+    </tr>
+}
+
+</table>
+}

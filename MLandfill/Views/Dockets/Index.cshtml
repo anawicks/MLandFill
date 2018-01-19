@@ -1,0 +1,231 @@
+﻿@model IEnumerable<MLandfill.Models.ModelDockets>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DocketId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocketNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WasteApprovalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceeId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TurckCompanyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DriverName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DestinatedFor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScaleTicket)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gross)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tare)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Net)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cell)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GridNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Elevation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateReceived)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Memo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoadReceivingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TruckCompName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TruckCompAddr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TruckCompCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TruckCompProv)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TruckCompPostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TruckCompPhone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TruckCompId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApGeneratorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApWasteDescrip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApSubId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WApApprovalcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GeneratorName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubstanceName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenerLocationId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GenerLocationLsd)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocketId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocketNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WasteApprovalCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceeId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TurckCompanyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DriverName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DestinatedFor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ScaleTicket)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gross)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tare)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Net)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cell)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GridNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Elevation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateReceived)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Memo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoadReceivingDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TruckCompName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TruckCompAddr)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TruckCompCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TruckCompProv)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TruckCompPostal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TruckCompPhone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TruckCompId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApGeneratorId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApWasteDescrip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApSubId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WApApprovalcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GeneratorName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubstanceName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenerLocationId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenerLocationLsd)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
