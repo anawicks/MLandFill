@@ -725,7 +725,9 @@ namespace MLandfill.DataAccess
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spInvoiceMainSet", con);
+
                 cmd.CommandType = CommandType.StoredProcedure;
+
 
                 cmd.Parameters.AddWithValue("@month", month);
                 cmd.Parameters.AddWithValue("@year", year);
