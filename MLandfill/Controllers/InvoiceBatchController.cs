@@ -21,7 +21,7 @@ namespace MLandfill.Controllers
 
         DataSetInvoice ds = new DataSetInvoice();
 
-        public ActionResult ReportInvoice(int InvoiceNo =3036 )
+       /* public ActionResult ReportInvoice(int InvoiceNo =3036 )
         {
 
             DataAccessLayer objDb = new DataAccessLayer();
@@ -45,14 +45,14 @@ namespace MLandfill.Controllers
 
 this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p1, p2, p3, p4 });
 */
-            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ReportA1.rdlc";
-            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSetForInvoice", ds.Tables[0]));
+        //    reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ReportA1.rdlc";
+        //    reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSetForInvoice", ds.Tables[0]));
 
-            ViewBag.ReportViewer = reportViewer;
+        //    ViewBag.ReportViewer = reportViewer;
 
-            return View();
-        }
-
+        //    return View();
+        //}
+  
         // GET: InvoiceBatch
         //http://www.c-sharpcorner.com/article/display-data-in-report-viewer-with-mvc-4/
         // E:\GIT\GitRepository\MLandFill\MLandfill\Reports\ReportA1.rdlc
