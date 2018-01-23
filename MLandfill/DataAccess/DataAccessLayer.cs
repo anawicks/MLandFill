@@ -10,6 +10,7 @@ using MLandfill.Models;
 using MLandfill.ViewModel;
 using System.Diagnostics;
 using System.Globalization;
+using MLandfill.Reports;
 
 namespace MLandfill.DataAccess
 {
@@ -829,6 +830,32 @@ namespace MLandfill.DataAccess
 
         }
 
+
+        public DataSetInvoice InvoiceRptInfoGet(int invoiceNo)
+        {
+
+            DataTable table = new DataTable();
+            DataSetInvoice ds = new DataSetInvoice();
+
+            using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("spInvoicePrintGet", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@InvoiceNumber", invoiceNo);
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+
+
+                        da.Fill(ds);
+
+                    }
+                }
+            }
+
+            return ds;
+        }
         #endregion
 
 
