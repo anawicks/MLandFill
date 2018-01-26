@@ -1,62 +1,132 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using MLandfill.Models;
 using MLandfill.DataAccess;
 using System.Globalization;
-using System.Web.Script.Serialization;
-using Microsoft.Reporting.WebForms;
-using System.Data.SqlClient;
-using MLandfill.Reports;
 using System.Web.UI.WebControls;
 using System.Data;
-using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using Microsoft.Reporting.WebForms;
+using MLandfill.Reports;
+
+
+
+//using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 
 namespace MLandfill.Controllers
 {
     public class InvoiceBatchController : Controller
     {
 
-        DataSetInvoice ds = new DataSetInvoice();
-
-       /* public ActionResult ReportInvoice(int InvoiceNo =3036 )
+        public FileResult WebFormMthd(int invoiceNumber = 5118)
         {
+            //http://www.danielroot.info/2009/06/how-to-render-reporting-services.html
+            byte[] result;
 
+            using (var renderer = new WebReportRenderer(@"~\Reports\rptPrintInv.rdlc", "rptPrintInv.pdf"))
+
+            {
+                DataAccessLayer objDb = new DataAccessLayer();
+                
+                //Microsoft.Reporting.WinForms.ReportDataSource rprtDTSource = new Microsoft.Reporting.WinForms.ReportDataSource(dt.TableName, dt); 
+
+
+                renderer.ReportInstance.DataSources.Add(new ReportDataSource("ReportInvDataSet", objDb.InvoiceRptInfoGet(invoiceNumber).ToList()));
+                
+
+
+                renderer.ReportInstance.Refresh();
+
+                result = renderer.RenderToBytesPDF();
+
+            }
+
+            return File(result, "application/pdf", "rptPrintInv.pdf");
+
+        }
+
+        public FileResult WebFormMthdA(string ReportType="pdf")
+        {
             DataAccessLayer objDb = new DataAccessLayer();
 
+            LocalReport invoiceReport = new LocalReport();
 
-            ReportViewer reportViewer = new ReportViewer();
-            reportViewer.ProcessingMode = ProcessingMode.Local;
-            reportViewer.SizeToReportContent = true;
+            invoiceReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\rptInvNPrint.rdlc";
+
+            ReportDataSource rptDataSource = new ReportDataSource();
+
+            rptDataSource.Name = "datasetInvoice";
+            rptDataSource.Value = objDb.InvoiceRptInfoGet(3036).ToList();
+            DataTable dt = new DataTable();
+
+           
+
+            //Microsoft.Reporting.WinForms.ReportDataSource rptDataSource = new  ReportDataSource(dt.TableName, dt);
+
+
+            invoiceReport.DataSources.Add(rptDataSource);
+
+            invoiceReport.EnableHyperlinks = true;
+            invoiceReport.Refresh();
+
+
+            string reportType = ReportType;
+            string mimeType;
+            string encording;
+
+            string filenameExtension = ReportType == "Excel" ? "xlsx" : "pdf";
+
+            Warning[] warnings;
+            string[] streams;
+            byte[] renderedBytes;
+
             
-            reportViewer.Width = Unit.Percentage(75);
-            reportViewer.Height = Unit.Percentage(95);
 
-            //InvoiceRptInfoGet
+            renderedBytes = invoiceReport.Render(reportType, "", out mimeType, out encording,
+                            out filenameExtension, out streams, out warnings);
 
-            ds = objDb.InvoiceRptInfoGet(InvoiceNo);
+            Response.AddHeader("content-disposition", "attachment; filename=Urls." + filenameExtension);
 
-            /*
-             * ReportParameter p4 = new ReportParameter("Error_4", Error_4_value);
-
- this.reportViewer1.LocalReport.SetParameters(p1);
-
-this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p1, p2, p3, p4 });
-*/
-        //    reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ReportA1.rdlc";
-        //    reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSetForInvoice", ds.Tables[0]));
-
-        //    ViewBag.ReportViewer = reportViewer;
-
-        //    return View();
-        //}
+            return File(renderedBytes, filenameExtension);
+        }
   
-        // GET: InvoiceBatch
-        //http://www.c-sharpcorner.com/article/display-data-in-report-viewer-with-mvc-4/
-        // E:\GIT\GitRepository\MLandFill\MLandfill\Reports\ReportA1.rdlc
-        public ActionResult Index(string month="October",int year=2017)
+ //     public ActionResult ReportInvoice(int InvoiceNo =3036 )
+ //        {
+
+ //            DataAccessLayer objDb = new DataAccessLayer();
+
+
+ //            ReportViewer reportViewer = new ReportViewer();
+ //            reportViewer.ProcessingMode = ProcessingMode.Local;
+ //            reportViewer.SizeToReportContent = true;
+
+ //            reportViewer.Width = Unit.Percentage(75);
+ //            reportViewer.Height = Unit.Percentage(95);
+
+ //            //InvoiceRptInfoGet
+
+ //            ds = objDb.InvoiceRptInfoGet(InvoiceNo);
+
+ //            /*
+ //             * ReportParameter p4 = new ReportParameter("Error_4", Error_4_value);
+
+ // this.reportViewer1.LocalReport.SetParameters(p1);
+
+ //this.reportViewer1.LocalReport.SetParameters(new ReportParameter[] { p1, p2, p3, p4 });
+ //*/
+ //       reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\ReportA1.rdlc";
+ //           reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSetForInvoice", ds.Tables[0]));
+
+ //           ViewBag.ReportViewer = reportViewer;
+
+ //           return View();
+ //   }
+
+    // GET: InvoiceBatch
+    //http://www.c-sharpcorner.com/article/display-data-in-report-viewer-with-mvc-4/
+    // E:\GIT\GitRepository\MLandFill\MLandfill\Reports\ReportA1.rdlc
+    public ActionResult Index(string month="October",int year=2017)
         {
             
 

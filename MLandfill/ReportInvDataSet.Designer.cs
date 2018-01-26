@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace MLandfill.Reports {
+namespace MLandfill {
     
     
     /// <summary>
@@ -20,9 +20,9 @@ namespace MLandfill.Reports {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("DataSetInvoice")]
+    [global::System.Xml.Serialization.XmlRootAttribute("ReportInvDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class DataSetInvoice : global::System.Data.DataSet {
+    public partial class ReportInvDataSet : global::System.Data.DataSet {
         
         private spInvoicePrintGetDataTable tablespInvoicePrintGet;
         
@@ -30,7 +30,7 @@ namespace MLandfill.Reports {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public DataSetInvoice() {
+        public ReportInvDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace MLandfill.Reports {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected DataSetInvoice(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected ReportInvDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace MLandfill.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            DataSetInvoice cln = ((DataSetInvoice)(base.Clone()));
+            ReportInvDataSet cln = ((ReportInvDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,9 +199,9 @@ namespace MLandfill.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "DataSetInvoice";
+            this.DataSetName = "ReportInvDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/DataSetInvoice.xsd";
+            this.Namespace = "http://tempuri.org/ReportInvDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tablespInvoicePrintGet = new spInvoicePrintGetDataTable();
@@ -225,7 +225,7 @@ namespace MLandfill.Reports {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            DataSetInvoice ds = new DataSetInvoice();
+            ReportInvDataSet ds = new ReportInvDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -306,8 +306,6 @@ namespace MLandfill.Reports {
             private global::System.Data.DataColumn columnWasteDescriptionCode;
             
             private global::System.Data.DataColumn columnWasteDescriptionInvoice;
-            
-            private global::System.Data.DataColumn columnInvName;
             
             private global::System.Data.DataColumn columnGeneratorLocationLsd;
             
@@ -480,14 +478,6 @@ namespace MLandfill.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn InvNameColumn {
-                get {
-                    return this.columnInvName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn GeneratorLocationLsdColumn {
                 get {
                     return this.columnGeneratorLocationLsd;
@@ -634,7 +624,6 @@ namespace MLandfill.Reports {
                         string WasteDescription, 
                         string WasteDescriptionCode, 
                         string WasteDescriptionInvoice, 
-                        string InvName, 
                         string GeneratorLocationLsd, 
                         string JOBNo, 
                         string AFENo, 
@@ -662,7 +651,6 @@ namespace MLandfill.Reports {
                         WasteDescription,
                         WasteDescriptionCode,
                         WasteDescriptionInvoice,
-                        InvName,
                         GeneratorLocationLsd,
                         JOBNo,
                         AFENo,
@@ -711,7 +699,6 @@ namespace MLandfill.Reports {
                 this.columnWasteDescription = base.Columns["WasteDescription"];
                 this.columnWasteDescriptionCode = base.Columns["WasteDescriptionCode"];
                 this.columnWasteDescriptionInvoice = base.Columns["WasteDescriptionInvoice"];
-                this.columnInvName = base.Columns["InvName"];
                 this.columnGeneratorLocationLsd = base.Columns["GeneratorLocationLsd"];
                 this.columnJOBNo = base.Columns["JOBNo"];
                 this.columnAFENo = base.Columns["AFENo"];
@@ -757,8 +744,6 @@ namespace MLandfill.Reports {
                 base.Columns.Add(this.columnWasteDescriptionCode);
                 this.columnWasteDescriptionInvoice = new global::System.Data.DataColumn("WasteDescriptionInvoice", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnWasteDescriptionInvoice);
-                this.columnInvName = new global::System.Data.DataColumn("InvName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInvName);
                 this.columnGeneratorLocationLsd = new global::System.Data.DataColumn("GeneratorLocationLsd", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGeneratorLocationLsd);
                 this.columnJOBNo = new global::System.Data.DataColumn("JOBNo", typeof(string), null, global::System.Data.MappingType.Element);
@@ -797,7 +782,6 @@ namespace MLandfill.Reports {
                 this.columnWasteDescription.MaxLength = 100;
                 this.columnWasteDescriptionCode.MaxLength = 2147483647;
                 this.columnWasteDescriptionInvoice.MaxLength = 2147483647;
-                this.columnInvName.MaxLength = 75;
                 this.columnGeneratorLocationLsd.MaxLength = 2147483647;
                 this.columnJOBNo.MaxLength = 30;
                 this.columnAFENo.MaxLength = 100;
@@ -878,7 +862,7 @@ namespace MLandfill.Reports {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                DataSetInvoice ds = new DataSetInvoice();
+                ReportInvDataSet ds = new ReportInvDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1174,22 +1158,6 @@ namespace MLandfill.Reports {
                 }
                 set {
                     this[this.tablespInvoicePrintGet.WasteDescriptionInvoiceColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string InvName {
-                get {
-                    try {
-                        return ((string)(this[this.tablespInvoicePrintGet.InvNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'InvName\' in table \'spInvoicePrintGet\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablespInvoicePrintGet.InvNameColumn] = value;
                 }
             }
             
@@ -1556,18 +1524,6 @@ namespace MLandfill.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsInvNameNull() {
-                return this.IsNull(this.tablespInvoicePrintGet.InvNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetInvNameNull() {
-                this[this.tablespInvoicePrintGet.InvNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsGeneratorLocationLsdNull() {
                 return this.IsNull(this.tablespInvoicePrintGet.GeneratorLocationLsdColumn);
             }
@@ -1746,7 +1702,7 @@ namespace MLandfill.Reports {
         }
     }
 }
-namespace MLandfill.Reports.DataSetInvoiceTableAdapters {
+namespace MLandfill.ReportInvDataSetTableAdapters {
     
     
     /// <summary>
@@ -1884,7 +1840,6 @@ namespace MLandfill.Reports.DataSetInvoiceTableAdapters {
             tableMapping.ColumnMappings.Add("WasteDescription", "WasteDescription");
             tableMapping.ColumnMappings.Add("WasteDescriptionCode", "WasteDescriptionCode");
             tableMapping.ColumnMappings.Add("WasteDescriptionInvoice", "WasteDescriptionInvoice");
-            tableMapping.ColumnMappings.Add("InvName", "InvName");
             tableMapping.ColumnMappings.Add("GeneratorLocationLsd", "GeneratorLocationLsd");
             tableMapping.ColumnMappings.Add("JOBNo", "JOBNo");
             tableMapping.ColumnMappings.Add("AFENo", "AFENo");
@@ -1922,7 +1877,7 @@ namespace MLandfill.Reports.DataSetInvoiceTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DataSetInvoice.spInvoicePrintGetDataTable dataTable) {
+        public virtual int Fill(ReportInvDataSet.spInvoicePrintGetDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1935,9 +1890,9 @@ namespace MLandfill.Reports.DataSetInvoiceTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DataSetInvoice.spInvoicePrintGetDataTable GetData() {
+        public virtual ReportInvDataSet.spInvoicePrintGetDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            DataSetInvoice.spInvoicePrintGetDataTable dataTable = new DataSetInvoice.spInvoicePrintGetDataTable();
+            ReportInvDataSet.spInvoicePrintGetDataTable dataTable = new ReportInvDataSet.spInvoicePrintGetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2011,7 +1966,7 @@ namespace MLandfill.Reports.DataSetInvoiceTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateUpdatedRows(DataSetInvoice dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(ReportInvDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -2021,7 +1976,7 @@ namespace MLandfill.Reports.DataSetInvoiceTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateInsertedRows(DataSetInvoice dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(ReportInvDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -2031,7 +1986,7 @@ namespace MLandfill.Reports.DataSetInvoiceTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateDeletedRows(DataSetInvoice dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(ReportInvDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -2065,7 +2020,7 @@ namespace MLandfill.Reports.DataSetInvoiceTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public virtual int UpdateAll(DataSetInvoice dataSet) {
+        public virtual int UpdateAll(ReportInvDataSet dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

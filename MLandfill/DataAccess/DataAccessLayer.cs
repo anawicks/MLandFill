@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
-using MLandfill.Core.Domain;
 using MLandfill.Models;
 using MLandfill.ViewModel;
 using System.Diagnostics;
-using System.Globalization;
 using MLandfill.Reports;
 
 namespace MLandfill.DataAccess
@@ -831,18 +828,19 @@ namespace MLandfill.DataAccess
         }
 
 
-        public DataSetInvoice InvoiceRptInfoGet(int invoiceNo)
+        public List<DataRow> InvoiceRptInfoGetList(int invoiceNo)
         {
 
             DataTable table = new DataTable();
-            DataSetInvoice ds = new DataSetInvoice();
+            DataSet ds = new DataSet();
+            //List<string> dsList = new List<string>();
 
             using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("spInvoicePrintGet", sqlcon))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@InvoiceNumber", invoiceNo);
+                    //cmd.Parameters.AddWithValue("@InvoiceNumber", invoiceNo);
 
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
@@ -853,9 +851,112 @@ namespace MLandfill.DataAccess
                     }
                 }
             }
-
-            return ds;
+            List<DataRow> dsList = ds.Tables[0].Rows.Cast<DataRow>().ToList();
+ 
+            return dsList;
         }
+
+        public List<DataRow> InvoiceRptInfoGetA(int invoiceNo)
+        {
+
+            DataTable table = new DataTable();
+            DataSet ds = new DataSet();
+            //List<string> dsList = new List<string>();
+
+            using (SqlConnection sqlcon = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ConnectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("spInvoicePrintGet", sqlcon))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    //cmd.Parameters.AddWithValue("@InvoiceNumber", invoiceNo);
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+
+
+                        da.Fill(ds);
+
+                    }
+                }
+            }
+            List<DataRow> dsList = ds.Tables[0].Rows.Cast<DataRow>().ToList();
+            //http://www.danielroot.info/2009/06/how-to-render-reporting-services.html
+            return dsList;
+        }
+
+        public IEnumerable<InvoiceModel> InvoiceRptInfoGet(int invoiceNumber)
+        {
+
+            SqlConnection con = null;
+
+            List<InvoiceModel> ndocketList = new List<InvoiceModel>();
+            con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString());
+            SqlCommand cmd = new SqlCommand("spInvoicePrintGet", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@invoiceNumber", invoiceNumber);
+
+
+
+
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                InvoiceModel docket = new InvoiceModel();
+
+                docket.InvoiceNumber = Convert.ToInt32(rdr["InvoiceNumber"]);
+                docket.DocketNumber = rdr["DocketNumber"].ToString();
+                docket.ScaleTicket = rdr["ScaleTicket"].ToString();
+                docket.ApprovalRate = rdr["ApprovalRate"].ToString();
+                docket.DateReceived = Convert.ToDateTime(rdr["DateReceived"]);
+                docket.NetWeight = Convert.ToDecimal(rdr["NetWeight"]);
+                docket.AmountCharge = Convert.ToDecimal(rdr["AmountCharge"]);
+
+                docket.WasteApprovalCode = rdr["WasteApprovalCode"].ToString();
+                docket.InvoiceTotal = Convert.ToDecimal(rdr["InvoiceTotal"]);
+                docket.RecvMonth = Convert.ToInt32(rdr["RecvMonth"]);
+                docket.RecvYear = Convert.ToInt32(rdr["RecvYear"]);
+
+
+                docket.WasteDescription = rdr["WasteDescription"].ToString();
+                docket.WasteDescriptionCode = rdr["WasteDescriptionCode"].ToString();
+                docket.WasteDescriptionInvoice = rdr["WasteDescriptionInvoice"].ToString();
+                docket.GeneratorLocationLsd = rdr["GeneratorLocationLsd"].ToString();
+                docket.JOBNo = rdr["JOBNo"].ToString();
+                docket.AFENo = rdr["AFENo"].ToString();
+                docket.PONo = rdr["PONo"].ToString();
+
+                docket.ExcludeInterest = Convert.ToBoolean(rdr["ExcludeInterest"]);
+
+                docket.GenContactName = rdr["GenContactName"].ToString();
+                docket.ConsultantName = rdr["ConsultantName"].ToString();
+                docket.ConsultantAddr = rdr["ConsultantAddr"].ToString();
+                docket.ConsultantCity = rdr["ConsultantCity"].ToString();
+                docket.ConsultantProv = rdr["ConsultantProv"].ToString();
+                docket.ConsultantPostal = rdr["ConsultantPostal"].ToString(); 
+
+
+
+
+
+                if (!(rdr["GeneratorId"] is DBNull))
+                    docket.GeneratorId = 0 + Convert.ToInt32(rdr["GeneratorId"]);
+                else
+                    docket.GeneratorId = 11;
+
+                docket.InvoiceeName = rdr["InvoiceeName"].ToString();
+                ndocketList.Add(docket);
+
+            }
+            return ndocketList;
+
+        }
+
+
+
+
+
         #endregion
 
 
