@@ -121,8 +121,8 @@ namespace MLandfill.DataAccess
                 docket.GridNo = rdr["GridNo"].ToString();
                 docket.GridNo = rdr["Elevation"].ToString();
 
-                docket.DateReceived = Convert.ToDateTime(rdr["DateReceived"]);
-                docket.LoadReceivingDate = Convert.ToDateTime(rdr["DateReceived"]);
+                docket.DateReceived = Convert.ToDateTime(rdr["ReceivedDate"]);
+                docket.LoadReceivingDate = Convert.ToDateTime(rdr["ReceivedDate"]);
                 docket.TruckCompName = rdr["TruckCompName"].ToString();
                 docket.TruckCompAddr = rdr["TruckCompAddr"].ToString();
                 docket.TruckCompCity = rdr["TruckCompCity"].ToString();
@@ -208,6 +208,11 @@ namespace MLandfill.DataAccess
                 SqlCommand cmd = new SqlCommand("spDocketWasteAddNew", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
+                //GET THE NEW InvoiceNumber from tblInvoice and add that value to @InvoiceNo
+                //also insert the other values to the tblInvoice
+                //insert a record to tblLandFillWasteDocketsHistory
+
+
                 try
                 {
 
@@ -246,7 +251,59 @@ namespace MLandfill.DataAccess
 
 
         }
+        private void UpdateInvoice(DocketViewModel docket)
+        {
 
+            string connectionString = ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spDocketWasteAddNew", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                //GET THE NEW InvoiceNumber from tblInvoice and add that value to @InvoiceNo
+                //also insert the other values to the tblInvoice
+                //insert a record to tblLandFillWasteDocketsHistory
+
+
+                try
+                {
+
+
+                    cmd.Parameters.AddWithValue("@DocketNo", docket.DocketNo);
+
+                    cmd.Parameters.AddWithValue("@WasteApprovalCode", docket.WApApprovalcode);
+                    cmd.Parameters.AddWithValue("@InvoiceeId", docket.InvoiceeId);
+                    cmd.Parameters.AddWithValue("@TurckCompanyId", docket.TruckCompId);
+                    cmd.Parameters.AddWithValue("@DriverName", docket.DriverName);
+                    cmd.Parameters.AddWithValue("@DestinatedFor", docket.DestinatedFor);
+                    cmd.Parameters.AddWithValue("@ScaleTicket", docket.ScaleTicket);
+                    cmd.Parameters.AddWithValue("@Gross", docket.Gross);
+                    cmd.Parameters.AddWithValue("@Tare", docket.Tare);
+                    cmd.Parameters.AddWithValue("@Net", docket.Net);
+                    cmd.Parameters.AddWithValue("@Cell", docket.Cell);
+                    cmd.Parameters.AddWithValue("@Grid", docket.Grid);
+                    cmd.Parameters.AddWithValue("@GridNo", docket.GridNo);
+                    cmd.Parameters.AddWithValue("@Elevation", docket.Elevation);
+                    cmd.Parameters.AddWithValue("@DateReceived", docket.DateReceived);
+                    cmd.Parameters.AddWithValue("@Memo", docket.Memo);
+                    cmd.Parameters.AddWithValue("@InvoiceNo", docket.InvoiceNo);
+                    cmd.Parameters.AddWithValue("@LoadReceivingDate", docket.DateReceived);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+
+                    Debug.WriteLine(ex.Message);
+                }
+
+            }
+
+
+        }
         public IEnumerable<ModelDockets> docketsAllGet()
         {
 

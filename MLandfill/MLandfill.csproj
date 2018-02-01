@@ -238,13 +238,15 @@
     <Compile Include="Controllers\InvoiceDocketsController.cs" />
     <Compile Include="Controllers\MaintWasteApprovalController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReportGenController.cs" />
     <Compile Include="Controllers\wasteApprovalController.cs" />
     <Compile Include="Core\Domain\MDockets.cs" />
     <Compile Include="DataAccess\DataAccessLayer.cs" />
-    <Compile Include="DataSetInterest.Designer.cs">
+    <Compile Include="DataAccess\DataReportLayer.cs" />
+    <Compile Include="dsRptDailyLandFill.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetInterest.xsd</DependentUpon>
+      <DependentUpon>dsRptDailyLandFill.xsd</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -280,6 +282,7 @@
     <Compile Include="Models\tblMaintWasteApCode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reports\InvoiceModel.cs" />
+    <Compile Include="Reports\OtherReports.cs" />
     <Compile Include="Reports\WebReportRenderer.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Startup.cs" />
@@ -409,16 +412,16 @@
     <Content Include="LandFillNRLDataSet.xsc">
       <DependentUpon>LandFillNRLDataSet.xsd</DependentUpon>
     </Content>
-    <Content Include="DataSetInterest.xsc">
-      <DependentUpon>DataSetInterest.xsd</DependentUpon>
+    <Content Include="dsRptDailyLandFill.xsc">
+      <DependentUpon>dsRptDailyLandFill.xsd</DependentUpon>
     </Content>
-    <None Include="DataSetInterest.xsd">
+    <None Include="dsRptDailyLandFill.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetInterest.Designer.cs</LastGenOutput>
+      <LastGenOutput>dsRptDailyLandFill.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <Content Include="DataSetInterest.xss">
-      <DependentUpon>DataSetInterest.xsd</DependentUpon>
+    <Content Include="dsRptDailyLandFill.xss">
+      <DependentUpon>dsRptDailyLandFill.xsd</DependentUpon>
     </Content>
     <None Include="LandFillNRLDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
@@ -537,6 +540,7 @@
     <Folder Include="Core\Repositories\" />
     <Folder Include="Persistence\Repositories\" />
     <Folder Include="Views\GridMvc\" />
+    <Folder Include="Views\ReportGen\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -549,7 +553,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\rptDailyLandFillSummary.rdlc" />
+    <EmbeddedResource Include="Reports\rptGeneratorLoadSummary.rdlc" />
+    <EmbeddedResource Include="Reports\rptLocationLoadSummary.rdlc" />
+    <EmbeddedResource Include="Reports\rptMonthlyLoadSummary.rdlc" />
     <EmbeddedResource Include="Reports\rptPrintInv.rdlc" />
+    <EmbeddedResource Include="Reports\rptSalesByCustomerSummary.rdlc" />
+    <EmbeddedResource Include="Reports\rptSubstanceLoadSummary.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
