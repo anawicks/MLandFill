@@ -937,7 +937,6 @@
         <Source>Embedded</Source>
         <Value>Logo</Value>
         <Sizing>Fit</Sizing>
-        <Left>13.57379cm</Left>
         <Height>1.11424cm</Height>
         <Width>4.32817cm</Width>
         <ZIndex>2</ZIndex>

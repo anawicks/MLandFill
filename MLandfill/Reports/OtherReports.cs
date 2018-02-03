@@ -29,6 +29,8 @@ namespace MLandfill.Reports
         public String Elevation { get; set; }
         public String Substance { get; set; }
 
+        public String WasteLocation { get; set; }
+
 
     }
 }

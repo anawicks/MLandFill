@@ -61,7 +61,7 @@ namespace MLandfill.DataAccess
 
         }
 
-        public IEnumerable<OtherReports> rptLocationLoadSummaryGet(string generator, string approvalCode, DateTime fromDate, DateTime toDate)
+        public IEnumerable<OtherReports> rptLocationLoadSummaryGet( DateTime fromDate, DateTime toDate)
         {
 
             SqlConnection con = null;
@@ -70,8 +70,8 @@ namespace MLandfill.DataAccess
             con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString());
             SqlCommand cmd = new SqlCommand("spRptLocationLoadSummary", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@generatorName", generator);
-            cmd.Parameters.AddWithValue("@approvalcode", approvalCode);
+            //cmd.Parameters.AddWithValue("@generatorName", generator);
+            //cmd.Parameters.AddWithValue("@approvalcode", approvalCode); WasteLocation
             cmd.Parameters.AddWithValue("@fromDate", fromDate);
             cmd.Parameters.AddWithValue("@toDate", toDate);
 
@@ -90,24 +90,14 @@ namespace MLandfill.DataAccess
                 rptModel.GeneratorName = rdr["GeneratorName"].ToString();
                 rptModel.ApprovalCode = rdr["ApprovalCode"].ToString();
                 rptModel.Grid = rdr["Grid"].ToString();
+                rptModel.Cell = rdr["Cell"].ToString();
                 rptModel.GridNo = rdr["GridNo"].ToString();
-                rptModel.Grid = rdr["Elevation"].ToString();
+                rptModel.Elevation = rdr["Elevation"].ToString();
+                rptModel.WasteLocation = rdr["WasteLocation"].ToString();
 
 
 
 
-                /*
-                            rptModel.TotalAmount = Convert.ToInt32(rdr["TotalAmount"]);
-                            rptModel.ApprovalCode = rdr["ApprovalCode"].ToString();
-                            rptModel.Cell = rdr["Cell"].ToString();
-                            rptModel.Grid = rdr["Grid"].ToString();
-                            rptModel.GridNo = rdr["GridNo"].ToString();
-                            rptModel.Grid = rdr["Elevation"].ToString();
-                            rptModel.GridNo = rdr["Substance"].ToString();
-                            rptModel.ScaleTicket = rdr["ScaleTicket"].ToString();
-                            rptModel.LocationLSD = rdr["LocationLSD"].ToString();
-
-                */
                 rptList.Add(rptModel);
 
             }
@@ -115,7 +105,10 @@ namespace MLandfill.DataAccess
 
         }
 
-        public IEnumerable<OtherReports> rptMonthlyLoadSummaryGet(string generator, string approvalCode, DateTime fromDate, DateTime toDate)
+        public IEnumerable<OtherReports> rptMonthlyLoadSummaryGet(int generatorId,   
+                                                                     
+                                                                    DateTime fromDate , 
+                                                                    DateTime toDate, string approvalCode )
         {
 
             SqlConnection con = null;
@@ -124,10 +117,11 @@ namespace MLandfill.DataAccess
             con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString());
             SqlCommand cmd = new SqlCommand("spRptMonthlyLoadSummary", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@generatorName", generator);
-            cmd.Parameters.AddWithValue("@approvalcode", approvalCode);
+            cmd.Parameters.AddWithValue("@generatorId", generatorId);
             cmd.Parameters.AddWithValue("@fromDate", fromDate);
             cmd.Parameters.AddWithValue("@toDate", toDate);
+            cmd.Parameters.AddWithValue("@approvalcode", approvalCode);
+            
 
 
 
@@ -224,7 +218,7 @@ namespace MLandfill.DataAccess
         }
 
 
-        public IEnumerable<OtherReports> rptSubstanceLoadSummaryGet(string generator, string approvalCode, DateTime fromDate, DateTime toDate)
+        public IEnumerable<OtherReports> rptSubstanceLoadSummaryGet(  DateTime fromDate, DateTime toDate)
         {
 
             SqlConnection con = null;
@@ -233,8 +227,8 @@ namespace MLandfill.DataAccess
             con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString());
             SqlCommand cmd = new SqlCommand("spRptSubstanceLoadSummary", con);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@generatorName", generator);
-            cmd.Parameters.AddWithValue("@Approvalcode", approvalCode);
+            //cmd.Parameters.AddWithValue("@generatorName", generator);
+            //cmd.Parameters.AddWithValue("@Approvalcode", approvalCode);
             cmd.Parameters.AddWithValue("@fromDate", fromDate);
             cmd.Parameters.AddWithValue("@toDate", toDate);
 
@@ -253,24 +247,8 @@ namespace MLandfill.DataAccess
                 rptModel.VtNet = Convert.ToDecimal(rdr["VtNet"]);
                 rptModel.GeneratorName = rdr["GeneratorName"].ToString();
                 rptModel.ApprovalCode = rdr["ApprovalCode"].ToString();
-                rptModel.GridNo = rdr["Substance"].ToString();
-
-
-                /*
-                            rptModel.Grid = rdr["Grid"].ToString();
-                            rptModel.GridNo = rdr["GridNo"].ToString();
-                            rptModel.Grid = rdr["Elevation"].ToString();
-                            rptModel.TotalAmount = Convert.ToInt32(rdr["TotalAmount"]);
-                            rptModel.ApprovalCode = rdr["ApprovalCode"].ToString();
-                            rptModel.Cell = rdr["Cell"].ToString();
-                            rptModel.Grid = rdr["Grid"].ToString();
-                            rptModel.GridNo = rdr["GridNo"].ToString();
-                            rptModel.Grid = rdr["Elevation"].ToString();
-                            rptModel.GridNo = rdr["Substance"].ToString();
-                            rptModel.ScaleTicket = rdr["ScaleTicket"].ToString();
-                            rptModel.LocationLSD = rdr["LocationLSD"].ToString();
-
-                */
+                rptModel.Substance = rdr["Substance"].ToString();
+ 
                 rptList.Add(rptModel);
 
             }

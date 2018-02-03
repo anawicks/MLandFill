@@ -16,7 +16,7 @@ namespace MLandfill
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "ReportGen", action = "LandFillSummary", id = UrlParameter.Optional }
+                defaults: new { controller = "ReportGen", action = "LocationLoadSummary", id = UrlParameter.Optional }
             );
         }
     }

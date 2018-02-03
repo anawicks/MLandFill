@@ -75,6 +75,98 @@ namespace MLandfill.Controllers
 
         }
 
+
+        public FileResult MonthlyLoadSummary()
+        {
+
+            byte[] result;
+
+            DateTime dtFromDate = new DateTime(2017, 1, 01);
+            DateTime dtToDate = new DateTime(2018, 1, 01);
+
+            using (var renderer = new WebReportRenderer(@"~\Reports\rptMonthlyLoadSummary.rdlc", "rptMonthlyLoadSummary.pdf"))
+
+            {
+                DataReportLayer objDb = new DataReportLayer();
+
+                //Microsoft.Reporting.WinForms.ReportDataSource rprtDTSource = new Microsoft.Reporting.WinForms.ReportDataSource(dt.TableName, dt); 
+
+
+                renderer.ReportInstance.DataSources.Add(new ReportDataSource("MonthlyLoadSummaryDs", objDb.rptMonthlyLoadSummaryGet(108,dtFromDate, dtToDate, "NRL 141082 8").ToList()));
+
+
+
+                renderer.ReportInstance.Refresh();
+
+                result = renderer.RenderToBytesPDF();
+
+            }
+
+            return File(result, "application/pdf", "rptMonthlyLoadSummary.pdf");
+
+        }
+
+        public FileResult  SubstanceLoadSummary()
+        {
+
+            byte[] result;
+
+            DateTime dtFromDate = new DateTime(2017, 1, 01);
+            DateTime dtToDate = new DateTime(2018, 1, 01);
+
+            using (var renderer = new WebReportRenderer(@"~\Reports\rptSubstanceLoadSummary.rdlc", "rptSubstanceLoadSummary.pdf"))
+
+            {
+                DataReportLayer objDb = new DataReportLayer();
+
+                //Microsoft.Reporting.WinForms.ReportDataSource rprtDTSource = new Microsoft.Reporting.WinForms.ReportDataSource(dt.TableName, dt); 
+
+
+                renderer.ReportInstance.DataSources.Add(new ReportDataSource("SubstanceLoadSummaryDs", objDb.rptSubstanceLoadSummaryGet( dtFromDate, dtToDate).ToList()));
+
+
+
+                renderer.ReportInstance.Refresh();
+
+                result = renderer.RenderToBytesPDF();
+
+            }
+
+            return File(result, "application/pdf", "rptSubstanceLoadSummary.pdf");
+
+        }
+
+
+        public FileResult LocationLoadSummary()
+        {
+
+            byte[] result;
+
+            DateTime dtFromDate = new DateTime(2017, 1, 01);
+            DateTime dtToDate = new DateTime(2018, 1, 01);
+
+            using (var renderer = new WebReportRenderer(@"~\Reports\rptLocationLoadSummary.rdlc", "rptLocationLoadSummary.pdf"))
+
+            {
+                DataReportLayer objDb = new DataReportLayer();
+
+                //Microsoft.Reporting.WinForms.ReportDataSource rprtDTSource = new Microsoft.Reporting.WinForms.ReportDataSource(dt.TableName, dt); 
+
+
+                renderer.ReportInstance.DataSources.Add(new ReportDataSource("LocationLoadSummaryDs", objDb.rptLocationLoadSummaryGet(dtFromDate, dtToDate).ToList()));
+
+
+
+                renderer.ReportInstance.Refresh();
+
+                result = renderer.RenderToBytesPDF();
+
+            }
+
+            return File(result, "application/pdf", "rptLocationLoadSummary.pdf");
+
+        }
+
         // GET: ReportGen
         public ActionResult Index()
         {

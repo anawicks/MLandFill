@@ -9,8 +9,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>="Invoice #: " &amp; Fields!InvoiceNumber.Value &amp;  "          Amount: " &amp;
-Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
+                <Value>="Invoice #: " &amp; Fields!InvoiceNumber.Value</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
@@ -25,6 +24,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
         </Paragraphs>
         <rd:DefaultName>Textbox15</rd:DefaultName>
         <Top>0.06721in</Top>
+        <Left>0cm</Left>
         <Height>0.23847in</Height>
         <Width>2.82822in</Width>
         <Style>
@@ -86,6 +86,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
       <Rectangle Name="Rectangle2">
         <KeepTogether>true</KeepTogether>
         <Top>0.31513in</Top>
+        <Left>0cm</Left>
         <Height>0.03819in</Height>
         <Width>3.89014in</Width>
         <ZIndex>2</ZIndex>
@@ -103,7 +104,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Waste Appr. Code:</Value>
+                <Value>Waste Approval . Code:</Value>
                 <Style>
                   <FontSize>8pt</FontSize>
                   <Color>Gray</Color>
@@ -116,10 +117,10 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox40</rd:DefaultName>
-        <Top>0.39499in</Top>
-        <Left>1.30252in</Left>
+        <Top>0.40542in</Top>
+        <Left>0.07501in</Left>
         <Height>0.25in</Height>
-        <Width>1.12848in</Width>
+        <Width>1.67015in</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -279,7 +280,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>=Fields!GeneratorLocationLsd.Value</Value>
+                <Value>=Fields!WasteApprovalCode.Value</Value>
                 <Style>
                   <FontSize>8pt</FontSize>
                 </Style>
@@ -291,10 +292,10 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox40</rd:DefaultName>
-        <Top>0.56999in</Top>
-        <Left>1.30252in</Left>
+        <Top>0.58042in</Top>
+        <Left>0.20001in</Left>
         <Height>0.25in</Height>
-        <Width>1.12848in</Width>
+        <Width>1.54515in</Width>
         <ZIndex>8</ZIndex>
         <Style>
           <Border>
@@ -355,7 +356,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Newell Regional Solid Waste Management Authrity LTD.</Value>
+                    <Value>Newell Regional Solid Waste Management Authority LTD.</Value>
                     <Style>
                       <FontSize>8pt</FontSize>
                     </Style>
@@ -412,7 +413,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
             <Top>0.15055in</Top>
             <Left>0.04208in</Left>
             <Height>1.09693in</Height>
-            <Width>2.8913in</Width>
+            <Width>2.99129in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -428,7 +429,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
         <Top>1.31043in</Top>
         <Left>4.20014in</Left>
         <Height>1.40373in</Height>
-        <Width>2.97088in</Width>
+        <Width>3.03337in</Width>
         <ZIndex>10</ZIndex>
         <Style>
           <Border>
@@ -528,6 +529,23 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           <Paragraph>
             <TextRuns>
               <TextRun>
+                <Value />
+                <Style>
+                  <FontStyle>Italic</FontStyle>
+                  <FontSize>8pt</FontSize>
+                  <FontWeight>Normal</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>DimGray</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
                 <Value>GST/HST No: 891200289</Value>
                 <Style>
                   <FontStyle>Normal</FontStyle>
@@ -562,27 +580,12 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>If you have any questions please contact Kendra Johnston</Value>
+                <Value />
                 <Style>
                   <FontStyle>Italic</FontStyle>
                   <FontSize>8pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>None</TextDecoration>
-                  <Color>DimGray</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>(403) 362 5188 or email  kendra.matz@eidnet.org</Value>
-                <Style>
-                  <FontStyle>Italic</FontStyle>
-                  <FontSize>8pt</FontSize>
                   <Color>DimGray</Color>
                 </Style>
               </TextRun>
@@ -629,7 +632,6 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
               <TextRun>
                 <Value>Invoice To:</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
                   <FontWeight>Normal</FontWeight>
                   <TextDecoration>Underline</TextDecoration>
                   <Color>DimGray</Color>
@@ -645,7 +647,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
               <TextRun>
                 <Value />
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
                   <FontWeight>Bold</FontWeight>
                   <TextDecoration>Underline</TextDecoration>
                   <Color>DimGray</Color>
@@ -661,7 +663,8 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
               <TextRun>
                 <Value>=Fields!InvoiceeName.Value</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -674,7 +677,8 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
               <TextRun>
                 <Value />
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -687,7 +691,8 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
               <TextRun>
                 <Value>=Fields!ConsultantName.Value</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -700,38 +705,29 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
               <TextRun>
                 <Value>=Fields!ConsultantAddr.Value</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value> , </Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!ConsultantCity.Value</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value xml:space="preserve"> </Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value />
-                <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -744,13 +740,15 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
               <TextRun>
                 <Value>Attn: </Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
               <TextRun>
                 <Value>=Fields!GenContactName.Value</Value>
                 <Style>
-                  <FontSize>8pt</FontSize>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -763,7 +761,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
         <Top>0.13238in</Top>
         <Left>4.20014in</Left>
         <Height>1.18523in</Height>
-        <Width>2.97087in</Width>
+        <Width>3.03337in</Width>
         <ZIndex>13</ZIndex>
         <Style>
           <Border>
@@ -925,9 +923,6 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
               <Width>1.60687in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.01478in</Width>
-            </TablixColumn>
-            <TablixColumn>
               <Width>0.55694in</Width>
             </TablixColumn>
             <TablixColumn>
@@ -972,42 +967,6 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox24</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <BackgroundColor>Wheat</BackgroundColor>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox26">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>Service(s)</Value>
-                              <Style>
-                                <FontSize>8pt</FontSize>
-                                <FontWeight>Bold</FontWeight>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox26</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1279,40 +1238,6 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="WasteApprovalCode">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value>=Fields!WasteApprovalCode.Value</Value>
-                              <Style>
-                                <FontSize>8pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>WasteApprovalCode</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
                     <Textbox Name="NetWeight">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
@@ -1535,52 +1460,19 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>Total V(t)</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Left</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
                       <rd:DefaultName>Textbox2</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox3">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontSize>8pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox3</rd:DefaultName>
                       <Style>
                         <Border>
                           <Color>LightGrey</Color>
@@ -1638,14 +1530,15 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value />
+                              <Value>Total Amount $</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -1661,110 +1554,12 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <ColSpan>4</ColSpan>
                   </CellContents>
                 </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox6">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontSize>8pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox6</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox7">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontSize>8pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox7</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
-                <TablixCell>
-                  <CellContents>
-                    <Textbox Name="Textbox8">
-                      <CanGrow>true</CanGrow>
-                      <KeepTogether>true</KeepTogether>
-                      <Paragraphs>
-                        <Paragraph>
-                          <TextRuns>
-                            <TextRun>
-                              <Value />
-                              <Style>
-                                <FontSize>8pt</FontSize>
-                              </Style>
-                            </TextRun>
-                          </TextRuns>
-                          <Style>
-                            <TextAlign>Center</TextAlign>
-                          </Style>
-                        </Paragraph>
-                      </Paragraphs>
-                      <rd:DefaultName>Textbox8</rd:DefaultName>
-                      <Style>
-                        <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
-                        </Border>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                    </Textbox>
-                  </CellContents>
-                </TablixCell>
+                <TablixCell />
+                <TablixCell />
+                <TablixCell />
                 <TablixCell>
                   <CellContents>
                     <Textbox Name="Textbox9">
@@ -1814,7 +1609,6 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
             <TablixMember />
             <TablixMember />
             <TablixMember />
-            <TablixMember />
           </TablixMembers>
         </TablixColumnHierarchy>
         <TablixRowHierarchy>
@@ -1837,9 +1631,9 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
         <FixedRowHeaders>true</FixedRowHeaders>
         <DataSetName>ReportInvDataSet</DataSetName>
         <Top>2.77972in</Top>
-        <Left>0.02501in</Left>
+        <Left>0.40001in</Left>
         <Height>0.75in</Height>
-        <Width>7.146in</Width>
+        <Width>6.13122in</Width>
         <ZIndex>18</ZIndex>
         <Style>
           <Border>
@@ -1847,42 +1641,6 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           </Border>
         </Style>
       </Tablix>
-      <Textbox Name="Textbox53">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>Contract Information:</Value>
-                <Style>
-                  <FontSize>8pt</FontSize>
-                  <TextDecoration>Underline</TextDecoration>
-                  <Color>Gray</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Left</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox40</rd:DefaultName>
-        <Top>0.39499in</Top>
-        <Left>0.04569in</Left>
-        <Height>0.20833in</Height>
-        <Width>1.14653in</Width>
-        <ZIndex>19</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Textbox Name="Textbox10">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -1902,11 +1660,11 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>3.7568in</Top>
-        <Left>6.16819in</Left>
+        <Top>3.77409in</Top>
+        <Left>5.53123in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>20</ZIndex>
+        <ZIndex>19</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1935,11 +1693,11 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>3.7568in</Top>
-        <Left>4.92167in</Left>
+        <Top>3.77409in</Top>
+        <Left>4.28471in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>21</ZIndex>
+        <ZIndex>20</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1967,11 +1725,11 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>4.07625in</Top>
-        <Left>4.92167in</Left>
+        <Top>4.09354in</Top>
+        <Left>4.28471in</Left>
         <Height>0.25in</Height>
         <Width>1.17708in</Width>
-        <ZIndex>22</ZIndex>
+        <ZIndex>21</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1999,11 +1757,11 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>4.40757in</Top>
-        <Left>4.92167in</Left>
+        <Top>4.42486in</Top>
+        <Left>4.28471in</Left>
         <Height>0.25in</Height>
         <Width>1.17708in</Width>
-        <ZIndex>23</ZIndex>
+        <ZIndex>22</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2035,11 +1793,11 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
-        <Top>4.90965in</Top>
-        <Left>4.92167in</Left>
+        <Top>4.92694in</Top>
+        <Left>4.28471in</Left>
         <Height>0.25in</Height>
         <Width>1.14514in</Width>
-        <ZIndex>24</ZIndex>
+        <ZIndex>23</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2069,11 +1827,11 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>4.40757in</Top>
-        <Left>6.16819in</Left>
+        <Top>4.42486in</Top>
+        <Left>5.53123in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>25</ZIndex>
+        <ZIndex>24</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2105,11 +1863,11 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>4.90965in</Top>
-        <Left>6.16819in</Left>
+        <Top>4.92694in</Top>
+        <Left>5.53123in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>26</ZIndex>
+        <ZIndex>25</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -2183,6 +1941,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
             </Textbox>
           </ReportItems>
           <KeepTogether>true</KeepTogether>
+          <Left>0cm</Left>
           <Height>0.66209in</Height>
           <Width>2.2185in</Width>
           <ZIndex>1</ZIndex>
@@ -2200,7 +1959,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>0.33333in</Height>
+      <Height>0.80208in</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -2224,7 +1983,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>PageNumber</rd:DefaultName>
-          <Top>0.04167in</Top>
+          <Top>0.52084in</Top>
           <Left>4.95634in</Left>
           <Height>0.25in</Height>
           <Width>2.21185in</Width>
@@ -2256,7 +2015,7 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox21</rd:DefaultName>
-          <Top>0.04167in</Top>
+          <Top>0.52084in</Top>
           <Height>0.25in</Height>
           <Width>2.431in</Width>
           <ZIndex>1</ZIndex>
@@ -2282,6 +2041,50 @@ Format(Sum(Fields!AmountCharge.Value) * 1.05, "C")</Value>
             </Border>
           </Style>
         </Line>
+        <Textbox Name="Textbox1">
+          <CanGrow>true</CanGrow>
+          <KeepTogether>true</KeepTogether>
+          <Paragraphs>
+            <Paragraph>
+              <TextRuns>
+                <TextRun>
+                  <Value>If you have any questions please contact Kendra Johnston:  </Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontSize>8pt</FontSize>
+                    <FontWeight>Normal</FontWeight>
+                    <TextDecoration>None</TextDecoration>
+                    <Color>DimGray</Color>
+                  </Style>
+                </TextRun>
+                <TextRun>
+                  <Value>(403) 362 5188 or email  kendra.matz@eidnet.org</Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontSize>8pt</FontSize>
+                    <Color>DimGray</Color>
+                  </Style>
+                </TextRun>
+              </TextRuns>
+              <Style />
+            </Paragraph>
+          </Paragraphs>
+          <rd:DefaultName>Textbox1</rd:DefaultName>
+          <Top>0.08334in</Top>
+          <Left>0.02501in</Left>
+          <Height>0.38889in</Height>
+          <Width>7.26059in</Width>
+          <ZIndex>3</ZIndex>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <PaddingLeft>2pt</PaddingLeft>
+            <PaddingRight>2pt</PaddingRight>
+            <PaddingTop>2pt</PaddingTop>
+            <PaddingBottom>2pt</PaddingBottom>
+          </Style>
+        </Textbox>
       </ReportItems>
       <Style>
         <Border>
