@@ -40,7 +40,9 @@ namespace MLandfill.DataAccess
                 rptModel.ScaleTicket = rdr["ScaleTicket"].ToString();
                 rptModel.DocketNo = rdr["DocketNo"].ToString();
                 rptModel.VtNet = Convert.ToDecimal(rdr["VtNet"]);
-                rptModel.ReceivedDate =   Convert.ToDateTime(rdr["ReceivedDate"]);
+                if (!(rdr["ReceivedDate"] is DBNull))
+                    rptModel.ReceivedDate =   Convert.ToDateTime(rdr["ReceivedDate"]);
+                
                 rptModel.LocationLSD = rdr["LocationLSD"].ToString();
                 rptModel.ApprovalCode = rdr["ApprovalCode"].ToString();
 
@@ -256,6 +258,107 @@ namespace MLandfill.DataAccess
 
         }
 
+
+        public IEnumerable<CenovusReport> rptCenovusGet(DateTime fromDate, DateTime toDate, int generatorId)
+        {
+
+            SqlConnection con = null;
+
+            List<CenovusReport> rptList = new List<CenovusReport>();
+            con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString());
+            SqlCommand cmd = new SqlCommand("spRptCenovus", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //CONVERT(VARCHAR(10), GETDATE(), 110)
+            cmd.Parameters.AddWithValue("@fromDate", fromDate);
+            cmd.Parameters.AddWithValue("@toDate", toDate);
+            cmd.Parameters.AddWithValue("@GeneratorId", generatorId); 
+
+
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                CenovusReport rptModel = new CenovusReport();
+
+
+                //rptModel.GeneratorName = rdr["GeneratorName"].ToString();
+                
+                rptModel.ServiceMaterial = rdr["ServiceMaterial"].ToString();
+                rptModel.ShipToParty = rdr["ShipToParty"].ToString();
+                rptModel.Dow = rdr["Dow"].ToString();
+                rptModel.DocumentDate = Convert.ToDateTime(rdr["DocumentDate"]);
+                rptModel.WasteManifest = rdr["WasteManifest"].ToString();
+                rptModel.TruckCompany = rdr["TruckCompany"].ToString();
+                rptModel.TruckTicketNo = rdr["TruckTicketNo"].ToString();
+                rptModel.ProcessingVolume = Convert.ToDecimal(rdr["ProcessingVolume"]);
+                rptModel.GeneratorName = rdr["GeneratorName"].ToString();
+
+
+                rptList.Add(rptModel);
+
+            }
+            return rptList;
+
+        }
+
+
+        public IEnumerable<OtherReports> rptGeneralSummaryGet(DateTime fromDate, DateTime toDate )
+        {
+
+            SqlConnection con = null;
+
+            List<OtherReports> rptList = new List<OtherReports>();
+            con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString());
+            SqlCommand cmd = new SqlCommand("spRptGeneralSummary", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //CONVERT(VARCHAR(10), GETDATE(), 110)
+            cmd.Parameters.AddWithValue("@fromDate", fromDate);
+            cmd.Parameters.AddWithValue("@toDate", toDate);
+            //cmd.Parameters.AddWithValue("@GeneratorId", generatorId);
+
+
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                OtherReports rptModel = new OtherReports();
+
+
+                
+
+                rptModel.ScaleTicket = rdr["ScaleTicket"].ToString();
+                rptModel.DocketNo = rdr["DocketNo"].ToString();
+                if (!(rdr["ReceivedDate"] is DBNull))
+                    rptModel.ReceivedDate = Convert.ToDateTime(rdr["ReceivedDate"]);
+                rptModel.VtNet = Convert.ToDecimal(rdr["VtNet"]);
+                rptModel.GeneratorName = rdr["GeneratorName"].ToString();               
+                rptModel.LocationLSD = rdr["LocationLSD"].ToString();
+                rptModel.ApprovalCode = rdr["ApprovalCode"].ToString(); 
+
+
+                rptList.Add(rptModel);
+
+            }
+            return rptList;
+
+        }
         #endregion
     }
 }
+//public String  { get; set; }
+
+//public String  { get; set; }
+
+//public String  { get; set; }
+//public String  { get; set; }
+//public DateTime  { get; set; }
+
+//public String  { get; set; }
+
+//public String  { get; set; }
+
+//public String  { get; set; }
+
+//public decimal  { get; set; }

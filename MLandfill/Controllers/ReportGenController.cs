@@ -167,6 +167,73 @@ namespace MLandfill.Controllers
 
         }
 
+
+
+        public FileResult CenovusDetail()
+        {
+
+            byte[] result;
+
+            
+
+            DateTime dtFromDate = new DateTime(2017, 1, 01);
+            DateTime dtToDate = new DateTime(2018, 1, 01);
+            string.Format("{0:MM/dd/yy}", dtFromDate);
+
+
+            using (var renderer = new WebReportRenderer(@"~\Reports\rptCenovus.rdlc", "rptCenovus.pdf"))
+
+            {
+                DataReportLayer objDb = new DataReportLayer();
+
+                //Microsoft.Reporting.WinForms.ReportDataSource rprtDTSource = new Microsoft.Reporting.WinForms.ReportDataSource(dt.TableName, dt); 
+
+
+                renderer.ReportInstance.DataSources.Add(new ReportDataSource("CenovusDetailDs", objDb.rptCenovusGet(dtFromDate, dtToDate,40).ToList()));
+
+
+
+                renderer.ReportInstance.Refresh();
+
+                result = renderer.RenderToBytesPDF();
+
+            }
+
+            return File(result, "application/pdf", "rptCenovus.pdf");
+
+        }
+
+
+
+        public FileResult GeneralSummary()
+        {
+
+            byte[] result;
+
+            DateTime dtFromDate = new DateTime(2017, 4, 01);
+            DateTime dtToDate = new DateTime(2017, 7, 01);
+
+            using (var renderer = new WebReportRenderer(@"~\Reports\rptGeneralGenSummary.rdlc", "rptGeneralGenSummary.pdf"))
+
+            {
+                DataReportLayer objDb = new DataReportLayer();
+
+                //Microsoft.Reporting.WinForms.ReportDataSource rprtDTSource = new Microsoft.Reporting.WinForms.ReportDataSource(dt.TableName, dt); 
+
+
+                renderer.ReportInstance.DataSources.Add(new ReportDataSource("GeneralGenSummaryDs", objDb.rptGeneralSummaryGet(dtFromDate, dtToDate).ToList()));
+
+
+
+                renderer.ReportInstance.Refresh();
+
+                result = renderer.RenderToBytesPDF();
+
+            }
+
+            return File(result, "application/pdf", "rptGeneralGenSummary.pdf");
+
+        }
         // GET: ReportGen
         public ActionResult Index()
         {
