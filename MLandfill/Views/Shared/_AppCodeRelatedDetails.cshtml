@@ -58,22 +58,19 @@
             
         </div>
         <div class="col-md-4">
-            @Html.DisplayFor(model => model.SubstanceName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DisplayFor(model => model.SubstanceName, new { htmlAttributes = new { @class = "control-label col-md-4" } })
             @Html.ValidationMessageFor(model => model.SubstanceName, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-2">
             @Html.LabelFor(model => model.GeneratorName, htmlAttributes: new { @class = "control-label col-md-2" })
         </div>
         <div class="col-md-4">
-            @Html.DisplayFor(model => model.GeneratorName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DisplayFor(model => model.GeneratorName, new { htmlAttributes = new { @class = "control-label col-md-4" } })
             @Html.ValidationMessageFor(model => model.GeneratorName, "", new { @class = "text-danger" })
         </div>
-
-       
- 
-
     </div>
 </div>
+
 <div class="row">
     <div class="row row-grid">
         <div class="col-md-2">
@@ -85,11 +82,6 @@
             @Html.DisplayFor(model => model.GenerLocationLsd, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.GenerLocationLsd, "", new { @class = "text-danger" })
         </div>
- 
-
-
-
-
     </div>
 </div>
 @*<div class="row">

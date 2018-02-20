@@ -220,7 +220,6 @@ namespace MLandfill.DataAccess
                     cmd.Parameters.AddWithValue("@DocketNo", docket.DocketNo);
 
                     cmd.Parameters.AddWithValue("@WasteApprovalCode", docket.WApApprovalcode);
-                    cmd.Parameters.AddWithValue("@InvoiceeId", docket.InvoiceeId);
                     cmd.Parameters.AddWithValue("@TurckCompanyId", docket.TruckCompId);
                     cmd.Parameters.AddWithValue("@DriverName", docket.DriverName);
                     cmd.Parameters.AddWithValue("@DestinatedFor", docket.DestinatedFor);
