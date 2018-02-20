@@ -366,6 +366,9 @@ namespace MLandfill.DataAccess
             }
             return ndocketList;
         }
+
+       
+
         #endregion
 
         #region "Invoice Docket"
@@ -525,8 +528,12 @@ namespace MLandfill.DataAccess
                 WstAppCode.WApLocationId = Convert.ToInt32(rdr["WApLocationId"]);
                 WstAppCode.GenerLocationLsd = rdr["GenerLocationLsd"].ToString();
 
+                if (!(rdr["WApMinCharge"] is DBNull))
+                    WstAppCode.WApMinCharge = Convert.ToBoolean(rdr["WApMinCharge"]);
+                else
+                    WstAppCode.WApMinCharge = false;
 
-                nWstAppCode.Add(WstAppCode);
+               nWstAppCode.Add(WstAppCode);
 
             }
             return nWstAppCode;
@@ -1016,6 +1023,45 @@ namespace MLandfill.DataAccess
 
         #endregion
 
+        #region "ApprovalCode"
+        //DocketViewModel
+        public  DocketViewModel approvalCodeRelatedGet(int approvalCode)
+        {
+
+            SqlConnection con = null;
+
+            List<DocketViewModel> ndocketList = new List<DocketViewModel>();
+            con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString());
+            SqlCommand cmd = new SqlCommand("spWasteAppCodeReletedGet", con);
+            cmd.Parameters.AddWithValue("@WApApprovalId", approvalCode);
+            cmd.CommandType = CommandType.StoredProcedure;
+            DocketViewModel docket = new DocketViewModel();
+            con.Open();
+            SqlDataReader rdr = cmd.ExecuteReader();
+            while (rdr.Read())
+            {
+               
+ 
+                //docket.WasteApprovalCode = rdr["WasteApprovalCode"].ToString();
+                docket.GeneratorName = rdr["GeneratorName"].ToString();
+                docket.SubstanceName = rdr["SubstanceName"].ToString();
+                docket.GenerLocationLsd = rdr["GenerLocationLsd"].ToString();
+
+
+                ndocketList.Add(docket);
+
+            }
+            return docket;
+        }
+        //SqlConnection con = null;
+
+        //List<DocketGrid> ndocketList = new List<DocketGrid>();
+        //con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString());
+        //SqlCommand cmd = new SqlCommand("spDocketGridGet", con);
+        //cmd.CommandType = CommandType.StoredProcedure;
+        //con.Open();
+        //SqlDataReader rdr = cmd.ExecuteReader();
+        #endregion
 
 
 

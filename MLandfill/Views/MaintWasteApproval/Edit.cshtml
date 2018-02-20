@@ -252,7 +252,18 @@
                             @Html.EditorFor(model => model.WApWasteDescriptionMailMerge, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.WApWasteDescriptionMailMerge, "", new { @class = "text-danger" })
                         </div>
-
+                        @if (Model.WApMinCharge == true)
+                        {
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApMinCharge, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.WApMinCharge)
+                                @Html.ValidationMessageFor(model => model.WApMinCharge, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        }
                     </div>
 
 

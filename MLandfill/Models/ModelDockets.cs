@@ -25,7 +25,7 @@ namespace MLandfill.Models
         public string Grid { get; set; }
         public string GridNo { get; set; }
         public string Elevation { get; set; }
-        public DateTime DateReceived { get; set; }
+        public DateTime DateReceived { get; set; } //DateReceived
         public string Memo { get; set; }
         public string InvoiceNo { get; set; }
         public DateTime LoadReceivingDate { get; set; }

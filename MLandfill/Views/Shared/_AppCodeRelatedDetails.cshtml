@@ -1,0 +1,115 @@
+﻿ 
+
+@model  MLandfill.ViewModel.DocketViewModel 
+<style>
+    .marbot {
+        margin-bottom: 12px;
+    }
+
+    body {
+        padding-top: 40px;
+    }
+
+    .with-margin {
+        margin-bottom: 10px;
+    }
+
+    .spacer5 {
+        height: 5px;
+    }
+
+    div p {
+        font-weight: 600;
+    }
+
+    .text-on-pannel {
+        background: #fff none repeat scroll 0 0;
+        height: auto;
+        margin-left: 20px;
+        padding: 3px 5px;
+        position: absolute;
+        margin-top: -47px;
+        border: 1px solid #ff6a00;
+        border-radius: 5px;
+    }
+
+    .panel {
+        /* for text on pannel */
+        margin-top: 21px !important;
+    }
+
+    .panel-body {
+        padding-top: 27px !important;
+        margin-left: 30px;
+    }
+
+    legend.scheduler-border {
+        width: auto;
+        border-bottom: none;
+    }
+</style>
+
+ 
+<div class="row">
+    <div class="row row-grid">
+        <div class="col-md-2">
+            
+            @Html.LabelFor(Model => Model.SubstanceName, htmlAttributes: new { @class = "control-label col-md-2" })
+            
+        </div>
+        <div class="col-md-4">
+            @Html.DisplayFor(model => model.SubstanceName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SubstanceName, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.GeneratorName, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="col-md-4">
+            @Html.DisplayFor(model => model.GeneratorName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GeneratorName, "", new { @class = "text-danger" })
+        </div>
+
+       
+ 
+
+    </div>
+</div>
+<div class="row">
+    <div class="row row-grid">
+        <div class="col-md-2">
+
+            @Html.LabelFor(Model => Model.GenerLocationLsd, htmlAttributes: new { @class = "control-label col-md-2" })
+
+        </div>
+        <div class="col-md-4">
+            @Html.DisplayFor(model => model.GenerLocationLsd, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GenerLocationLsd, "", new { @class = "text-danger" })
+        </div>
+ 
+
+
+
+
+    </div>
+</div>
+@*<div class="row">
+        <div class="row row-grid">
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.TruckCompProv, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.TruckCompProv, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TruckCompProv, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.TruckCompPostal, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.TruckCompPostal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TruckCompPostal, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+    </div>*@
+ 

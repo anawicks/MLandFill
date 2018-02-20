@@ -29,6 +29,18 @@
             });
 
     }
+    function ddlAppCodeChange() {
+       // alert("haha");
+        //alert($('#WApApprovalId option:selected').val());
+        var appCodeSelected = $("#WApApprovalId option:selected").val();
+
+        //alert(appCodeSelected);
+        $.get('@Url.Action("_AppCodeRelatedDetails")',
+            { id: appCodeSelected }, function (data) {
+                $("#AppCodeSpan").html(data);
+            });
+
+    }
     $(document).ready(function () {
         $("#ddListChange33").change(function () {
             $("#log").ajaxError(function (event, jqxhr, settings, exception) {
@@ -97,6 +109,7 @@
 <h3 style="margin-left:45px;color:#1e2a89;">Waste Docket Create</h3>
 @{ 
     var dataT = ViewData["TruckCompRec"];
+    var dataAppCode = ViewData["AppCodeRec"];
 }
 @using (Html.BeginForm())
 {
@@ -122,18 +135,22 @@
                             @Html.ValidationMessageFor(model => model.DocketNo, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-2">
-                            @Html.LabelFor(model => model.WasteApprovalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.WApApprovalcode, htmlAttributes: new { @class = "control-label col-md-2" })
                         </div>
                         <div class="col-md-4">
 
 
-                            @Html.DropDownListFor(model => model.WApApprovalcode, new SelectList(Model.ddWasteApproval, "WApApprovalcode", "WApApprovalcode"), "Select Approval Code", new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.WApApprovalId, new SelectList(Model.ddWasteApproval, "WApApprovalId", "WApApprovalcode"), "Select Approval Code", new { onchange = "ddlAppCodeChange()" })
 
                             @Html.ValidationMessageFor(model => model.WasteApprovalCode, "", new { @class = "text-danger" })
+
                         </div>
+    
+                         
+                        
+                         
 
-
-                    </div>
+                        </div>
                 </div>
                 <div class="row">
                     <div class="row row-grid">
@@ -173,7 +190,17 @@
 
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <span id="AppCodeSpan">
+                        @{Html.RenderPartial("_AppCodeRelatedDetails", dataAppCode); }
+                    </span>
+
+
+
+
+
+                </div>
+             </div>
         </div>
 
 
@@ -233,7 +260,13 @@
                             @Html.ValidationMessageFor(model => model.Net, "", new { @class = "text-danger" })
                         </div>
 
-
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.Tare, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.Tare, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Tare, "", new { @class = "text-danger" })
+                        </div>
 
                     </div>
                 </div>

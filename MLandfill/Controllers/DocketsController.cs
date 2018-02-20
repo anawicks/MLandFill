@@ -16,7 +16,7 @@ namespace MLandfill.Controllers
         // GET: Dockets
         public ActionResult Index()
         {
-            MDockets objDockets = new MDockets();
+            //MDockets objDockets = new MDockets();
             
             DataAccessLayer objDb = new DataAccessLayer();
 
@@ -120,9 +120,11 @@ namespace MLandfill.Controllers
 
             };
             tblTruckCompany truckModel = new tblTruckCompany();
-           
- 
+            DocketViewModel appCodeModel = new DocketViewModel();
+
+
             ViewData["TruckCompRec"] = truckModel;
+            ViewData["AppCodeRec"] = appCodeModel;
 
             return View(aviewModel);
 
@@ -353,9 +355,9 @@ namespace MLandfill.Controllers
             
             LandFill_DBContext dbContext = new LandFill_DBContext();
 
-            
 
-            
+             
+
 
             tblTruckCompany truckComp = dbContext.tblTruckCompanies.Single(x => x.TruckCompId == id);
 
@@ -364,7 +366,25 @@ namespace MLandfill.Controllers
             return View(truckComp);
             
         }
+        public ActionResult _AppCodeRelatedDetails(int id)
+        {
 
+          
+            DataAccessLayer objDb = new DataAccessLayer();
+
+            //DocketViewModel  appCodeRelated = objDb.approvalCodeRelatedGet(id).ToList();
+
+        
+
+            return View(objDb.approvalCodeRelatedGet(id));
+
+
+           
+
+
+ 
+
+        }
         public ActionResult TryIndex(int id)
         {
             LandFill_DBContext dbContext = new LandFill_DBContext();
