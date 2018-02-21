@@ -136,6 +136,7 @@ namespace MLandfill.Controllers
         [HttpPost]
         public ActionResult Create(DocketViewModel viewModel)
         {
+            int docketID = 0;
             try
             {
                 var errors = ModelState
@@ -149,8 +150,9 @@ namespace MLandfill.Controllers
                 {
                     DataAccessLayer objDb = new DataAccessLayer();
 
-                    objDb.DocketAdd(viewModel);
-                    return RedirectToAction("Index");
+                    docketID=objDb.DocketAdd(viewModel);
+                    return RedirectToAction("DetailsNew", "Dockets", new { @id = docketID });
+                    //("DetailsNew", "Dockets", new { @id = docket.DocketId }); 
                 }
                 return View();
             }

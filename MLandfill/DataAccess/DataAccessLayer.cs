@@ -102,10 +102,10 @@ namespace MLandfill.DataAccess
                 docket.DocketId = Convert.ToInt32(rdr["DocketId"]);
                 docket.DocketNo = rdr["DocketNo"].ToString();
                 docket.WasteApprovalCode = rdr["WasteApprovalCode"].ToString();
-                if (!(rdr["InvoiceeId"] is DBNull))
-                    docket.InvoiceeId = 0 + Convert.ToInt32(rdr["InvoiceeId"]);
-                else
-                    docket.InvoiceeId = 11;
+                //if (!(rdr["InvoiceeId"] is DBNull))
+                //    docket.InvoiceeId = 0 + Convert.ToInt32(rdr["InvoiceeId"]);
+                //else
+                //    docket.InvoiceeId = 11;
 
                 docket.TurckCompanyId = Convert.ToInt32(rdr["TurckCompanyId"]);
                 docket.DriverName = rdr["DriverName"].ToString();
@@ -197,58 +197,67 @@ namespace MLandfill.DataAccess
         }
 
 
-        public void DocketAdd(DocketViewModel docket)
+        public int DocketAdd(DocketViewModel docket)
         {
-
+            int docketIdOut=0;
 
             string connectionString = ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString();
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("spDocketWasteAddNew", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                //GET THE NEW InvoiceNumber from tblInvoice and add that value to @InvoiceNo
-                //also insert the other values to the tblInvoice
-                //insert a record to tblLandFillWasteDocketsHistory
 
 
-                try
-                {
+                using (SqlCommand cmd = new SqlCommand("spDocketWasteAddNew", con))
+                { 
+                    cmd.CommandType = CommandType.StoredProcedure;
+ 
+                    try
+                    {
+                        cmd.Parameters.Clear();
+
+                    
+                    
+                        cmd.Parameters.AddWithValue("@DocketNo", docket.DocketNo);
+                        cmd.Parameters.AddWithValue("@WasteApprovalCode", "NRL 9988 776");//docket.WApApprovalcode
+
+                        cmd.Parameters.AddWithValue("@TurckCompanyId", docket.TruckCompId);
+                        cmd.Parameters.AddWithValue("@DriverName", docket.DriverName);
+                        cmd.Parameters.AddWithValue("@DestinatedFor", docket.DestinatedFor);
+                        cmd.Parameters.AddWithValue("@ScaleTicket", docket.ScaleTicket);
+                        cmd.Parameters.AddWithValue("@Gross", docket.Gross);
+
+                        cmd.Parameters.AddWithValue("@Tare", docket.Tare);
+                        cmd.Parameters.AddWithValue("@Net", docket.Net);
+                        cmd.Parameters.AddWithValue("@Cell", docket.Cell);
+                        cmd.Parameters.AddWithValue("@Grid", docket.Grid);
+                        cmd.Parameters.AddWithValue("@GridNo", docket.GridNo);
+
+                        cmd.Parameters.AddWithValue("@Elevation", docket.Elevation);
+                        cmd.Parameters.AddWithValue("@DateReceived", docket.DateReceived);
+                        cmd.Parameters.AddWithValue("@Memo", docket.Memo);
+                        cmd.Parameters.AddWithValue("@InvoiceNo", docket.InvoiceNo);
+                        cmd.Parameters.AddWithValue("@LoadReceivingDate", docket.DateReceived);
+
+                        cmd.Parameters.Add("@DocketIdOut", SqlDbType.Int);
+                        cmd.Parameters["@DocketIdOut"].Direction = ParameterDirection.Output;
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        docketIdOut =  Convert.ToInt32(cmd.Parameters["@DocketIdOut"].Value);
+                    }
 
 
-                    cmd.Parameters.AddWithValue("@DocketNo", docket.DocketNo);
+                    catch (Exception ex)
+                    {
 
-                    cmd.Parameters.AddWithValue("@WasteApprovalCode", docket.WApApprovalcode);
-                    cmd.Parameters.AddWithValue("@TurckCompanyId", docket.TruckCompId);
-                    cmd.Parameters.AddWithValue("@DriverName", docket.DriverName);
-                    cmd.Parameters.AddWithValue("@DestinatedFor", docket.DestinatedFor);
-                    cmd.Parameters.AddWithValue("@ScaleTicket", docket.ScaleTicket);
-                    cmd.Parameters.AddWithValue("@Gross", docket.Gross);
-                    cmd.Parameters.AddWithValue("@Tare", docket.Tare);
-                    cmd.Parameters.AddWithValue("@Net", docket.Net);
-                    cmd.Parameters.AddWithValue("@Cell", docket.Cell);
-                    cmd.Parameters.AddWithValue("@Grid", docket.Grid);
-                    cmd.Parameters.AddWithValue("@GridNo", docket.GridNo);
-                    cmd.Parameters.AddWithValue("@Elevation", docket.Elevation);
-                    cmd.Parameters.AddWithValue("@DateReceived", docket.DateReceived);
-                    cmd.Parameters.AddWithValue("@Memo", docket.Memo);
-                    cmd.Parameters.AddWithValue("@InvoiceNo", docket.InvoiceNo);
-                    cmd.Parameters.AddWithValue("@LoadReceivingDate", docket.DateReceived);
+                        Debug.WriteLine(ex.Message);
+                    }
 
-                    con.Open();
-
-                    cmd.ExecuteNonQuery();
                 }
-                catch (Exception ex)
-                {
-
-                    Debug.WriteLine(ex.Message);
-                }
-
             }
 
-
+            return docketIdOut;
         }
         private void UpdateInvoice(DocketViewModel docket)
         {
