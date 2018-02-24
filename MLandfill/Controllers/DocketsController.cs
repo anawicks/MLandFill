@@ -48,12 +48,12 @@ namespace MLandfill.Controllers
             return View(GridspDockets);
         }
         // GET: Dockets/Details/5 /Dockets/IndexGridMvc
-        public ActionResult Details(int Id= 54068)
+        public ActionResult Details(int Id)
         {
             DocketViewModel objDockets = new DocketViewModel();
             
             DataAccessLayer objDb = new DataAccessLayer();
- 
+            //= 54068
 
             objDockets = objDb.DocketSingleGet(Id);
 
@@ -151,7 +151,7 @@ namespace MLandfill.Controllers
                     DataAccessLayer objDb = new DataAccessLayer();
 
                     docketID=objDb.DocketAdd(viewModel);
-                    return RedirectToAction("DetailsNew", "Dockets", new { @id = docketID });
+                    return RedirectToAction("Details", "Dockets", new { @id = docketID });
                     //("DetailsNew", "Dockets", new { @id = docket.DocketId }); 
                 }
                 return View();
@@ -208,9 +208,10 @@ namespace MLandfill.Controllers
             var generators = lfDbContext.tblGenerators.ToList();
             var substances = lfDbContext.tblSubstances.ToList();
             var locations = lfDbContext.tblGeneratorLocations.ToList();
-            var wasteAppCodes = lfDbContext.tblWasteDescriptionCodes.ToList();
+            //var wasteAppCodes = lfDbContext.tblWasteDescriptionCodes.ToList();
+            var wasteApprovals = lfDbContext.tblWasteApprovals.ToList();
 
-          
+
 
             var trucksQuery = from d in truckCompany
                               orderby d.TruckCompName
@@ -227,32 +228,31 @@ namespace MLandfill.Controllers
             var locationsQuery = from d in locations
                                  orderby d.GenerLocationLsd
                                   select d;
-            var wasteAppCodesQuery = from d in wasteAppCodes
-                                 orderby d.WasteDescription
-                                     select d;
+            //var wasteAppCodesQuery = from d in wasteAppCodes
+            //                     orderby d.WasteDescription
+            //                         select d;
+            var wasteApprovalsQuery = from d in wasteApprovals
+                                      orderby d.WApApprovalcode
+                                      select d;
 
-            var aviewModelA = new DocketViewModel();
+
+            //var aviewModelA = new DocketViewModel();
 
             
             aviewModel = objDb.DocketSingleGet(id);
 
+            ViewData["wasteApprovalNames"] = new SelectList(wasteApprovalsQuery, "WApApprovalId", "WApApprovalcode", aviewModel.WApApprovalId);
             ViewData["truckingCompanies"] =   new SelectList(trucksQuery, "TruckCompId", "TruckCompName", aviewModel.TruckCompId);
             ViewData["generatorNames"] = new SelectList(generatorsQuery, "GeneratorId", "GeneratorName", aviewModel.WApGeneratorId) ;
             ViewData["substanceNames"] = new SelectList(substancesQuery, "SubstanceId", "SubstanceName", aviewModel.WApSubId);
-            ViewData["locationNames"] = new SelectList(locationsQuery, "GenerLocationId", "GenerLocationLsd", aviewModel.GenerLocationId);
-            ViewData["wasteAppCoderNames"] = new SelectList(wasteAppCodesQuery, "WasteDescriptionId", "WasteDescription", aviewModel.GenerLocationId);
+            ViewData["locationNames"] = new SelectList(locationsQuery, "GenerLocationId", "GenerLocationLsd", aviewModel.GenerLocationId); 
 
-            
+             
 
             tblTruckCompany truckModel = new tblTruckCompany();
-            aviewModel.ddTruckCompany = lfDbContext.tblTruckCompanies.ToList();
+            aviewModel.ddTruckCompany = lfDbContext.tblTruckCompanies.ToList(); 
 
-            /*ViewData["TruckCompRec"] = truckModel*/
-            ;
-            // tblTruckCompany truckComp = dbContext.tblTruckCompanies.Single(x => x.TruckCompId == id);
-
-            ViewBag.Chapters = new SelectList(trucksQuery.AsEnumerable(), "TruckCompId", "TruckCompName");
-            //ViewData["truckingCompaniesNew"] = new SelectList(trucksQuery.AsEnumerable(), "TruckCompId", "TruckCompName");
+            ViewBag.Chapters = new SelectList(trucksQuery.AsEnumerable(), "TruckCompId", "TruckCompName"); 
 
             ViewData["TruckCompRec"] = truckModel;
  
@@ -290,6 +290,51 @@ namespace MLandfill.Controllers
                 return View(docket);
             }
         }
+
+        [HttpPost]
+        public ActionResult SaveChanges(DocketViewModel docket)
+        {
+            try
+            {
+                var errors = ModelState
+                .Where(x => x.Value.Errors.Count > 0)
+                .Select(x => new { x.Key, x.Value.Errors })
+                .ToArray();
+
+                var errorList = errors.ToList();
+
+                if (ModelState.IsValid)
+                {
+
+
+                    DataAccessLayer objDb = new DataAccessLayer();
+
+                    
+
+                    //objDb.WasteAppCodeAddNew(docket);
+                    //return RedirectToAction("Index");
+                    try
+                    {
+                        if (docket.DocketId == 0)
+                            objDb.DocketAdd(docket);
+                        else
+                            objDb.DocketUpdate(docket);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                        return RedirectToAction("Edit");
+                    }
+                    return RedirectToAction("Details", "Dockets", new { @id = docket.DocketId });
+                }
+                return View();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("Edit");
+            }
+        }
         [HttpPost]
         public ActionResult Save(DocketViewModel docket)
         {
@@ -308,6 +353,9 @@ namespace MLandfill.Controllers
                     if (docket.DocketId == 0)
                         objDb.DocketAdd(docket);
                     else
+                        objDb.prTruckCompId = Convert.ToInt32(Request["truckingCompanies"]);
+                        //objDb.prDocketNumber = Convert.ToInt32(Request["substancesNames"]);
+                        objDb.prWasteAppCodeId  = Convert.ToInt32(Request["wasteApprovalNames"]);
                         objDb.DocketUpdate(docket);
                     }
                     catch (Exception ex)
@@ -315,7 +363,7 @@ namespace MLandfill.Controllers
                         Console.WriteLine(ex);
                         return RedirectToAction("Edit");
                     }
-                    return RedirectToAction("DetailsNew", "Dockets", new { @id = docket.DocketId }); 
+                    return RedirectToAction("Details", "Dockets", new { @id = docket.DocketId }); 
                 }
                 return RedirectToAction("Edit");
             }

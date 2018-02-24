@@ -23,7 +23,17 @@ namespace MLandfill.DataAccess
         public int prinvoiceId { get; set; }
         public int prconsultantId { get; set; }
         public int prconsultantContactId { get; set; }
+
+        public int prTruckCompId { get; set; }
+        public int prWasteAppCodeId { get; set; }
+
+        public string prWasteAppCode  { get; set; }
+
+        public string prDocketNumber { get; set; }
+
         #region "Dockets"
+
+
 
         public IEnumerable<DocketGrid> docketsGridGet()
         {
@@ -101,7 +111,8 @@ namespace MLandfill.DataAccess
 
                 docket.DocketId = Convert.ToInt32(rdr["DocketId"]);
                 docket.DocketNo = rdr["DocketNo"].ToString();
-                docket.WasteApprovalCode = rdr["WasteApprovalCode"].ToString();
+                docket.WApApprovalcode = rdr["WApApprovalcode"].ToString();
+                docket.WApApprovalId = Convert.ToInt32(rdr["WApApprovalId"]);
                 //if (!(rdr["InvoiceeId"] is DBNull))
                 //    docket.InvoiceeId = 0 + Convert.ToInt32(rdr["InvoiceeId"]);
                 //else
@@ -119,7 +130,7 @@ namespace MLandfill.DataAccess
                 docket.Cell = rdr["Cell"].ToString();
                 docket.Grid = rdr["Grid"].ToString();
                 docket.GridNo = rdr["GridNo"].ToString();
-                docket.GridNo = rdr["Elevation"].ToString();
+                docket.Elevation = rdr["Elevation"].ToString();
 
                 docket.DateReceived = Convert.ToDateTime(rdr["ReceivedDate"]);
                 docket.LoadReceivingDate = Convert.ToDateTime(rdr["ReceivedDate"]);
@@ -132,7 +143,7 @@ namespace MLandfill.DataAccess
 
                 docket.TruckCompId = Convert.ToInt32(rdr["TruckCompId"]);
                 docket.WApGeneratorId = Convert.ToInt32(rdr["WApGeneratorId"]);
-
+                docket.Memo = rdr["Memo"].ToString();
                 docket.WApWasteDescrip = rdr["WApWasteDescrip"].ToString();
 
                 docket.WApSubId = Convert.ToInt32(rdr["WApSubId"]);
@@ -169,9 +180,9 @@ namespace MLandfill.DataAccess
                 cmd.Parameters.AddWithValue("@DocketId", docket.DocketId);
                 cmd.Parameters.AddWithValue("@DocketNo", docket.DocketNo);
 
-                cmd.Parameters.AddWithValue("@WasteApprovalCode", docket.WApApprovalcode);
-                cmd.Parameters.AddWithValue("@InvoiceeId", docket.InvoiceeId);
-                cmd.Parameters.AddWithValue("@TurckCompanyId", docket.TruckCompId);
+                cmd.Parameters.AddWithValue("@WasteApprovalCode", "");
+                cmd.Parameters.AddWithValue("@WasteApprovalId", prWasteAppCodeId);
+                cmd.Parameters.AddWithValue("@TurckCompanyId", prTruckCompId); 
                 cmd.Parameters.AddWithValue("@DriverName", docket.DriverName);
                 cmd.Parameters.AddWithValue("@DestinatedFor", docket.DestinatedFor);
                 cmd.Parameters.AddWithValue("@ScaleTicket", docket.ScaleTicket);
@@ -218,7 +229,7 @@ namespace MLandfill.DataAccess
                     
                     
                         cmd.Parameters.AddWithValue("@DocketNo", docket.DocketNo);
-                        cmd.Parameters.AddWithValue("@WasteApprovalCode", "NRL 9988 776");//docket.WApApprovalcode
+                        cmd.Parameters.AddWithValue("@WasteApprovalCodeID", docket.WApApprovalId);//docket.WApApprovalcode
 
                         cmd.Parameters.AddWithValue("@TurckCompanyId", docket.TruckCompId);
                         cmd.Parameters.AddWithValue("@DriverName", docket.DriverName);

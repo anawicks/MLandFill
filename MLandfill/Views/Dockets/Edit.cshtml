@@ -4,7 +4,7 @@
     ViewBag.Title = "Edit";
 }
 <h3 style="margin-left:45px;color:#1e2a89;">Waste Docket Edit</h3>
- 
+
 @{
     var dataT = ViewData["TruckCompRec"];//TruckCompRec
 }
@@ -140,15 +140,14 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-         
+    <div class="form-horizontal"></div>
+     
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.DocketId)
         @Html.HiddenFor(model => model.TruckCompId)
-
-
-        <div class="panel panel-primary ">
+ 
+        <div class="panel panel-primary "> 
             <div class="panel-body">
                 <h6 class="text-on-pannel text-primary"><strong class="text-uppercase">  Docket No : @Html.DisplayFor(model => model.DocketNo)  - Project Information:</strong></h6>
 
@@ -158,64 +157,83 @@
                             @Html.LabelFor(model => model.DocketNo, htmlAttributes: new { @class = "control-label col-md-2" })
                         </div>
                         <div class="col-md-4">
-                            @Html.EditorFor(model => model.DocketNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.DisplayFor(model => model.DocketNo, new { htmlAttributes = new { @class = "form-control" } })*@
+                            @Html.EditorFor(model => model.DocketNo, new { htmlAttributes = new { @class = "form-control" }, @readonly = true })
                             @Html.ValidationMessageFor(model => model.DocketNo, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-2">
-                            @Html.LabelFor(model => model.WasteApprovalCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.WApApprovalcode, htmlAttributes: new { @class = "control-label col-md-2" })
                         </div>
                         <div class="col-md-4">
-                            @Html.DropDownList("wasteAppCoderNames", null, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownList("wasteApprovalNames", null, new { htmlAttributes = new { @class = "form-control" } })
 
 
-                            @Html.ValidationMessageFor(model => model.WasteApprovalCode, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.WApApprovalId, "", new { @class = "text-danger" })
                         </div>
 
 
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="row row-grid">
-                        <div class="col-md-2">
+                        @*<div class="col-md-2"> 
                             @Html.LabelFor(model => model.WApSubId, htmlAttributes: new { @class = "control-label col-md-2" })
                         </div>
                         <div class="col-md-4">
-                            @Html.DropDownList("substanceNames", null, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownListFor(model => model.WApSubId, new SelectList(Model.ddSubstance, "SubstanceId", "SubstanceName"), "Select Substance", new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.WApSubId, "", new { @class = "text-danger" })
+                        </div>*@
+
+
                         </div>
-                        <div class="col-md-2">
-                            @Html.LabelFor(model => model.WApGeneratorId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </div>
+                    <div class="row">
+                        <div class="row row-grid">
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.WApSubId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            </div>
+                            <div class="col-md-4">
+                                @*@Html.DropDownList("substanceNames", null, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.DisplayFor(model => model.SubstanceName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.WApSubId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.WApGeneratorId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.DisplayFor(model => model.GeneratorName, new { htmlAttributes = new { @class = "form-control" } })
+                                @*@Html.DropDownList("generatorNames", null, new { htmlAttributes = new { @class = "form-control" } })*@
+
+                                @Html.ValidationMessageFor(model => model.WApGeneratorId, "", new { @class = "text-danger" })
+                            </div>
+
+
+
+
                         </div>
-                        <div class="col-md-4">
-                            @Html.DropDownList("generatorNames", null, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
 
-                            @Html.ValidationMessageFor(model => model.WApGeneratorId, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="row row-grid">
+
+
+
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.GenerLocationId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.DisplayFor(model => model.GenerLocationLsd, new { htmlAttributes = new { @class = "form-control" } })
+                                @*@Html.DropDownList("locationNames", null, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.GenerLocationId, "", new { @class = "text-danger" })
+                            </div>
+
                         </div>
-
-
-
-
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="row row-grid">
-
-
-
-                        <div class="col-md-2">
-                            @Html.LabelFor(model => model.GenerLocationId, htmlAttributes: new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="col-md-4">
-                            @Html.DropDownList("locationNames", null, new { htmlAttributes = new { @class = "form-control" } })
-                            @*@Html.DropDownListFor(model => model.GenerLocationId, new SelectList(Model.ddLocations, "GenerLocationId", "GenerLocationLsd"), "Select LSD", new { @class = "form-control" })*@
-                            @Html.ValidationMessageFor(model => model.GenerLocationId, "", new { @class = "text-danger" })
-                        </div>
-
-                    </div>
-                </div>
             </div>
-        </div>
+        
+
+       
+
+
+
 
 
         <div class="panel panel-primary ">
@@ -363,14 +381,6 @@
                         <div class="col-md-4">
 
 
-
-                            @*@Html.DropDownListFor(model => model.TruckCompId, new SelectList(Model.ddTruckCompany, "TruckCompId", "TruckCompName"), "Select state", new { @class = "form-control", onchange = "ddListChange()" })*@
-
-                            @*@Html.DropDownList("truckingCompanies", null, new { onchange = "ddListChange()" })*@
-
-
-
-
                             @Html.DropDownList("truckingCompanies", null, new { htmlAttributes = new { @class = "form-control" }, onchange = "ddListChange()" })
 
 
@@ -386,14 +396,37 @@
                             @Html.EditorFor(model => model.DriverName, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.DriverName, "", new { @class = "text-danger" })
                         </div>
-                       
+
                         <span id="Gaduspan">
                             @{Html.RenderPartial("_TruckCompanyDetails", dataT); }
                         </span>
-                          
+
                     </div>
                 </div>
 
+
+            </div>
+        </div>
+
+
+        <div class="panel panel-primary ">
+            <div class="panel-body">
+                <h6 class="text-on-pannel text-primary"><strong class="text-uppercase">  Comments:</strong></h6>
+
+                <div class="row">
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.Memo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-offset-2">
+                            @Html.TextAreaFor(model => model.Memo, 5, 40, new { @class = "form-control required", style = "max-width:90% !important;" })
+                            @Html.ValidationMessageFor(model => model.Memo, "", new { @class = "text-danger" })
+                        </div>
+
+                        @*@Html.TextAreaFor(model => model.Description, 10, 40, htmlAttributes: new { style = "width: 100%; max-width: 100%;" })*@
+                        @*@Html.TextAreaFor(model => model.comments, new { @cols = "100", @rows = "8", @style = "width:100%;" })*@
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -417,7 +450,10 @@
         </div>
 
 
-    </div>
+   
+
+    
+
                                 }
 
 @section Scripts {

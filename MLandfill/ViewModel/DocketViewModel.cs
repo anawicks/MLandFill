@@ -62,7 +62,7 @@ namespace MLandfill.ViewModel
         public int WApSubId { get; set; }
         public string WApApprovalcode { get; set; }
 
-        public int WApApprovalId { get; set; }
+        public int   WApApprovalId { get; set; }
 
         public string GeneratorName { get; set; }
         public string SubstanceName { get; set; }

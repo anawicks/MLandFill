@@ -134,14 +134,21 @@
                             @Html.ValidationMessageFor(model => model.DocketNo, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-2">
-                            @Html.LabelFor(model => model.WApApprovalcode, htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.LabelFor(model => model.WApApprovalId, htmlAttributes: new { @class = "control-label col-md-2" })
                         </div>
                         <div class="col-md-4">
 
 
                             @Html.DropDownListFor(model => model.WApApprovalId, new SelectList(Model.ddWasteApproval, "WApApprovalId", "WApApprovalcode"), "Select Approval Code", new { onchange = "ddlAppCodeChange()" })
 
-                            @Html.ValidationMessageFor(model => model.WasteApprovalCode, "", new { @class = "text-danger" })
+                            @*@Html.ValidationMessageFor(model => model.WApApprovalId, "", new { @class = "text-danger" })*@
+ 
+                            @*<div class="col-md-2">
+                                @Html.LabelFor(model => model.TruckCompId, htmlAttributes: new { @class = "control-label col-md-2" })
+                            </div>
+                            <div class="col-md-4">
+                                @Html.DropDownListFor(model => model.TruckCompId, new SelectList(Model.ddTruckCompany, "TruckCompId", "TruckCompName"), "Select Truck Company", new { onchange = "ddListChange()" })
+                            </div>*@
 
                         </div>
 

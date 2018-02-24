@@ -65,8 +65,8 @@ legend.scheduler-border {
             <h6 class="text-on-pannel text-primary"><strong class="text-uppercase">  Docket No : @Html.DisplayFor(model => model.DocketNo)  - Project Information:</strong></h6>
             <div class="row">
                 <div class="row row-grid">
-                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WasteApprovalCode):</p></div>
-                    <div class="col-md-4">@Html.DisplayFor(model => model.WasteApprovalCode)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApApprovalcode):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApApprovalcode)</div>
                     <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.SubstanceName):</p></div>
                     <div class="col-md-4">@Html.DisplayFor(model => model.SubstanceName)</div>
                 </div>
@@ -190,6 +190,29 @@ legend.scheduler-border {
             </div>
         </div>
     </div>
+
+
+
+        <div class="panel panel-primary ">
+            <div class="panel-body">
+                <h5 class="text-on-pannel text-primary"><strong class="text-uppercase">Comments</strong></h5>
+                @*<div class="row">
+
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.Memo):</div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.Memo)</div> 
+                </div>*@
+
+                <div class="col-md-2">
+                    @*@Html.LabelFor(model => model.Memo, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                     @Html.Label("Comments: ")
+                </div>
+                <div class="col-md-offset-2">
+                    @Html.TextAreaFor(model => model.Memo, 5, 40, new { @class = "form-control required", style = "max-width:90% !important;" , @readonly = true })
+                    @Html.ValidationMessageFor(model => model.Memo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
     </div>
 
     @Html.ActionLink("Edit", "Edit", new { id = Model.DocketId })  ; <br /> 
