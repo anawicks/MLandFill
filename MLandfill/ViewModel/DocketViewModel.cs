@@ -14,9 +14,9 @@ namespace MLandfill.ViewModel
 
         [Key]
         public int DocketId { get; set; }
-       
+       [Required]
         public string DocketNo { get; set; }
-        
+       
         public string WasteApprovalCode { get; set; }
         public int InvoiceeId { get; set; }
       
@@ -28,6 +28,7 @@ namespace MLandfill.ViewModel
         
         public decimal Gross { get; set; }
         public decimal Tare { get; set; }
+        [Required]
         public decimal Net { get; set; }
         public string Cell { get; set; }
         public string Grid { get; set; }
@@ -61,7 +62,7 @@ namespace MLandfill.ViewModel
         public string WApWasteDescrip { get; set; }
         public int WApSubId { get; set; }
         public string WApApprovalcode { get; set; }
-
+        [Required]
         public int   WApApprovalId { get; set; }
 
         public string GeneratorName { get; set; }

@@ -49,12 +49,56 @@ legend.scheduler-border {
 }
  
 </style>
- 
-   <h3 style="margin-left:45px;color:#1e2a89;">Waste Docket Details</h3>
 
-    <hr/>
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+
+<script src="~/Scripts/bootbox.min.js"></script>
+
+<div class="modal fade" id="myModal">
+
+    <div class="modal-dialog">
+
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                
+                <a herf="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 class="modal-title">Delete this Docket?</h3>
+
+            </div>
+            <div class="modal-body">
+
+                <h3> Are You Sure You want to Delete this Docket? </h3>
+                 
+
+            </div>
+            <div class="modal-footer">
+
+                <a herf="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                <a herf="#" class="btn btn-success" onclick="DeleteDocket()">Delete Docket</a>
+
+            </div>
+
+        </div><!-- /.modal-content -->
+
+    </div><!-- /.modal-dialog -->
+
+</div><!-- /.modal -->
+ 
+
+
+<h3 style="margin-left:45px;color:#1e2a89;">Waste Docket Details</h3>
+
+<hr/>
+ 
 @using (Html.BeginForm())
 {
+    {
     <div class="inner">
  
 
@@ -207,18 +251,87 @@ legend.scheduler-border {
                      @Html.Label("Comments: ")
                 </div>
                 <div class="col-md-offset-2">
-                    @Html.TextAreaFor(model => model.Memo, 5, 40, new { @class = "form-control required", style = "max-width:90% !important;" , @readonly = true })
+                    @Html.TextAreaFor(model => model.Memo, 5, 40, new { @class = "form-control required", style = "max-width:90% !important;", @readonly = true })
                     @Html.ValidationMessageFor(model => model.Memo, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
     </div>
+    <input type="hidden" id="hiddenDocketId" />
 
-    @Html.ActionLink("Edit", "Edit", new { id = Model.DocketId })  ; <br /> 
+        
+
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DocketId })  ; <br />
+     
+
+    <a herf="#" class="btn btn-danger" onclick="ConfirmDelete(@Model.DocketId)">Delete Record ?</a>    <br />
+
+    @Html.ActionLink("Dockets", "Delete", new { id = Model.DocketId }, new { onclick = "return confirm('Are you sure you wish to delete this Docket?');" })   ; <br />
+
         @Html.ActionLink("Back to List", "IndexGridMvc");
+
+     }
+
 }
+ 
+<script>
 
 
-   
 
+
+
+    var ConfirmDelete = function(docketId)
+    {
+
+        $("#hiddenDocketId").val(docketId);
+
+        //bootbox.confirm("Are you Sure");
+        alert(docketId);
+        $("#myModal").modal('show');
+
+
+
+    }
+
+    var DeleteDocket=function()
+    {
+        var fndocketId = $("#hiddenDocketId").val();
+
+
+        $.ajax(
+            {
+                type: "POST",
+                url: "/Dockets/Delete",
+                dataType: "html",
+                data: { docketId: fndocketId },
+                sucess:$("#myModal").modal("hide")
+                 
+     
+
+
+
+
+            })
+
+
+    }
+    var onAjaxRequestSuccess = function (result) {
+        alert('jajaj');
+        if (result.EnableError) {
+            // Setting.
+            alert(result.ErrorMsg);
+        } else if (result.EnableSuccess) {
+            // Setting.
+            alert(result.SuccessMsg);
+            // Resetting form.
+            $('#AjaxformId').get(0).reset();
+
+        }
+    }
+    function ddListChange() {
+
+        $.get('@Url.Action("IndexGridMvc")');
+
+    }
+</script>

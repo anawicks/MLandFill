@@ -386,7 +386,26 @@ namespace MLandfill.DataAccess
             return ndocketList;
         }
 
-       
+       public void DocketDelete(int docketId)
+        {
+
+           
+
+            string connectionString = ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spDocketWasteDelete", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@DocketId", docketId);
+
+                con.Open();
+
+                cmd.ExecuteNonQuery();
+            }
+
+
+        }
 
         #endregion
 

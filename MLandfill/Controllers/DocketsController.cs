@@ -98,35 +98,9 @@ namespace MLandfill.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            LandFill_DBContext lfDbContext = new LandFill_DBContext();
+          
 
-            var generatorTypes = lfDbContext.tblGenerators.ToList();
-            var substancesTypes = lfDbContext.tblSubstances.ToList();
-
-            var truckCompTypes = lfDbContext.tblTruckCompanies.ToList();
-
-            var genLocations = lfDbContext.tblGeneratorLocations.ToList();
-
-            var wasteApproval = lfDbContext.tblWasteApprovals.ToList();
-
-            var aviewModel = new DocketViewModel
-            {
-
-                tblGenerator = generatorTypes,
-                ddSubstance = substancesTypes,
-                ddTruckCompany = truckCompTypes,
-                ddLocations = genLocations,
-                ddWasteApproval = wasteApproval 
-
-            };
-            tblTruckCompany truckModel = new tblTruckCompany();
-            DocketViewModel appCodeModel = new DocketViewModel();
-
-
-            ViewData["TruckCompRec"] = truckModel;
-            ViewData["AppCodeRec"] = appCodeModel;
-
-            return View(aviewModel);
+            return View(CreateModelGet());
 
 
              
@@ -154,12 +128,51 @@ namespace MLandfill.Controllers
                     return RedirectToAction("Details", "Dockets", new { @id = docketID });
                     //("DetailsNew", "Dockets", new { @id = docket.DocketId }); 
                 }
-                return View();
+                else
+                {
+                    
+
+                    return  View(CreateModelGet());
+                        //RedirectToAction("Create");
+                }
             }
             catch
             {
                 return View();
             }
+        }
+        private DocketViewModel CreateModelGet()
+        {
+            LandFill_DBContext lfDbContext = new LandFill_DBContext();
+
+            var generatorTypes = lfDbContext.tblGenerators.ToList();
+            var substancesTypes = lfDbContext.tblSubstances.ToList();
+
+            var truckCompTypes = lfDbContext.tblTruckCompanies.ToList();
+
+            var genLocations = lfDbContext.tblGeneratorLocations.ToList();
+
+            var wasteApproval = lfDbContext.tblWasteApprovals.ToList();
+
+            var aviewModel = new DocketViewModel
+            {
+
+                tblGenerator = generatorTypes,
+                ddSubstance = substancesTypes,
+                ddTruckCompany = truckCompTypes,
+                ddLocations = genLocations,
+                ddWasteApproval = wasteApproval
+
+            };
+            tblTruckCompany truckModel = new tblTruckCompany();
+            DocketViewModel appCodeModel = new DocketViewModel();
+
+
+            ViewData["TruckCompRec"] = truckModel;
+            ViewData["AppCodeRec"] = appCodeModel;
+
+            return aviewModel;
+
         }
         [HttpGet]
          
@@ -372,21 +385,37 @@ namespace MLandfill.Controllers
                 return View(docket);
             }
         }
-        // GET: Dockets/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Dockets/Delete/5 DocketDelete(int docketId)
+        [HttpPost]
+        public JsonResult DeleteT(int  docketId )
         {
-            return View();
+
+            DataAccessLayer objDb = new DataAccessLayer();
+            bool result = false;
+
+            
+                objDb.DocketDelete(docketId);
+                result = true;
+            //return Json(new { ok = true, newurl = Url.Action("Dockets/IndexGridMvc") });
+            //return View("IndexGridMvc");
+
+            return   Json("Record deleted successfully!");
+            //RedirectToAction("IndexGridMvc", "Dockets");
+
+            //return 
+            //RedirectToAction("IndexGridMvc", "Dockets");
         }
 
         // POST: Dockets/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpGet]
+        public ActionResult Delete(int docketId)
         {
             try
             {
                 // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                DataAccessLayer objDb = new DataAccessLayer();
+                objDb.DocketDelete(docketId);
+                return RedirectToAction("IndexGridMvc");
             }
             catch
             {

@@ -131,7 +131,7 @@
                         </div>
                         <div class="col-md-4">
                             @Html.EditorFor(model => model.DocketNo, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.DocketNo, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.DocketNo, null, new { @class = "text-danger" })
                         </div>
                         <div class="col-md-2">
                             @Html.LabelFor(model => model.WApApprovalId, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -139,7 +139,7 @@
                         <div class="col-md-4">
 
 
-                            @Html.DropDownListFor(model => model.WApApprovalId, new SelectList(Model.ddWasteApproval, "WApApprovalId", "WApApprovalcode"), "Select Approval Code", new { onchange = "ddlAppCodeChange()" })
+                            @Html.DropDownListFor(model => model.WApApprovalId, new SelectList(Model.ddWasteApproval, "WApApprovalId", "WApApprovalcode"), "", new { onchange = "ddlAppCodeChange()" })
 
                             @*@Html.ValidationMessageFor(model => model.WApApprovalId, "", new { @class = "text-danger" })*@
  
@@ -351,7 +351,10 @@
             <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
-                        }
+ @section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}                       }
 @Scripts.Render("~/bundles/jqueryui")
 
 <script type="text/javascript">
