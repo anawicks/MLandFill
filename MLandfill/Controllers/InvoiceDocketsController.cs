@@ -93,7 +93,7 @@ namespace MLandfill.Controllers
 
             return View(InvoiceDockets);
 
-            //LandFill_DBContext dbContext = new LandFill_DBContext();
+            //LandFillNRLEntities dbContext = new LandFillNRLEntities();
             //tblTruckCompany truckComp = dbContext.tblTruckCompanies.Single(x => x.TruckCompId == id);
             //return View(truckComp);
         }

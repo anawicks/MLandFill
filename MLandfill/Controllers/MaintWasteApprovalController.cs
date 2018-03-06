@@ -45,7 +45,7 @@ namespace MLandfill.Controllers
         {
             string appcodebag;
 
-            LandFill_DBContext lfDbContext = new LandFill_DBContext();
+            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
 
             var generatorTypes = lfDbContext.tblGenerators.ToList();
             var substancesTypes = lfDbContext.tblSubstances.ToList();
@@ -150,7 +150,7 @@ namespace MLandfill.Controllers
         {
             DataAccessLayer objDb = new DataAccessLayer();
 
-            LandFill_DBContext lfDbContext = new LandFill_DBContext();
+            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
 
              
 

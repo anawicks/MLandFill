@@ -12,14 +12,11 @@ namespace MLandfill
     using System;
     using System.Collections.Generic;
     
-    public partial class tblTruckCompany
+    public partial class C__MigrationHistory
     {
-        public int TruckCompId { get; set; }
-        public string TruckCompName { get; set; }
-        public string TruckCompAddr { get; set; }
-        public string TruckCompCity { get; set; }
-        public string TruckCompProv { get; set; }
-        public string TruckCompPostal { get; set; }
-        public string TruckCompPhone { get; set; }
+        public string MigrationId { get; set; }
+        public string ContextKey { get; set; }
+        public byte[] Model { get; set; }
+        public string ProductVersion { get; set; }
     }
 }

@@ -14,23 +14,32 @@ namespace MLandfill
     
     public partial class tblInvoice
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblInvoice()
+        {
+            this.tblInvoicePartialPayments = new HashSet<tblInvoicePartialPayment>();
+        }
+    
+        public int InvoiceID { get; set; }
         public int InvoiceNumber { get; set; }
-        public Nullable<System.DateTime> InvoiceCreate_Date { get; set; }
-        public Nullable<int> ApprovalId { get; set; }
+        public Nullable<System.DateTime> DateInvoiceCreated { get; set; }
+        public string ApprovalCode { get; set; }
         public Nullable<decimal> VtTotal { get; set; }
-        public Nullable<decimal> NetTotal { get; set; }
-        public Nullable<decimal> GstTotal { get; set; }
-        public Nullable<bool> PaymentMade { get; set; }
-        public Nullable<bool> InvoicePrinted { get; set; }
-        public Nullable<decimal> Credit { get; set; }
-        public Nullable<bool> Modified { get; set; }
-        public string Comments { get; set; }
-        public Nullable<decimal> Balance { get; set; }
-        public string ChequeRefNo { get; set; }
-        public Nullable<System.DateTime> InvoiceDate { get; set; }
-        public Nullable<System.DateTime> PaidDate { get; set; }
-        public Nullable<bool> InvoicedManually { get; set; }
-        public Nullable<bool> Deleted { get; set; }
-        public Nullable<bool> InterestCharged { get; set; }
+        public Nullable<decimal> TotalAmount { get; set; }
+        public Nullable<decimal> gstAmount { get; set; }
+        public Nullable<decimal> CreditedAmount { get; set; }
+        public Nullable<bool> IsPrinted { get; set; }
+        public Nullable<bool> IsPaid { get; set; }
+        public Nullable<int> PaymentMethodId { get; set; }
+        public string ReferenceNumber { get; set; }
+        public Nullable<System.DateTime> DateInvoicePaid { get; set; }
+        public Nullable<bool> IsManuallyInvoiced { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<System.DateTime> DatePaymentDue { get; set; }
+        public Nullable<int> WasteApprovalId { get; set; }
+    
+        public virtual tblPaymentMethod tblPaymentMethod { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblInvoicePartialPayment> tblInvoicePartialPayments { get; set; }
     }
 }

@@ -12,9 +12,10 @@ namespace MLandfill
     using System;
     using System.Collections.Generic;
     
-    public partial class tblLandFillWasteDocket
+    public partial class tblLandFillWasteDocketsHistory
     {
-        public int DocketId { get; set; }
+        public int DocketHistoryId { get; set; }
+        public int DocketID { get; set; }
         public string DocketNo { get; set; }
         public string WasteApprovalCode { get; set; }
         public Nullable<int> TurckCompanyId { get; set; }
@@ -33,7 +34,5 @@ namespace MLandfill
         public Nullable<System.DateTime> LogEntryTimeStamp { get; set; }
         public Nullable<int> WasteApprovalId { get; set; }
         public Nullable<int> InvoiceNumber { get; set; }
-    
-        public virtual tblWasteApproval tblWasteApproval { get; set; }
     }
 }

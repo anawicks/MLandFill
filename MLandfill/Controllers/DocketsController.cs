@@ -14,7 +14,7 @@ namespace MLandfill.Controllers
     public class DocketsController : Controller
     {
         // GET: Dockets
-        public ActionResult Index()
+        public ActionResult IndexOrig()
         {
             //MDockets objDockets = new MDockets();
             
@@ -25,6 +25,20 @@ namespace MLandfill.Controllers
             
             return View(AllspDockets);
         }
+        public ActionResult Index()
+        {
+             
+
+            DataAccessLayer objDb = new DataAccessLayer();
+
+            List<DocketGrid> GridspDockets = objDb.docketsGridGet().ToList();
+
+
+            return View(GridspDockets);
+
+        }
+
+
         public ActionResult GitHubTEST()
         {
             MDockets objDockets = new MDockets();
@@ -66,7 +80,7 @@ namespace MLandfill.Controllers
 
             DataAccessLayer objDb = new DataAccessLayer();
 
-            LandFill_DBContext lfDbContext = new LandFill_DBContext();
+            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
 
             var generatorTypes = lfDbContext.tblGenerators.ToList();
             var substancesTypes = lfDbContext.tblSubstances.ToList();
@@ -76,6 +90,7 @@ namespace MLandfill.Controllers
             var genLocations = lfDbContext.tblGeneratorLocations.ToList();
 
             var wasteApproval = lfDbContext.tblWasteApprovals.ToList();
+
 
             var aviewModel = new DocketViewModel
             {
@@ -143,7 +158,7 @@ namespace MLandfill.Controllers
         }
         private DocketViewModel CreateModelGet()
         {
-            LandFill_DBContext lfDbContext = new LandFill_DBContext();
+            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
 
             var generatorTypes = lfDbContext.tblGenerators.ToList();
             var substancesTypes = lfDbContext.tblSubstances.ToList();
@@ -178,7 +193,7 @@ namespace MLandfill.Controllers
          
         public ActionResult CreateDrop(DocketViewModel viewModel)
         {
-            LandFill_DBContext lfDbContext = new LandFill_DBContext();
+            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
 
             var generatorTypes = lfDbContext.tblGenerators.ToList();
             var substancesTypes = lfDbContext.tblSubstances.ToList();
@@ -212,7 +227,7 @@ namespace MLandfill.Controllers
             
             DataAccessLayer objDb = new DataAccessLayer();
 
-            LandFill_DBContext lfDbContext = new LandFill_DBContext();
+            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
 
 
             var aviewModel = new DocketViewModel();
@@ -274,7 +289,7 @@ namespace MLandfill.Controllers
         }
         private void PopulateTruckCompsDropDownList()
         {
-            LandFill_DBContext lfDbContext = new LandFill_DBContext();
+            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
             var TruckCompany = lfDbContext.tblTruckCompanies.ToList();
 
             var trucksQuery = from d in TruckCompany
@@ -432,7 +447,7 @@ namespace MLandfill.Controllers
         {
             
             
-            LandFill_DBContext dbContext = new LandFill_DBContext();
+            LandFillNRLEntities dbContext = new LandFillNRLEntities();
 
 
              
@@ -466,7 +481,7 @@ namespace MLandfill.Controllers
         }
         public ActionResult TryIndex(int id)
         {
-            LandFill_DBContext dbContext = new LandFill_DBContext();
+            LandFillNRLEntities dbContext = new LandFillNRLEntities();
 
 
 
@@ -480,7 +495,7 @@ namespace MLandfill.Controllers
         }
         public ActionResult TryNewIndex(int id=9)
         {
-            LandFill_DBContext dbContext = new LandFill_DBContext();
+            LandFillNRLEntities dbContext = new LandFillNRLEntities();
 
 
 

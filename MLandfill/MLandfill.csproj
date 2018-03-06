@@ -233,6 +233,18 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="AspNetRole.cs">
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUser.cs">
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserClaim.cs">
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNetUserLogin.cs">
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DocketsController.cs" />
     <Compile Include="Controllers\GeneratorController.cs" />
@@ -245,6 +257,9 @@
     <Compile Include="Controllers\ReportGenController.cs" />
     <Compile Include="Controllers\wasteApprovalController.cs" />
     <Compile Include="Core\Domain\MDockets.cs" />
+    <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\DataAccessLayer.cs" />
     <Compile Include="DataAccess\DataReportLayer.cs" />
     <Compile Include="dsRptDailyLandFill.Designer.cs">
@@ -255,25 +270,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="LandFillDbModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LandFillDbModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LandFillDbModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="LandFillDbModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LandFillDbModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="LandFillNRLDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LandFillNRLDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LandFill_DBContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LandFill_DBContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LandFill_DBContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LandFill_DBContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LandFill_DBContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DocketGrid.cs" />
@@ -292,49 +307,58 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="tblChangeLog.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblConsultant.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblConsultContact.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGenerator.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGeneratorContact.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGeneratorLocation.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblInterestCharge.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblInvoice.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblInvoicee.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblInvoiceesDd.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblInvoicePartialPayment.cs">
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblLandFillWasteDocket.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLandFillWasteDocketsHistory.cs">
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPaymentMethod.cs">
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSubstance.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTruckCompany.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblWasteApproval.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="tblWasteDescriptionCode.cs">
-      <DependentUpon>LandFillDbModel.tt</DependentUpon>
+      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DocketViewModel.cs" />
   </ItemGroup>
@@ -392,15 +416,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="LandFillDbModel.Context.tt">
+    <Content Include="LandFillDbModel.edmx.sql" />
+    <Content Include="LandFill_DBContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LandFillDbModel.edmx</DependentUpon>
-      <LastGenOutput>LandFillDbModel.Context.cs</LastGenOutput>
+      <DependentUpon>LandFill_DBContext.edmx</DependentUpon>
+      <LastGenOutput>LandFill_DBContext.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="LandFillDbModel.tt">
+    <Content Include="LandFill_DBContext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LandFillDbModel.edmx</DependentUpon>
-      <LastGenOutput>LandFillDbModel.cs</LastGenOutput>
+      <DependentUpon>LandFill_DBContext.edmx</DependentUpon>
+      <LastGenOutput>LandFill_DBContext.cs</LastGenOutput>
     </Content>
     <Content Include="Reports\Images\Logo.png" />
     <Content Include="Scripts\bootbox.js" />
@@ -415,13 +440,6 @@
     <Content Include="Scripts\gridmvc.lang.fr.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />
-    <EntityDeploy Include="LandFillDbModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LandFillDbModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="LandFillDbModel.edmx.diagram">
-      <DependentUpon>LandFillDbModel.edmx</DependentUpon>
-    </Content>
     <Content Include="LandFillNRLDataSet.xsc">
       <DependentUpon>LandFillNRLDataSet.xsd</DependentUpon>
     </Content>
@@ -446,6 +464,13 @@
       <DependentUpon>LandFillNRLDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="Scripts\gridmvc.min.js.map" />
+    <EntityDeploy Include="LandFill_DBContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LandFill_DBContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="LandFill_DBContext.edmx.diagram">
+      <DependentUpon>LandFill_DBContext.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -492,7 +517,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutX.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -555,6 +580,7 @@
     <Content Include="Views\Shared\_AppCodePartialX.cshtml" />
     <Content Include="Views\Shared\_AppCodeRelatedDetails.cshtml" />
     <Content Include="Views\Shared\_AjaxGridPager.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

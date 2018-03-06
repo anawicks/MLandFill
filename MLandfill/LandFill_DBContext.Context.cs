@@ -13,10 +13,10 @@ namespace MLandfill
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class LandFill_DBContext : DbContext
+    public partial class LandFillNRLEntities : DbContext
     {
-        public LandFill_DBContext()
-            : base("name=LandFill_DBContext")
+        public LandFillNRLEntities()
+            : base("name=LandFillNRLEntities")
         {
         }
     
@@ -25,6 +25,11 @@ namespace MLandfill
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
+        public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
+        public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
+        public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<tblChangeLog> tblChangeLogs { get; set; }
         public virtual DbSet<tblConsultant> tblConsultants { get; set; }
         public virtual DbSet<tblConsultContact> tblConsultContacts { get; set; }
@@ -35,7 +40,10 @@ namespace MLandfill
         public virtual DbSet<tblInvoice> tblInvoices { get; set; }
         public virtual DbSet<tblInvoicee> tblInvoicees { get; set; }
         public virtual DbSet<tblInvoiceesDd> tblInvoiceesDds { get; set; }
+        public virtual DbSet<tblInvoicePartialPayment> tblInvoicePartialPayments { get; set; }
         public virtual DbSet<tblLandFillWasteDocket> tblLandFillWasteDockets { get; set; }
+        public virtual DbSet<tblLandFillWasteDocketsHistory> tblLandFillWasteDocketsHistories { get; set; }
+        public virtual DbSet<tblPaymentMethod> tblPaymentMethods { get; set; }
         public virtual DbSet<tblSubstance> tblSubstances { get; set; }
         public virtual DbSet<tblTruckCompany> tblTruckCompanies { get; set; }
         public virtual DbSet<tblWasteApproval> tblWasteApprovals { get; set; }

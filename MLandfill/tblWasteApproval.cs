@@ -14,6 +14,12 @@ namespace MLandfill
     
     public partial class tblWasteApproval
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblWasteApproval()
+        {
+            this.tblLandFillWasteDockets = new HashSet<tblLandFillWasteDocket>();
+        }
+    
         public int WApApprovalId { get; set; }
         public string WApApprovalcode { get; set; }
         public Nullable<int> WApGeneratorId { get; set; }
@@ -40,6 +46,8 @@ namespace MLandfill
     
         public virtual tblGeneratorLocation tblGeneratorLocation { get; set; }
         public virtual tblGenerator tblGenerator { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblLandFillWasteDocket> tblLandFillWasteDockets { get; set; }
         public virtual tblSubstance tblSubstance { get; set; }
     }
 }

@@ -1,5 +1,4 @@
 ﻿<!DOCTYPE html>
- 
 <html>
 <head>
     <meta charset="utf-8" />
@@ -14,34 +13,34 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
 
-
-            @*https://books.google.ca/books?id=DdtvCQAAQBAJ&pg=PA18&lpg=PA18&dq=mvc+class+dropdown+menu+in+color&source=bl&ots=9vGj__f7Jt&sig=37NfIijpGgKTqH7EbPhtjPC9AWQ&hl=en&sa=X&ved=0ahUKEwi3_f_HhtTZAhVO5GMKHSLBCE44FBDoAQhnMA0#v=onepage&q=mvc%20class%20dropdown%20menu%20in%20color&f=false*@
-            @*https://www.bootply.com/6FC76YQ4Nh#*@
-            @*https://bootstrapious.com/p/bootstrap-sidebar collapsible HTML sidebar*@
-            @*https://getbootstrap.com/docs/4.0/components/dropdowns/ dropdowns good*@
-
-
-        <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top  ">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                 
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <a href="#" class="navbar-brand">Application</a>
-            <div id="navbarCollapse" class="collapse navbar-collapse">
 
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="#"><span class="glyphicon glyphicon-home"></span> Home</a>
-                    </li>
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="glyphicon glyphicon-map-marker"></span> Maintaining Tasks <b class="caret"></b>
-                        </a>
-                        <ul role="menu" class="dropdown-menu">
+            <div class="navbar-collapse collapse">
+                @*<ul class="nav navbar-nav">
+        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li> 
+    </ul>*@
+
+
+                
+                <ul>
+                    <li class="btn-group nav">
+                        <button type="button" class="btn navbar-btn" style="background-color:rgba(245, 229, 201, 0.90)">Maintaining Tasks</button>
+                        <button type="button" class="btn navbar-btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+
+
                             <li>@Html.ActionLink("Generators", "LoadGenerators", "lkGenerator")</li>
                             <li>@Html.ActionLink("Generator Contacts", "LoadGeneratorContacts", "lkGeneratorContact")</li>
                             <li>@Html.ActionLink("Generator Locations", "LoadGeneratorLocation", "lkGeneratorLocation")</li>
@@ -49,20 +48,24 @@
                             <li>@Html.ActionLink("Trucking Companies", "LoadTruckCompanies", "lkTruckCompany")</li>
                             <li>@Html.ActionLink("Consultants", "LoadConsultants", "lkConsultant")</li>
                             <li>@Html.ActionLink("Consultant Contacts", "LoadConsultContacts", "lkConsultContacts")</li>
-                            <li>@Html.ActionLink("Dockets", "Index", "Dockets")</li>
+                            <li>@Html.ActionLink("Dockets", "IndexGridMvc", "Dockets")</li>
                             <li>@Html.ActionLink("Waste Approval Codes", "Index", "MaintWasteApproval")</li>
                             <li>@Html.ActionLink("Waste Descip Codes", "LoadWasteDescCodes", "lkWasteDescCodes")</li>
                             <li>@Html.ActionLink("Invoicee", "LoadInvoicee", "lkInvoicee")</li>
                             <li>@Html.ActionLink("XInterest Charge", "Index", "Home")</li>
+
+
+
                         </ul>
                     </li>
 
 
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="glyphicon glyphicon-file"></span> Reports <b class="caret"></b>
-                        </a>
-
+                    <li class="btn-group nav">
+                        <button type="button" class="btn navbar-btn" style="background-color:rgba(245, 229, 201, 0.90)">Reports</button>
+                        <button type="button" class="btn navbar-btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Report Invoice", "InvoiceView", "ReportGen")</li>
                             <li>@Html.ActionLink("Daily Landfill Summary", "LandFillSummary", "ReportGen")</li>
@@ -78,37 +81,27 @@
                     </li>
 
 
-                    <li class="dropdown">
-                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="glyphicon glyphicon-tower"></span> Invoicing <b class="caret"></b>
-                        </a>
 
+                    <li class="btn-group nav">
+                        <button type="button" class="btn navbar-btn" style="background-color:rgba(245, 229, 201, 0.90)">Invoicing</button>
+                        <button type="button" class="btn navbar-btn dropdown-toggle" data-toggle="dropdown">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
                         <ul class="dropdown-menu" role="menu">
                             <li>@Html.ActionLink("Invoice Generator", "IndexNew", "InvoiceDockets")</li>
                             <li>@Html.ActionLink("Batch Invoice", "IndexInvNew", "InvoiceBatch")</li>
-
+                            
                             <li>@Html.ActionLink("Batch NGO", "About", "Home")</li>
                             <li>@Html.ActionLink("Invoice Minimum Charge", "Contact", "Home")</li>
                             <li>@Html.ActionLink("Customer Statement", "Index", "Home")</li>
+
                         </ul>
                     </li>
 
-
-                </ul>   <!-- <ul class="nav navbar-nav"> -->
-
-  
-            </div><!-- <div id="navbarCollapse" -->
-
-</nav><!-- <nav role="navigation" -->
-
-
-
-                <ul>
-  
-
                 </ul>
                 @Html.Partial("_LoginPartial")
-             
+            </div>
         </div>
     </div>
     <div class="container body-content">
@@ -123,4 +116,3 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
-

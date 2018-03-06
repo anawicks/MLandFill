@@ -112,7 +112,7 @@ namespace MLandfill.Models
 
         public List<tblConsultant> ddconsultants { get; set; }
         public List<tblGeneratorLocation> ddLocations { get; set; } 
-        public List<tblInvoicee> ddInvoicee { get; set; }
+        //public List<tblInvoicee> ddInvoicee { get; set; }
         public List<tblInvoiceesDd> ddInvoiceeD { get; set; }
         public List<tblTruckCompany> ddTruckCompany { get; set; }
         public IEnumerable<tblGenerator> tblGenerator { get; internal set; }

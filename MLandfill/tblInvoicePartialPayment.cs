@@ -12,14 +12,16 @@ namespace MLandfill
     using System;
     using System.Collections.Generic;
     
-    public partial class tblTruckCompany
+    public partial class tblInvoicePartialPayment
     {
-        public int TruckCompId { get; set; }
-        public string TruckCompName { get; set; }
-        public string TruckCompAddr { get; set; }
-        public string TruckCompCity { get; set; }
-        public string TruckCompProv { get; set; }
-        public string TruckCompPostal { get; set; }
-        public string TruckCompPhone { get; set; }
+        public int PartialPaymentId { get; set; }
+        public int InvoiceNumber { get; set; }
+        public Nullable<decimal> PartialPayAmount { get; set; }
+        public Nullable<System.DateTime> PartialPayDate { get; set; }
+        public Nullable<int> PaymentMethodID { get; set; }
+        public string ReferenceNo { get; set; }
+        public string Note { get; set; }
+    
+        public virtual tblInvoice tblInvoice { get; set; }
     }
 }

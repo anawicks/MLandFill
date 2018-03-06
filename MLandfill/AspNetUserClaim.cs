@@ -12,14 +12,13 @@ namespace MLandfill
     using System;
     using System.Collections.Generic;
     
-    public partial class tblTruckCompany
+    public partial class AspNetUserClaim
     {
-        public int TruckCompId { get; set; }
-        public string TruckCompName { get; set; }
-        public string TruckCompAddr { get; set; }
-        public string TruckCompCity { get; set; }
-        public string TruckCompProv { get; set; }
-        public string TruckCompPostal { get; set; }
-        public string TruckCompPhone { get; set; }
+        public int Id { get; set; }
+        public string ClaimType { get; set; }
+        public string ClaimValue { get; set; }
+        public string User_Id { get; set; }
+    
+        public virtual AspNetUser AspNetUser { get; set; }
     }
 }
