@@ -12,11 +12,13 @@ namespace MLandfill
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
-    public partial class LandFillNRLEntities : DbContext
+    public partial class LandFillDbContextCn : DbContext
     {
-        public LandFillNRLEntities()
-            : base("name=LandFillNRLEntities")
+        public LandFillDbContextCn()
+            : base("name=LandFillDbContextCn")
         {
         }
     
@@ -25,7 +27,6 @@ namespace MLandfill
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; }
@@ -37,16 +38,26 @@ namespace MLandfill
         public virtual DbSet<tblGeneratorLocation> tblGeneratorLocations { get; set; }
         public virtual DbSet<tblGenerator> tblGenerators { get; set; }
         public virtual DbSet<tblInterestCharge> tblInterestCharges { get; set; }
-        public virtual DbSet<tblInvoice> tblInvoices { get; set; }
         public virtual DbSet<tblInvoicee> tblInvoicees { get; set; }
         public virtual DbSet<tblInvoiceesDd> tblInvoiceesDds { get; set; }
-        public virtual DbSet<tblInvoicePartialPayment> tblInvoicePartialPayments { get; set; }
         public virtual DbSet<tblLandFillWasteDocket> tblLandFillWasteDockets { get; set; }
-        public virtual DbSet<tblLandFillWasteDocketsHistory> tblLandFillWasteDocketsHistories { get; set; }
-        public virtual DbSet<tblPaymentMethod> tblPaymentMethods { get; set; }
         public virtual DbSet<tblSubstance> tblSubstances { get; set; }
         public virtual DbSet<tblTruckCompany> tblTruckCompanies { get; set; }
         public virtual DbSet<tblWasteApproval> tblWasteApprovals { get; set; }
         public virtual DbSet<tblWasteDescriptionCode> tblWasteDescriptionCodes { get; set; }
+    
+        public virtual ObjectResult<spDocketGridGet_Result> spDocketGridGet()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spDocketGridGet_Result>("spDocketGridGet");
+        }
+    
+        public virtual ObjectResult<spDocketWasteGet_Result> spDocketWasteGet(Nullable<int> docketId)
+        {
+            var docketIdParameter = docketId.HasValue ?
+                new ObjectParameter("DocketId", docketId) :
+                new ObjectParameter("DocketId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<spDocketWasteGet_Result>("spDocketWasteGet", docketIdParameter);
+        }
     }
 }

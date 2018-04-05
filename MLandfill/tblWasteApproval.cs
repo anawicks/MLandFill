@@ -39,6 +39,7 @@ namespace MLandfill
         public string WApPoNo { get; set; }
         public Nullable<int> WApConsultantId { get; set; }
         public Nullable<int> WApConContactID { get; set; }
+        public Nullable<int> WApApprovalIDOrig { get; set; }
         public Nullable<bool> WApAdcApproved { get; set; }
         public Nullable<int> WApInvoicee { get; set; }
         public string WApWasteDescriptionMailMerge { get; set; }

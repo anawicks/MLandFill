@@ -14,15 +14,15 @@ namespace MLandfill
     
     public partial class tblInvoicee
     {
-        public int InvoiceeID { get; set; }
-        public string InvoiceeName { get; set; }
-        public string InvoiceeAddr { get; set; }
-        public string InvoiceeCity { get; set; }
-        public string InvoiceeProv { get; set; }
-        public string InvoiceePostal { get; set; }
-        public string InvoiceePhone { get; set; }
-        public string InvoiceeAttnTo { get; set; }
-        public string InvoiceeCareOf { get; set; }
-        public Nullable<int> InvoiceeConsultId { get; set; }
+        public int InvoiceeId { get; set; }
+        public string InvName { get; set; }
+        public string InvAddress { get; set; }
+        public string InvCity { get; set; }
+        public string InvProince { get; set; }
+        public string InvPostal { get; set; }
+        public string InvPhone { get; set; }
+        public Nullable<int> InvContactID { get; set; }
+        public string InvAttn { get; set; }
+        public string InvCareOf { get; set; }
     }
 }

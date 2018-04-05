@@ -10,15 +10,17 @@
 namespace MLandfill
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tblLandFillWasteDocketsHistory
+    public partial class spDocketGridGet_Result
     {
-        public int DocketHistoryId { get; set; }
-        public int DocketID { get; set; }
-        public string DocketNo { get; set; }
-        public string WasteApprovalCode { get; set; }
-        public Nullable<int> TurckCompanyId { get; set; }
+        public int DocketId { get; set; }
+        public string ManifestNo { get; set; }
+        public string Producer { get; set; }
+        public string Lsd { get; set; }
+        public string WasteDescription { get; set; }
+        public string ApprovalCode { get; set; }
+        public string Substance { get; set; }
+        public string TruckerCompany { get; set; }
         public string DriverName { get; set; }
         public string DestinatedFor { get; set; }
         public string ScaleTicket { get; set; }
@@ -29,10 +31,8 @@ namespace MLandfill
         public string Grid { get; set; }
         public string GridNo { get; set; }
         public string Elevation { get; set; }
-        public Nullable<System.DateTime> ReceivedDate { get; set; }
+        public Nullable<System.DateTime> JobDate { get; set; }
         public string Memo { get; set; }
-        public Nullable<System.DateTime> LogEntryTimeStamp { get; set; }
-        public Nullable<int> WasteApprovalId { get; set; }
-        public Nullable<int> InvoiceNumber { get; set; }
+        public string InvoiceNumber { get; set; }
     }
 }

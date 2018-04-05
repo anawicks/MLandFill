@@ -103,22 +103,22 @@ namespace MLandfill.DataAccess
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@DocketId", docketId);
             con.Open();
-            SqlDataReader rdr = cmd.ExecuteReader();
-            DocketViewModel docket = new DocketViewModel();
+            SqlDataReader rdr = cmd.ExecuteReader();  
+             DocketViewModel docket = new DocketViewModel();
             while (rdr.Read())
             {
 
 
                 docket.DocketId = Convert.ToInt32(rdr["DocketId"]);
                 docket.DocketNo = rdr["DocketNo"].ToString();
-                docket.WApApprovalcode = rdr["WApApprovalcode"].ToString();
-                docket.WApApprovalId = Convert.ToInt32(rdr["WApApprovalId"]);
-                //if (!(rdr["InvoiceeId"] is DBNull))
-                //    docket.InvoiceeId = 0 + Convert.ToInt32(rdr["InvoiceeId"]);
-                //else
-                //    docket.InvoiceeId = 11;
+                docket.WApApprovalcode = rdr["WApApprovalcode"].ToString();  
+                //docket.WApApprovalId = Convert.ToInt32(rdr["WApApprovalId"]);
+                if (!(rdr["WApApprovalId"] is DBNull))
+                    docket.WApApprovalId = 0 + Convert.ToInt32(rdr["WApApprovalId"]);
+                else
+                    docket.WApApprovalId = 0;
 
-                docket.TurckCompanyId = Convert.ToInt32(rdr["TurckCompanyId"]);
+                docket.TurckCompanyId = Convert.ToInt32(rdr["TruckCompId"]);
                 docket.DriverName = rdr["DriverName"].ToString();
                 docket.DestinatedFor = rdr["DestinatedFor"].ToString();
                 docket.ScaleTicket = rdr["ScaleTicket"].ToString();
@@ -148,7 +148,7 @@ namespace MLandfill.DataAccess
 
                 docket.WApSubId = Convert.ToInt32(rdr["WApSubId"]);
 
-                docket.WApApprovalcode = rdr["WApApprovalcode"].ToString();
+                
                 docket.GeneratorName = rdr["GeneratorName"].ToString();
                 docket.SubstanceName = rdr["SubstanceName"].ToString();
 

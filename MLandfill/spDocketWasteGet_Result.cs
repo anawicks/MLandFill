@@ -10,15 +10,13 @@
 namespace MLandfill
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tblLandFillWasteDocket
+    public partial class spDocketWasteGet_Result
     {
         public int DocketId { get; set; }
         public string DocketNo { get; set; }
-        public string WasteApprovalCode { get; set; }
-        public Nullable<int> InvoiceeId { get; set; }
-        public Nullable<int> TurckCompanyId { get; set; }
+        public string WApApprovalcode { get; set; }
+        public Nullable<int> WApApprovalId { get; set; }
         public string DriverName { get; set; }
         public string DestinatedFor { get; set; }
         public string ScaleTicket { get; set; }
@@ -29,16 +27,21 @@ namespace MLandfill
         public string Grid { get; set; }
         public string GridNo { get; set; }
         public string Elevation { get; set; }
-        public Nullable<System.DateTime> DateReceived { get; set; }
-        public string Memo { get; set; }
-        public string InvoiceNo { get; set; }
-        public Nullable<System.DateTime> LoadReceivingDate { get; set; }
-        public Nullable<int> WasteApprovalId { get; set; }
         public Nullable<System.DateTime> ReceivedDate { get; set; }
-        public Nullable<System.DateTime> LogEntryTimeStamp { get; set; }
-        public Nullable<int> InvoiceNumber { get; set; }
-    
-        public virtual tblTruckCompany tblTruckCompany { get; set; }
-        public virtual tblWasteApproval tblWasteApproval { get; set; }
+        public string TruckCompName { get; set; }
+        public string TruckCompAddr { get; set; }
+        public string TruckCompCity { get; set; }
+        public string TruckCompProv { get; set; }
+        public string TruckCompPostal { get; set; }
+        public string TruckCompPhone { get; set; }
+        public int TruckCompId { get; set; }
+        public Nullable<int> WApGeneratorId { get; set; }
+        public string Memo { get; set; }
+        public string WApWasteDescrip { get; set; }
+        public Nullable<int> WApSubId { get; set; }
+        public string GeneratorName { get; set; }
+        public string SubstanceName { get; set; }
+        public int GenerLocationId { get; set; }
+        public string GenerLocationLsd { get; set; }
     }
 }

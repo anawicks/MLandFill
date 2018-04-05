@@ -14,17 +14,10 @@ namespace MLandfill
     
     public partial class tblGeneratorLocation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblGeneratorLocation()
-        {
-            this.tblWasteApprovals = new HashSet<tblWasteApproval>();
-        }
-    
         public int GenerLocationId { get; set; }
         public int GenerLocationGenID { get; set; }
         public string GenerLocationLsd { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblWasteApproval> tblWasteApprovals { get; set; }
+        public virtual tblWasteApproval tblWasteApproval { get; set; }
     }
 }

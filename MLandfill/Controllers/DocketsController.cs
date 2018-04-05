@@ -80,7 +80,7 @@ namespace MLandfill.Controllers
 
             DataAccessLayer objDb = new DataAccessLayer();
 
-            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
+            LandFillDbContextCn lfDbContext = new LandFillDbContextCn();
 
             var generatorTypes = lfDbContext.tblGenerators.ToList();
             var substancesTypes = lfDbContext.tblSubstances.ToList();
@@ -158,7 +158,7 @@ namespace MLandfill.Controllers
         }
         private DocketViewModel CreateModelGet()
         {
-            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
+            LandFillDbContextCn lfDbContext = new LandFillDbContextCn();
 
             var generatorTypes = lfDbContext.tblGenerators.ToList();
             var substancesTypes = lfDbContext.tblSubstances.ToList();
@@ -193,7 +193,7 @@ namespace MLandfill.Controllers
          
         public ActionResult CreateDrop(DocketViewModel viewModel)
         {
-            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
+            LandFillDbContextCn lfDbContext = new LandFillDbContextCn();
 
             var generatorTypes = lfDbContext.tblGenerators.ToList();
             var substancesTypes = lfDbContext.tblSubstances.ToList();
@@ -227,7 +227,7 @@ namespace MLandfill.Controllers
             
             DataAccessLayer objDb = new DataAccessLayer();
 
-            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
+            LandFillDbContextCn lfDbContext = new LandFillDbContextCn();
 
 
             var aviewModel = new DocketViewModel();
@@ -289,7 +289,7 @@ namespace MLandfill.Controllers
         }
         private void PopulateTruckCompsDropDownList()
         {
-            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
+            LandFillDbContextCn lfDbContext = new LandFillDbContextCn();
             var TruckCompany = lfDbContext.tblTruckCompanies.ToList();
 
             var trucksQuery = from d in TruckCompany
@@ -447,7 +447,7 @@ namespace MLandfill.Controllers
         {
             
             
-            LandFillNRLEntities dbContext = new LandFillNRLEntities();
+            LandFillDbContextCn dbContext = new LandFillDbContextCn();
 
 
              
@@ -481,7 +481,7 @@ namespace MLandfill.Controllers
         }
         public ActionResult TryIndex(int id)
         {
-            LandFillNRLEntities dbContext = new LandFillNRLEntities();
+            LandFillDbContextCn dbContext = new LandFillDbContextCn();
 
 
 
@@ -495,7 +495,7 @@ namespace MLandfill.Controllers
         }
         public ActionResult TryNewIndex(int id=9)
         {
-            LandFillNRLEntities dbContext = new LandFillNRLEntities();
+            LandFillDbContextCn dbContext = new LandFillDbContextCn();
 
 
 

@@ -5,16 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="LandFillNRLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
-          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
-          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
-        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -43,11 +33,11 @@
         </EntityType>
         <EntityType Name="AspNetUserRoles">
           <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="AspNetRoles_Id" />
+            <PropertyRef Name="AspNetUsers_Id" />
           </Key>
-          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AspNetRoles_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="AspNetUsers_Id" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <EntityType Name="AspNetUsers">
           <Key>
@@ -59,7 +49,7 @@
           <Property Name="SecurityStamp" Type="nvarchar(max)" />
           <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
-        <EntityType Name="tblChangeLog">
+        <EntityType Name="tblChangeLogs">
           <Key>
             <PropertyRef Name="logId" />
           </Key>
@@ -76,13 +66,13 @@
             <PropertyRef Name="ConsultantId" />
           </Key>
           <Property Name="ConsultantId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ConsultantName" Type="nvarchar(max)" />
-          <Property Name="ConsultantAddr" Type="nvarchar(max)" />
-          <Property Name="ConsultantCity" Type="nvarchar(max)" />
-          <Property Name="ConsultantProv" Type="nvarchar(max)" />
-          <Property Name="ConsultantPostal" Type="nvarchar(max)" />
-          <Property Name="ConsultantPhone" Type="nvarchar(max)" />
-          <Property Name="ConsultantNotes" Type="nvarchar(max)" />
+          <Property Name="ConsultantName" Type="varchar" MaxLength="150" />
+          <Property Name="ConsultantAddr" Type="varchar" MaxLength="150" />
+          <Property Name="ConsultantCity" Type="varchar" MaxLength="50" />
+          <Property Name="ConsultantProv" Type="varchar" MaxLength="25" />
+          <Property Name="ConsultantPostal" Type="varchar" MaxLength="10" />
+          <Property Name="ConsultantPhone" Type="varchar" MaxLength="50" />
+          <Property Name="ConsultantNotes" Type="varchar" MaxLength="2500" />
         </EntityType>
         <EntityType Name="tblConsultContacts">
           <Key>
@@ -117,77 +107,43 @@
             <PropertyRef Name="GeneratorId" />
           </Key>
           <Property Name="GeneratorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="GeneratorName" Type="nvarchar(max)" />
-          <Property Name="GenaratorAddr" Type="nvarchar(max)" />
-          <Property Name="GeneratorCity" Type="nvarchar(max)" />
-          <Property Name="GeneratorProv" Type="nvarchar(max)" />
-          <Property Name="GeneratorPostal" Type="nvarchar(max)" />
-          <Property Name="GeneratorPhone" Type="nvarchar(max)" />
-          <Property Name="GeneratorComments" Type="nvarchar(max)" />
+          <Property Name="GeneratorName" Type="varchar" MaxLength="75" />
+          <Property Name="GenaratorAddr" Type="varchar" MaxLength="125" />
+          <Property Name="GeneratorCity" Type="varchar" MaxLength="50" />
+          <Property Name="GeneratorProv" Type="varchar" MaxLength="25" />
+          <Property Name="GeneratorPostal" Type="varchar" MaxLength="20" />
+          <Property Name="GeneratorPhone" Type="varchar" MaxLength="20" />
+          <Property Name="GeneratorComments" Type="varchar" MaxLength="2500" />
           <Property Name="GeneratorExcldInterest" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblInterestCharges">
           <Key>
             <PropertyRef Name="IntAmount" />
           </Key>
-          <Property Name="IntAmount" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IntAmount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IntDaysOverdue" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblInvoice">
-          <Key>
-            <PropertyRef Name="InvoiceNumber" />
-          </Key>
-          <Property Name="InvoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InvoiceNumber" Type="int" Nullable="false" />
-          <Property Name="DateInvoiceCreated" Type="datetime" />
-          <Property Name="ApprovalCode" Type="varchar" MaxLength="100" />
-          <Property Name="VtTotal" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="TotalAmount" Type="money" />
-          <Property Name="gstAmount" Type="money" />
-          <Property Name="CreditedAmount" Type="money" />
-          <Property Name="IsPrinted" Type="bit" />
-          <Property Name="IsPaid" Type="bit" />
-          <Property Name="PaymentMethodId" Type="int" />
-          <Property Name="ReferenceNumber" Type="varchar" MaxLength="100" />
-          <Property Name="DateInvoicePaid" Type="datetime" />
-          <Property Name="IsManuallyInvoiced" Type="bit" />
-          <Property Name="IsDeleted" Type="bit" />
-          <Property Name="DatePaymentDue" Type="date" />
-          <Property Name="WasteApprovalId" Type="int" />
         </EntityType>
         <EntityType Name="tblInvoicees">
           <Key>
-            <PropertyRef Name="InvoiceeID" />
+            <PropertyRef Name="InvoiceeId" />
           </Key>
-          <Property Name="InvoiceeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InvoiceeName" Type="varchar" MaxLength="75" />
-          <Property Name="InvoiceeAddr" Type="varchar" MaxLength="100" />
-          <Property Name="InvoiceeCity" Type="varchar" MaxLength="100" />
-          <Property Name="InvoiceeProv" Type="varchar" MaxLength="15" />
-          <Property Name="InvoiceePostal" Type="varchar" MaxLength="10" />
-          <Property Name="InvoiceePhone" Type="varchar" MaxLength="20" />
-          <Property Name="InvoiceeAttnTo" Type="varchar" MaxLength="100" />
-          <Property Name="InvoiceeCareOf" Type="varchar" MaxLength="100" />
-          <Property Name="InvoiceeConsultId" Type="int" />
+          <Property Name="InvoiceeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvName" Type="varchar" MaxLength="100" />
+          <Property Name="InvAddress" Type="varchar" MaxLength="500" />
+          <Property Name="InvCity" Type="varchar" MaxLength="50" />
+          <Property Name="InvProince" Type="varchar" MaxLength="50" />
+          <Property Name="InvPostal" Type="varchar" MaxLength="10" />
+          <Property Name="InvPhone" Type="varchar" MaxLength="12" />
+          <Property Name="InvContactID" Type="int" />
+          <Property Name="InvAttn" Type="varchar" MaxLength="100" />
+          <Property Name="InvCareOf" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="tblInvoiceesDd">
+        <EntityType Name="tblInvoiceesDds">
           <Key>
             <PropertyRef Name="InvoiceeID" />
           </Key>
           <Property Name="InvoiceeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InvoiceeName" Type="varchar" MaxLength="75" />
-        </EntityType>
-        <EntityType Name="tblInvoicePartialPayments">
-          <Key>
-            <PropertyRef Name="PartialPaymentId" />
-          </Key>
-          <Property Name="PartialPaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="InvoiceNumber" Type="int" Nullable="false" />
-          <Property Name="PartialPayAmount" Type="money" />
-          <Property Name="PartialPayDate" Type="datetime" />
-          <Property Name="PaymentMethodID" Type="int" />
-          <Property Name="ReferenceNo" Type="varchar" MaxLength="100" />
-          <Property Name="Note" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="tblLandFillWasteDockets">
           <Key>
@@ -196,6 +152,7 @@
           <Property Name="DocketId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DocketNo" Type="varchar" MaxLength="30" />
           <Property Name="WasteApprovalCode" Type="varchar" MaxLength="100" />
+          <Property Name="InvoiceeId" Type="int" />
           <Property Name="TurckCompanyId" Type="int" />
           <Property Name="DriverName" Type="varchar" MaxLength="50" />
           <Property Name="DestinatedFor" Type="varchar" MaxLength="20" />
@@ -207,43 +164,14 @@
           <Property Name="Grid" Type="varchar" MaxLength="30" />
           <Property Name="GridNo" Type="varchar" MaxLength="30" />
           <Property Name="Elevation" Type="varchar" MaxLength="30" />
-          <Property Name="ReceivedDate" Type="datetime" />
+          <Property Name="DateReceived" Type="datetime" />
           <Property Name="Memo" Type="varchar(max)" />
-          <Property Name="LogEntryTimeStamp" Type="datetime" />
+          <Property Name="InvoiceNo" Type="varchar" MaxLength="50" />
+          <Property Name="LoadReceivingDate" Type="datetime" />
           <Property Name="WasteApprovalId" Type="int" />
-          <Property Name="InvoiceNumber" Type="int" />
-        </EntityType>
-        <EntityType Name="tblLandFillWasteDocketsHistory">
-          <Key>
-            <PropertyRef Name="DocketHistoryId" />
-          </Key>
-          <Property Name="DocketHistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DocketID" Type="int" Nullable="false" />
-          <Property Name="DocketNo" Type="varchar" MaxLength="30" />
-          <Property Name="WasteApprovalCode" Type="varchar" MaxLength="100" />
-          <Property Name="TurckCompanyId" Type="int" />
-          <Property Name="DriverName" Type="varchar" MaxLength="50" />
-          <Property Name="DestinatedFor" Type="varchar" MaxLength="20" />
-          <Property Name="ScaleTicket" Type="varchar" MaxLength="30" />
-          <Property Name="Gross" Type="decimal" Precision="20" Scale="4" />
-          <Property Name="Tare" Type="decimal" Precision="20" Scale="4" />
-          <Property Name="Net" Type="decimal" Precision="20" Scale="4" />
-          <Property Name="Cell" Type="varchar" MaxLength="30" />
-          <Property Name="Grid" Type="varchar" MaxLength="30" />
-          <Property Name="GridNo" Type="varchar" MaxLength="30" />
-          <Property Name="Elevation" Type="varchar" MaxLength="30" />
           <Property Name="ReceivedDate" Type="datetime" />
-          <Property Name="Memo" Type="varchar(max)" />
           <Property Name="LogEntryTimeStamp" Type="datetime" />
-          <Property Name="WasteApprovalId" Type="int" />
           <Property Name="InvoiceNumber" Type="int" />
-        </EntityType>
-        <EntityType Name="tblPaymentMethod">
-          <Key>
-            <PropertyRef Name="PaymentMthId" />
-          </Key>
-          <Property Name="PaymentMthId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PaymentMethod" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblSubstances">
           <Key>
@@ -258,12 +186,12 @@
             <PropertyRef Name="TruckCompId" />
           </Key>
           <Property Name="TruckCompId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TruckCompName" Type="nvarchar(max)" />
-          <Property Name="TruckCompAddr" Type="nvarchar(max)" />
-          <Property Name="TruckCompCity" Type="nvarchar(max)" />
-          <Property Name="TruckCompProv" Type="nvarchar(max)" />
-          <Property Name="TruckCompPostal" Type="nvarchar(max)" />
-          <Property Name="TruckCompPhone" Type="nvarchar(max)" />
+          <Property Name="TruckCompName" Type="varchar" MaxLength="150" />
+          <Property Name="TruckCompAddr" Type="varchar" MaxLength="250" />
+          <Property Name="TruckCompCity" Type="varchar" MaxLength="35" />
+          <Property Name="TruckCompProv" Type="varchar" MaxLength="20" />
+          <Property Name="TruckCompPostal" Type="varchar" MaxLength="10" />
+          <Property Name="TruckCompPhone" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="tblWasteApproval">
           <Key>
@@ -275,10 +203,10 @@
           <Property Name="WApWasteDescrip" Type="varchar" MaxLength="100" />
           <Property Name="WApSubId" Type="int" />
           <Property Name="WApLocationId" Type="int" />
-          <Property Name="WApCreateDate" Type="date" />
+          <Property Name="WApCreateDate" Type="datetime" />
           <Property Name="WApGenContactId" Type="int" />
-          <Property Name="WApExpiryDate" Type="date" />
-          <Property Name="WApRate" Type="money" />
+          <Property Name="WApExpiryDate" Type="datetime" />
+          <Property Name="WApRate" Type="decimal" Precision="19" Scale="4" />
           <Property Name="WApComments" Type="varchar(max)" />
           <Property Name="WApExtQuantity" Type="float" />
           <Property Name="WApApproved" Type="bit" />
@@ -288,6 +216,7 @@
           <Property Name="WApPoNo" Type="varchar" MaxLength="50" />
           <Property Name="WApConsultantId" Type="int" />
           <Property Name="WApConContactID" Type="int" />
+          <Property Name="WApApprovalIDOrig" Type="int" />
           <Property Name="WApAdcApproved" Type="bit" />
           <Property Name="WApInvoicee" Type="int" />
           <Property Name="WApWasteDescriptionMailMerge" Type="varchar" MaxLength="100" />
@@ -302,15 +231,27 @@
           <Property Name="WasteDescriptionCode" Type="nvarchar(max)" />
           <Property Name="WasteDescriptionInvoice" Type="nvarchar(max)" />
         </EntityType>
-        <Association Name="FK__WASTE_APP__SUB_I__431N6F928">
-          <End Role="tblSubstances" Type="Self.tblSubstances" Multiplicity="0..1" />
-          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+        <Association Name="FK_AspNetUserRoles_AspNetRole">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblSubstances">
-              <PropertyRef Name="SubstanceId" />
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="tblWasteApproval">
-              <PropertyRef Name="WApSubId" />
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="AspNetRoles_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AspNetUserRoles_AspNetUser">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="AspNetUsers_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -342,55 +283,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+        <Association Name="FK_tblLandFillWasteDockets_tblTruckCompanies">
+          <End Role="tblTruckCompanies" Type="Self.tblTruckCompanies" Multiplicity="1" />
+          <End Role="tblLandFillWasteDockets" Type="Self.tblLandFillWasteDockets" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="AspNetRoles">
-              <PropertyRef Name="Id" />
+            <Principal Role="tblTruckCompanies">
+              <PropertyRef Name="TruckCompId" />
             </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="AspNetUserRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblInvoice_tblPaymentMethod">
-          <End Role="tblPaymentMethod" Type="Self.tblPaymentMethod" Multiplicity="0..1" />
-          <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblPaymentMethod">
-              <PropertyRef Name="PaymentMthId" />
-            </Principal>
-            <Dependent Role="tblInvoice">
-              <PropertyRef Name="PaymentMethodId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblInvoicePartialPayments_tblInvoice">
-          <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="1" />
-          <End Role="tblInvoicePartialPayments" Type="Self.tblInvoicePartialPayments" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblInvoice">
-              <PropertyRef Name="InvoiceNumber" />
-            </Principal>
-            <Dependent Role="tblInvoicePartialPayments">
-              <PropertyRef Name="InvoiceNumber" />
+            <Dependent Role="tblLandFillWasteDockets">
+              <PropertyRef Name="DocketId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -406,58 +307,73 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblWasteApprovalNew_tblGenerator">
-          <End Role="tblGenerators" Type="Self.tblGenerators" Multiplicity="0..1" />
-          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblGenerators">
-              <PropertyRef Name="GeneratorId" />
-            </Principal>
-            <Dependent Role="tblWasteApproval">
-              <PropertyRef Name="WApGeneratorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblWasteApprovalNew_tblGeneratorLocations">
-          <End Role="tblGeneratorLocations" Type="Self.tblGeneratorLocations" Multiplicity="0..1" />
-          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+        <Association Name="FK_tblWasteApproval_tblGeneratorLocations">
+          <End Role="tblGeneratorLocations" Type="Self.tblGeneratorLocations" Multiplicity="1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="tblGeneratorLocations">
               <PropertyRef Name="GenerLocationId" />
             </Principal>
             <Dependent Role="tblWasteApproval">
-              <PropertyRef Name="WApLocationId" />
+              <PropertyRef Name="WApApprovalId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblWasteApproval_tblGenerators">
+          <End Role="tblGenerators" Type="Self.tblGenerators" Multiplicity="1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblGenerators">
+              <PropertyRef Name="GeneratorId" />
+            </Principal>
+            <Dependent Role="tblWasteApproval">
+              <PropertyRef Name="WApApprovalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblWasteApproval_tblSubstances">
+          <End Role="tblSubstances" Type="Self.tblSubstances" Multiplicity="1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblSubstances">
+              <PropertyRef Name="SubstanceId" />
+            </Principal>
+            <Dependent Role="tblWasteApproval">
+              <PropertyRef Name="WApApprovalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spDocketGridGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spDocketWasteGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DocketId" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="LandFillNRLModelStoreContainer">
-          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblChangeLog" EntityType="Self.tblChangeLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblChangeLogs" EntityType="Self.tblChangeLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblConsultants" EntityType="Self.tblConsultants" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblConsultContacts" EntityType="Self.tblConsultContacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGeneratorContacts" EntityType="Self.tblGeneratorContacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGeneratorLocations" EntityType="Self.tblGeneratorLocations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblGenerators" EntityType="Self.tblGenerators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblInterestCharges" EntityType="Self.tblInterestCharges" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblInvoice" EntityType="Self.tblInvoice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblInvoicees" EntityType="Self.tblInvoicees" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblInvoiceesDd" EntityType="Self.tblInvoiceesDd" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblInvoicePartialPayments" EntityType="Self.tblInvoicePartialPayments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblInvoiceesDds" EntityType="Self.tblInvoiceesDds" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblLandFillWasteDockets" EntityType="Self.tblLandFillWasteDockets" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblLandFillWasteDocketsHistory" EntityType="Self.tblLandFillWasteDocketsHistory" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblPaymentMethod" EntityType="Self.tblPaymentMethod" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSubstances" EntityType="Self.tblSubstances" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTruckCompanies" EntityType="Self.tblTruckCompanies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblWasteApproval" EntityType="Self.tblWasteApproval" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblWasteDescriptionCodes" EntityType="Self.tblWasteDescriptionCodes" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__WASTE_APP__SUB_I__431N6F928" Association="Self.FK__WASTE_APP__SUB_I__431N6F928">
-            <End Role="tblSubstances" EntitySet="tblSubstances" />
-            <End Role="tblWasteApproval" EntitySet="tblWasteApproval" />
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetRole" Association="Self.FK_AspNetUserRoles_AspNetRole">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AspNetUserRoles_AspNetUser" Association="Self.FK_AspNetUserRoles_AspNetUser">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
@@ -467,32 +383,24 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
-            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblInvoice_tblPaymentMethod" Association="Self.FK_tblInvoice_tblPaymentMethod">
-            <End Role="tblPaymentMethod" EntitySet="tblPaymentMethod" />
-            <End Role="tblInvoice" EntitySet="tblInvoice" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblInvoicePartialPayments_tblInvoice" Association="Self.FK_tblInvoicePartialPayments_tblInvoice">
-            <End Role="tblInvoice" EntitySet="tblInvoice" />
-            <End Role="tblInvoicePartialPayments" EntitySet="tblInvoicePartialPayments" />
+          <AssociationSet Name="FK_tblLandFillWasteDockets_tblTruckCompanies" Association="Self.FK_tblLandFillWasteDockets_tblTruckCompanies">
+            <End Role="tblTruckCompanies" EntitySet="tblTruckCompanies" />
+            <End Role="tblLandFillWasteDockets" EntitySet="tblLandFillWasteDockets" />
           </AssociationSet>
           <AssociationSet Name="FK_tblLandFillWasteDockets_tblWasteApproval" Association="Self.FK_tblLandFillWasteDockets_tblWasteApproval">
             <End Role="tblWasteApproval" EntitySet="tblWasteApproval" />
             <End Role="tblLandFillWasteDockets" EntitySet="tblLandFillWasteDockets" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblWasteApprovalNew_tblGenerator" Association="Self.FK_tblWasteApprovalNew_tblGenerator">
+          <AssociationSet Name="FK_tblWasteApproval_tblGeneratorLocations" Association="Self.FK_tblWasteApproval_tblGeneratorLocations">
+            <End Role="tblGeneratorLocations" EntitySet="tblGeneratorLocations" />
+            <End Role="tblWasteApproval" EntitySet="tblWasteApproval" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblWasteApproval_tblGenerators" Association="Self.FK_tblWasteApproval_tblGenerators">
             <End Role="tblGenerators" EntitySet="tblGenerators" />
             <End Role="tblWasteApproval" EntitySet="tblWasteApproval" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblWasteApprovalNew_tblGeneratorLocations" Association="Self.FK_tblWasteApprovalNew_tblGeneratorLocations">
-            <End Role="tblGeneratorLocations" EntitySet="tblGeneratorLocations" />
+          <AssociationSet Name="FK_tblWasteApproval_tblSubstances" Association="Self.FK_tblWasteApproval_tblSubstances">
+            <End Role="tblSubstances" EntitySet="tblSubstances" />
             <End Role="tblWasteApproval" EntitySet="tblWasteApproval" />
           </AssociationSet>
         </EntityContainer>
@@ -501,16 +409,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="LandFillNRLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="AspNetRole">
           <Key>
             <PropertyRef Name="Id" />
@@ -570,13 +468,13 @@
             <PropertyRef Name="ConsultantId" />
           </Key>
           <Property Name="ConsultantId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ConsultantName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ConsultantAddr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ConsultantCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ConsultantProv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ConsultantPostal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ConsultantPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ConsultantNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConsultantName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ConsultantAddr" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="ConsultantCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ConsultantProv" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="ConsultantPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ConsultantPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ConsultantNotes" Type="String" MaxLength="2500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblConsultContact">
           <Key>
@@ -605,68 +503,44 @@
           <Property Name="GenerLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GenerLocationGenID" Type="Int32" Nullable="false" />
           <Property Name="GenerLocationLsd" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tblWasteApprovals" Relationship="Self.FK_tblWasteApprovalNew_tblGeneratorLocations" FromRole="tblGeneratorLocations" ToRole="tblWasteApproval" />
+          <NavigationProperty Name="tblWasteApproval" Relationship="Self.FK_tblWasteApproval_tblGeneratorLocations" FromRole="tblGeneratorLocations" ToRole="tblWasteApproval" />
         </EntityType>
         <EntityType Name="tblGenerator">
           <Key>
             <PropertyRef Name="GeneratorId" />
           </Key>
           <Property Name="GeneratorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GeneratorName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GenaratorAddr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GeneratorCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GeneratorProv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GeneratorPostal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GeneratorPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="GeneratorComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GeneratorName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+          <Property Name="GenaratorAddr" Type="String" MaxLength="125" FixedLength="false" Unicode="false" />
+          <Property Name="GeneratorCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GeneratorProv" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="GeneratorPostal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GeneratorPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GeneratorComments" Type="String" MaxLength="2500" FixedLength="false" Unicode="false" />
           <Property Name="GeneratorExcldInterest" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblWasteApprovals" Relationship="Self.FK_tblWasteApprovalNew_tblGenerator" FromRole="tblGenerators" ToRole="tblWasteApproval" />
+          <NavigationProperty Name="tblWasteApproval" Relationship="Self.FK_tblWasteApproval_tblGenerators" FromRole="tblGenerators" ToRole="tblWasteApproval" />
         </EntityType>
         <EntityType Name="tblInterestCharge">
           <Key>
             <PropertyRef Name="IntAmount" />
           </Key>
-          <Property Name="IntAmount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="IntAmount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IntDaysOverdue" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="tblInvoice">
-          <Key>
-            <PropertyRef Name="InvoiceNumber" />
-          </Key>
-          <Property Name="InvoiceID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvoiceNumber" Type="Int32" Nullable="false" />
-          <Property Name="DateInvoiceCreated" Type="DateTime" Precision="3" />
-          <Property Name="ApprovalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="VtTotal" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="TotalAmount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="gstAmount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="CreditedAmount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="IsPrinted" Type="Boolean" />
-          <Property Name="IsPaid" Type="Boolean" />
-          <Property Name="PaymentMethodId" Type="Int32" />
-          <Property Name="ReferenceNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="DateInvoicePaid" Type="DateTime" Precision="3" />
-          <Property Name="IsManuallyInvoiced" Type="Boolean" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="DatePaymentDue" Type="DateTime" Precision="0" />
-          <Property Name="WasteApprovalId" Type="Int32" />
-          <NavigationProperty Name="tblPaymentMethod" Relationship="Self.FK_tblInvoice_tblPaymentMethod" FromRole="tblInvoice" ToRole="tblPaymentMethod" />
-          <NavigationProperty Name="tblInvoicePartialPayments" Relationship="Self.FK_tblInvoicePartialPayments_tblInvoice" FromRole="tblInvoice" ToRole="tblInvoicePartialPayments" />
         </EntityType>
         <EntityType Name="tblInvoicee">
           <Key>
-            <PropertyRef Name="InvoiceeID" />
+            <PropertyRef Name="InvoiceeId" />
           </Key>
-          <Property Name="InvoiceeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvoiceeName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceeAddr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceeCity" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceeProv" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceePostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceePhone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceeAttnTo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceeCareOf" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="InvoiceeConsultId" Type="Int32" />
+          <Property Name="InvoiceeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="InvCity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InvProince" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InvPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="InvPhone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="InvContactID" Type="Int32" />
+          <Property Name="InvAttn" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvCareOf" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblInvoiceesDd">
           <Key>
@@ -675,19 +549,6 @@
           <Property Name="InvoiceeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InvoiceeName" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="tblInvoicePartialPayment">
-          <Key>
-            <PropertyRef Name="PartialPaymentId" />
-          </Key>
-          <Property Name="PartialPaymentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="InvoiceNumber" Type="Int32" Nullable="false" />
-          <Property Name="PartialPayAmount" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="PartialPayDate" Type="DateTime" Precision="3" />
-          <Property Name="PaymentMethodID" Type="Int32" />
-          <Property Name="ReferenceNo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Note" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblInvoice" Relationship="Self.FK_tblInvoicePartialPayments_tblInvoice" FromRole="tblInvoicePartialPayments" ToRole="tblInvoice" />
-        </EntityType>
         <EntityType Name="tblLandFillWasteDocket">
           <Key>
             <PropertyRef Name="DocketId" />
@@ -695,6 +556,7 @@
           <Property Name="DocketId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DocketNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="WasteApprovalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="InvoiceeId" Type="Int32" />
           <Property Name="TurckCompanyId" Type="Int32" />
           <Property Name="DriverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="DestinatedFor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -706,45 +568,16 @@
           <Property Name="Grid" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="GridNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Elevation" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ReceivedDate" Type="DateTime" Precision="3" />
+          <Property Name="DateReceived" Type="DateTime" Precision="3" />
           <Property Name="Memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="LogEntryTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LoadReceivingDate" Type="DateTime" Precision="3" />
           <Property Name="WasteApprovalId" Type="Int32" />
+          <Property Name="ReceivedDate" Type="DateTime" Precision="3" />
+          <Property Name="LogEntryTimeStamp" Type="DateTime" Precision="3" />
           <Property Name="InvoiceNumber" Type="Int32" />
+          <NavigationProperty Name="tblTruckCompany" Relationship="Self.FK_tblLandFillWasteDockets_tblTruckCompanies" FromRole="tblLandFillWasteDockets" ToRole="tblTruckCompanies" />
           <NavigationProperty Name="tblWasteApproval" Relationship="Self.FK_tblLandFillWasteDockets_tblWasteApproval" FromRole="tblLandFillWasteDockets" ToRole="tblWasteApproval" />
-        </EntityType>
-        <EntityType Name="tblLandFillWasteDocketsHistory">
-          <Key>
-            <PropertyRef Name="DocketHistoryId" />
-          </Key>
-          <Property Name="DocketHistoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DocketID" Type="Int32" Nullable="false" />
-          <Property Name="DocketNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="WasteApprovalCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="TurckCompanyId" Type="Int32" />
-          <Property Name="DriverName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DestinatedFor" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="ScaleTicket" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Gross" Type="Decimal" Precision="20" Scale="4" />
-          <Property Name="Tare" Type="Decimal" Precision="20" Scale="4" />
-          <Property Name="Net" Type="Decimal" Precision="20" Scale="4" />
-          <Property Name="Cell" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Grid" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="GridNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Elevation" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="ReceivedDate" Type="DateTime" Precision="3" />
-          <Property Name="Memo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="LogEntryTimeStamp" Type="DateTime" Precision="3" />
-          <Property Name="WasteApprovalId" Type="Int32" />
-          <Property Name="InvoiceNumber" Type="Int32" />
-        </EntityType>
-        <EntityType Name="tblPaymentMethod">
-          <Key>
-            <PropertyRef Name="PaymentMthId" />
-          </Key>
-          <Property Name="PaymentMthId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PaymentMethod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="tblInvoices" Relationship="Self.FK_tblInvoice_tblPaymentMethod" FromRole="tblPaymentMethod" ToRole="tblInvoice" />
         </EntityType>
         <EntityType Name="tblSubstance">
           <Key>
@@ -753,19 +586,20 @@
           <Property Name="SubstanceId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubstanceName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SubstanceCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="tblWasteApprovals" Relationship="Self.FK__WASTE_APP__SUB_I__431N6F928" FromRole="tblSubstances" ToRole="tblWasteApproval" />
+          <NavigationProperty Name="tblWasteApproval" Relationship="Self.FK_tblWasteApproval_tblSubstances" FromRole="tblSubstances" ToRole="tblWasteApproval" />
         </EntityType>
         <EntityType Name="tblTruckCompany">
           <Key>
             <PropertyRef Name="TruckCompId" />
           </Key>
           <Property Name="TruckCompId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TruckCompName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TruckCompAddr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TruckCompCity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TruckCompProv" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TruckCompPostal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TruckCompPhone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TruckCompName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="TruckCompAddr" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TruckCompCity" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="TruckCompProv" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="TruckCompPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="TruckCompPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblLandFillWasteDocket" Relationship="Self.FK_tblLandFillWasteDockets_tblTruckCompanies" FromRole="tblTruckCompanies" ToRole="tblLandFillWasteDockets" />
         </EntityType>
         <EntityType Name="tblWasteApproval">
           <Key>
@@ -777,9 +611,9 @@
           <Property Name="WApWasteDescrip" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="WApSubId" Type="Int32" />
           <Property Name="WApLocationId" Type="Int32" />
-          <Property Name="WApCreateDate" Type="DateTime" Precision="0" />
+          <Property Name="WApCreateDate" Type="DateTime" Precision="3" />
           <Property Name="WApGenContactId" Type="Int32" />
-          <Property Name="WApExpiryDate" Type="DateTime" Precision="0" />
+          <Property Name="WApExpiryDate" Type="DateTime" Precision="3" />
           <Property Name="WApRate" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="WApComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="WApExtQuantity" Type="Double" />
@@ -790,14 +624,15 @@
           <Property Name="WApPoNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="WApConsultantId" Type="Int32" />
           <Property Name="WApConContactID" Type="Int32" />
+          <Property Name="WApApprovalIDOrig" Type="Int32" />
           <Property Name="WApAdcApproved" Type="Boolean" />
           <Property Name="WApInvoicee" Type="Int32" />
           <Property Name="WApWasteDescriptionMailMerge" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="WApMinCharge" Type="Boolean" />
-          <NavigationProperty Name="tblGeneratorLocation" Relationship="Self.FK_tblWasteApprovalNew_tblGeneratorLocations" FromRole="tblWasteApproval" ToRole="tblGeneratorLocations" />
-          <NavigationProperty Name="tblGenerator" Relationship="Self.FK_tblWasteApprovalNew_tblGenerator" FromRole="tblWasteApproval" ToRole="tblGenerators" />
+          <NavigationProperty Name="tblGeneratorLocation" Relationship="Self.FK_tblWasteApproval_tblGeneratorLocations" FromRole="tblWasteApproval" ToRole="tblGeneratorLocations" />
+          <NavigationProperty Name="tblGenerator" Relationship="Self.FK_tblWasteApproval_tblGenerators" FromRole="tblWasteApproval" ToRole="tblGenerators" />
           <NavigationProperty Name="tblLandFillWasteDockets" Relationship="Self.FK_tblLandFillWasteDockets_tblWasteApproval" FromRole="tblWasteApproval" ToRole="tblLandFillWasteDockets" />
-          <NavigationProperty Name="tblSubstance" Relationship="Self.FK__WASTE_APP__SUB_I__431N6F928" FromRole="tblWasteApproval" ToRole="tblSubstances" />
+          <NavigationProperty Name="tblSubstance" Relationship="Self.FK_tblWasteApproval_tblSubstances" FromRole="tblWasteApproval" ToRole="tblSubstances" />
         </EntityType>
         <EntityType Name="tblWasteDescriptionCode">
           <Key>
@@ -836,51 +671,39 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblWasteApprovalNew_tblGeneratorLocations">
-          <End Role="tblGeneratorLocations" Type="Self.tblGeneratorLocation" Multiplicity="0..1" />
-          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+        <Association Name="FK_tblWasteApproval_tblGeneratorLocations">
+          <End Role="tblGeneratorLocations" Type="Self.tblGeneratorLocation" Multiplicity="1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="tblGeneratorLocations">
               <PropertyRef Name="GenerLocationId" />
             </Principal>
             <Dependent Role="tblWasteApproval">
-              <PropertyRef Name="WApLocationId" />
+              <PropertyRef Name="WApApprovalId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblWasteApprovalNew_tblGenerator">
-          <End Role="tblGenerators" Type="Self.tblGenerator" Multiplicity="0..1" />
-          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+        <Association Name="FK_tblWasteApproval_tblGenerators">
+          <End Role="tblGenerators" Type="Self.tblGenerator" Multiplicity="1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="tblGenerators">
               <PropertyRef Name="GeneratorId" />
             </Principal>
             <Dependent Role="tblWasteApproval">
-              <PropertyRef Name="WApGeneratorId" />
+              <PropertyRef Name="WApApprovalId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblInvoice_tblPaymentMethod">
-          <End Role="tblPaymentMethod" Type="Self.tblPaymentMethod" Multiplicity="0..1" />
-          <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="*" />
+        <Association Name="FK_tblLandFillWasteDockets_tblTruckCompanies">
+          <End Role="tblTruckCompanies" Type="Self.tblTruckCompany" Multiplicity="1" />
+          <End Role="tblLandFillWasteDockets" Type="Self.tblLandFillWasteDocket" Multiplicity="0..1" />
           <ReferentialConstraint>
-            <Principal Role="tblPaymentMethod">
-              <PropertyRef Name="PaymentMthId" />
+            <Principal Role="tblTruckCompanies">
+              <PropertyRef Name="TruckCompId" />
             </Principal>
-            <Dependent Role="tblInvoice">
-              <PropertyRef Name="PaymentMethodId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblInvoicePartialPayments_tblInvoice">
-          <End Role="tblInvoice" Type="Self.tblInvoice" Multiplicity="1" />
-          <End Role="tblInvoicePartialPayments" Type="Self.tblInvoicePartialPayment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblInvoice">
-              <PropertyRef Name="InvoiceNumber" />
-            </Principal>
-            <Dependent Role="tblInvoicePartialPayments">
-              <PropertyRef Name="InvoiceNumber" />
+            <Dependent Role="tblLandFillWasteDockets">
+              <PropertyRef Name="DocketId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -896,15 +719,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__WASTE_APP__SUB_I__431N6F928">
-          <End Role="tblSubstances" Type="Self.tblSubstance" Multiplicity="0..1" />
-          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="*" />
+        <Association Name="FK_tblWasteApproval_tblSubstances">
+          <End Role="tblSubstances" Type="Self.tblSubstance" Multiplicity="1" />
+          <End Role="tblWasteApproval" Type="Self.tblWasteApproval" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="tblSubstances">
               <PropertyRef Name="SubstanceId" />
             </Principal>
             <Dependent Role="tblWasteApproval">
-              <PropertyRef Name="WApSubId" />
+              <PropertyRef Name="WApApprovalId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -912,8 +735,7 @@
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="LandFillNRLEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+        <EntityContainer Name="LandFillDbContextCn" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRole" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaim" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogin" />
@@ -925,13 +747,9 @@
           <EntitySet Name="tblGeneratorLocations" EntityType="Self.tblGeneratorLocation" />
           <EntitySet Name="tblGenerators" EntityType="Self.tblGenerator" />
           <EntitySet Name="tblInterestCharges" EntityType="Self.tblInterestCharge" />
-          <EntitySet Name="tblInvoices" EntityType="Self.tblInvoice" />
           <EntitySet Name="tblInvoicees" EntityType="Self.tblInvoicee" />
           <EntitySet Name="tblInvoiceesDds" EntityType="Self.tblInvoiceesDd" />
-          <EntitySet Name="tblInvoicePartialPayments" EntityType="Self.tblInvoicePartialPayment" />
           <EntitySet Name="tblLandFillWasteDockets" EntityType="Self.tblLandFillWasteDocket" />
-          <EntitySet Name="tblLandFillWasteDocketsHistories" EntityType="Self.tblLandFillWasteDocketsHistory" />
-          <EntitySet Name="tblPaymentMethods" EntityType="Self.tblPaymentMethod" />
           <EntitySet Name="tblSubstances" EntityType="Self.tblSubstance" />
           <EntitySet Name="tblTruckCompanies" EntityType="Self.tblTruckCompany" />
           <EntitySet Name="tblWasteApprovals" EntityType="Self.tblWasteApproval" />
@@ -944,27 +762,23 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblWasteApprovalNew_tblGeneratorLocations" Association="Self.FK_tblWasteApprovalNew_tblGeneratorLocations">
+          <AssociationSet Name="FK_tblWasteApproval_tblGeneratorLocations" Association="Self.FK_tblWasteApproval_tblGeneratorLocations">
             <End Role="tblGeneratorLocations" EntitySet="tblGeneratorLocations" />
             <End Role="tblWasteApproval" EntitySet="tblWasteApprovals" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblWasteApprovalNew_tblGenerator" Association="Self.FK_tblWasteApprovalNew_tblGenerator">
+          <AssociationSet Name="FK_tblWasteApproval_tblGenerators" Association="Self.FK_tblWasteApproval_tblGenerators">
             <End Role="tblGenerators" EntitySet="tblGenerators" />
             <End Role="tblWasteApproval" EntitySet="tblWasteApprovals" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblInvoice_tblPaymentMethod" Association="Self.FK_tblInvoice_tblPaymentMethod">
-            <End Role="tblPaymentMethod" EntitySet="tblPaymentMethods" />
-            <End Role="tblInvoice" EntitySet="tblInvoices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblInvoicePartialPayments_tblInvoice" Association="Self.FK_tblInvoicePartialPayments_tblInvoice">
-            <End Role="tblInvoice" EntitySet="tblInvoices" />
-            <End Role="tblInvoicePartialPayments" EntitySet="tblInvoicePartialPayments" />
+          <AssociationSet Name="FK_tblLandFillWasteDockets_tblTruckCompanies" Association="Self.FK_tblLandFillWasteDockets_tblTruckCompanies">
+            <End Role="tblTruckCompanies" EntitySet="tblTruckCompanies" />
+            <End Role="tblLandFillWasteDockets" EntitySet="tblLandFillWasteDockets" />
           </AssociationSet>
           <AssociationSet Name="FK_tblLandFillWasteDockets_tblWasteApproval" Association="Self.FK_tblLandFillWasteDockets_tblWasteApproval">
             <End Role="tblWasteApproval" EntitySet="tblWasteApprovals" />
             <End Role="tblLandFillWasteDockets" EntitySet="tblLandFillWasteDockets" />
           </AssociationSet>
-          <AssociationSet Name="FK__WASTE_APP__SUB_I__431N6F928" Association="Self.FK__WASTE_APP__SUB_I__431N6F928">
+          <AssociationSet Name="FK_tblWasteApproval_tblSubstances" Association="Self.FK_tblWasteApproval_tblSubstances">
             <End Role="tblSubstances" EntitySet="tblSubstances" />
             <End Role="tblWasteApproval" EntitySet="tblWasteApprovals" />
           </AssociationSet>
@@ -972,23 +786,72 @@
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <FunctionImport Name="spDocketGridGet" ReturnType="Collection(LandFillNRLModel.spDocketGridGet_Result)" />
+          <FunctionImport Name="spDocketWasteGet" ReturnType="Collection(LandFillNRLModel.spDocketWasteGet_Result)">
+            <Parameter Name="DocketId" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="spDocketGridGet_Result">
+          <Property Type="Int32" Name="DocketId" Nullable="false" />
+          <Property Type="String" Name="ManifestNo" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Producer" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="Lsd" Nullable="true" />
+          <Property Type="String" Name="WasteDescription" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ApprovalCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Substance" Nullable="true" />
+          <Property Type="String" Name="TruckerCompany" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="DriverName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DestinatedFor" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ScaleTicket" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="Gross" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="Tare" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="Net" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="String" Name="Cell" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Grid" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="GridNo" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Elevation" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="JobDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Memo" Nullable="true" />
+          <Property Type="String" Name="InvoiceNumber" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="spDocketWasteGet_Result">
+          <Property Type="Int32" Name="DocketId" Nullable="false" />
+          <Property Type="String" Name="DocketNo" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="WApApprovalcode" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="WApApprovalId" Nullable="true" />
+          <Property Type="String" Name="DriverName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DestinatedFor" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ScaleTicket" Nullable="true" MaxLength="30" />
+          <Property Type="Decimal" Name="Gross" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="Tare" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="Decimal" Name="Net" Nullable="true" Precision="20" Scale="4" />
+          <Property Type="String" Name="Cell" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Grid" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="GridNo" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Elevation" Nullable="true" MaxLength="30" />
+          <Property Type="DateTime" Name="ReceivedDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="TruckCompName" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="TruckCompAddr" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="TruckCompCity" Nullable="true" MaxLength="35" />
+          <Property Type="String" Name="TruckCompProv" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="TruckCompPostal" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="TruckCompPhone" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="TruckCompId" Nullable="false" />
+          <Property Type="Int32" Name="WApGeneratorId" Nullable="true" />
+          <Property Type="String" Name="Memo" Nullable="true" />
+          <Property Type="String" Name="WApWasteDescrip" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="WApSubId" Nullable="true" />
+          <Property Type="String" Name="GeneratorName" Nullable="true" MaxLength="75" />
+          <Property Type="String" Name="SubstanceName" Nullable="true" />
+          <Property Type="Int32" Name="GenerLocationId" Nullable="false" />
+          <Property Type="String" Name="GenerLocationLsd" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LandFillNRLModelStoreContainer" CdmEntityContainer="LandFillNRLEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="LandFillNRLModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+        <EntityContainerMapping StorageEntityContainer="LandFillNRLModelStoreContainer" CdmEntityContainer="LandFillDbContextCn">
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="LandFillNRLModel.AspNetRole">
               <MappingFragment StoreEntitySet="AspNetRoles">
@@ -1029,7 +892,7 @@
           </EntitySetMapping>
           <EntitySetMapping Name="tblChangeLogs">
             <EntityTypeMapping TypeName="LandFillNRLModel.tblChangeLog">
-              <MappingFragment StoreEntitySet="tblChangeLog">
+              <MappingFragment StoreEntitySet="tblChangeLogs">
                 <ScalarProperty Name="logId" ColumnName="logId" />
                 <ScalarProperty Name="FormID" ColumnName="FormID" />
                 <ScalarProperty Name="TableId" ColumnName="TableId" />
@@ -1108,63 +971,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblInvoices">
-            <EntityTypeMapping TypeName="LandFillNRLModel.tblInvoice">
-              <MappingFragment StoreEntitySet="tblInvoice">
-                <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
-                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
-                <ScalarProperty Name="DateInvoiceCreated" ColumnName="DateInvoiceCreated" />
-                <ScalarProperty Name="ApprovalCode" ColumnName="ApprovalCode" />
-                <ScalarProperty Name="VtTotal" ColumnName="VtTotal" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="gstAmount" ColumnName="gstAmount" />
-                <ScalarProperty Name="CreditedAmount" ColumnName="CreditedAmount" />
-                <ScalarProperty Name="IsPrinted" ColumnName="IsPrinted" />
-                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
-                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
-                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
-                <ScalarProperty Name="DateInvoicePaid" ColumnName="DateInvoicePaid" />
-                <ScalarProperty Name="IsManuallyInvoiced" ColumnName="IsManuallyInvoiced" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="DatePaymentDue" ColumnName="DatePaymentDue" />
-                <ScalarProperty Name="WasteApprovalId" ColumnName="WasteApprovalId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblInvoicees">
             <EntityTypeMapping TypeName="LandFillNRLModel.tblInvoicee">
               <MappingFragment StoreEntitySet="tblInvoicees">
-                <ScalarProperty Name="InvoiceeID" ColumnName="InvoiceeID" />
-                <ScalarProperty Name="InvoiceeName" ColumnName="InvoiceeName" />
-                <ScalarProperty Name="InvoiceeAddr" ColumnName="InvoiceeAddr" />
-                <ScalarProperty Name="InvoiceeCity" ColumnName="InvoiceeCity" />
-                <ScalarProperty Name="InvoiceeProv" ColumnName="InvoiceeProv" />
-                <ScalarProperty Name="InvoiceePostal" ColumnName="InvoiceePostal" />
-                <ScalarProperty Name="InvoiceePhone" ColumnName="InvoiceePhone" />
-                <ScalarProperty Name="InvoiceeAttnTo" ColumnName="InvoiceeAttnTo" />
-                <ScalarProperty Name="InvoiceeCareOf" ColumnName="InvoiceeCareOf" />
-                <ScalarProperty Name="InvoiceeConsultId" ColumnName="InvoiceeConsultId" />
+                <ScalarProperty Name="InvoiceeId" ColumnName="InvoiceeId" />
+                <ScalarProperty Name="InvName" ColumnName="InvName" />
+                <ScalarProperty Name="InvAddress" ColumnName="InvAddress" />
+                <ScalarProperty Name="InvCity" ColumnName="InvCity" />
+                <ScalarProperty Name="InvProince" ColumnName="InvProince" />
+                <ScalarProperty Name="InvPostal" ColumnName="InvPostal" />
+                <ScalarProperty Name="InvPhone" ColumnName="InvPhone" />
+                <ScalarProperty Name="InvContactID" ColumnName="InvContactID" />
+                <ScalarProperty Name="InvAttn" ColumnName="InvAttn" />
+                <ScalarProperty Name="InvCareOf" ColumnName="InvCareOf" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblInvoiceesDds">
             <EntityTypeMapping TypeName="LandFillNRLModel.tblInvoiceesDd">
-              <MappingFragment StoreEntitySet="tblInvoiceesDd">
+              <MappingFragment StoreEntitySet="tblInvoiceesDds">
                 <ScalarProperty Name="InvoiceeID" ColumnName="InvoiceeID" />
                 <ScalarProperty Name="InvoiceeName" ColumnName="InvoiceeName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblInvoicePartialPayments">
-            <EntityTypeMapping TypeName="LandFillNRLModel.tblInvoicePartialPayment">
-              <MappingFragment StoreEntitySet="tblInvoicePartialPayments">
-                <ScalarProperty Name="PartialPaymentId" ColumnName="PartialPaymentId" />
-                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
-                <ScalarProperty Name="PartialPayAmount" ColumnName="PartialPayAmount" />
-                <ScalarProperty Name="PartialPayDate" ColumnName="PartialPayDate" />
-                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
-                <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1174,6 +1001,7 @@
                 <ScalarProperty Name="DocketId" ColumnName="DocketId" />
                 <ScalarProperty Name="DocketNo" ColumnName="DocketNo" />
                 <ScalarProperty Name="WasteApprovalCode" ColumnName="WasteApprovalCode" />
+                <ScalarProperty Name="InvoiceeId" ColumnName="InvoiceeId" />
                 <ScalarProperty Name="TurckCompanyId" ColumnName="TurckCompanyId" />
                 <ScalarProperty Name="DriverName" ColumnName="DriverName" />
                 <ScalarProperty Name="DestinatedFor" ColumnName="DestinatedFor" />
@@ -1185,45 +1013,14 @@
                 <ScalarProperty Name="Grid" ColumnName="Grid" />
                 <ScalarProperty Name="GridNo" ColumnName="GridNo" />
                 <ScalarProperty Name="Elevation" ColumnName="Elevation" />
-                <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
+                <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
                 <ScalarProperty Name="Memo" ColumnName="Memo" />
-                <ScalarProperty Name="LogEntryTimeStamp" ColumnName="LogEntryTimeStamp" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="LoadReceivingDate" ColumnName="LoadReceivingDate" />
                 <ScalarProperty Name="WasteApprovalId" ColumnName="WasteApprovalId" />
-                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblLandFillWasteDocketsHistories">
-            <EntityTypeMapping TypeName="LandFillNRLModel.tblLandFillWasteDocketsHistory">
-              <MappingFragment StoreEntitySet="tblLandFillWasteDocketsHistory">
-                <ScalarProperty Name="DocketHistoryId" ColumnName="DocketHistoryId" />
-                <ScalarProperty Name="DocketID" ColumnName="DocketID" />
-                <ScalarProperty Name="DocketNo" ColumnName="DocketNo" />
-                <ScalarProperty Name="WasteApprovalCode" ColumnName="WasteApprovalCode" />
-                <ScalarProperty Name="TurckCompanyId" ColumnName="TurckCompanyId" />
-                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
-                <ScalarProperty Name="DestinatedFor" ColumnName="DestinatedFor" />
-                <ScalarProperty Name="ScaleTicket" ColumnName="ScaleTicket" />
-                <ScalarProperty Name="Gross" ColumnName="Gross" />
-                <ScalarProperty Name="Tare" ColumnName="Tare" />
-                <ScalarProperty Name="Net" ColumnName="Net" />
-                <ScalarProperty Name="Cell" ColumnName="Cell" />
-                <ScalarProperty Name="Grid" ColumnName="Grid" />
-                <ScalarProperty Name="GridNo" ColumnName="GridNo" />
-                <ScalarProperty Name="Elevation" ColumnName="Elevation" />
                 <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
-                <ScalarProperty Name="Memo" ColumnName="Memo" />
                 <ScalarProperty Name="LogEntryTimeStamp" ColumnName="LogEntryTimeStamp" />
-                <ScalarProperty Name="WasteApprovalId" ColumnName="WasteApprovalId" />
                 <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblPaymentMethods">
-            <EntityTypeMapping TypeName="LandFillNRLModel.tblPaymentMethod">
-              <MappingFragment StoreEntitySet="tblPaymentMethod">
-                <ScalarProperty Name="PaymentMthId" ColumnName="PaymentMthId" />
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1271,6 +1068,7 @@
                 <ScalarProperty Name="WApPoNo" ColumnName="WApPoNo" />
                 <ScalarProperty Name="WApConsultantId" ColumnName="WApConsultantId" />
                 <ScalarProperty Name="WApConContactID" ColumnName="WApConContactID" />
+                <ScalarProperty Name="WApApprovalIDOrig" ColumnName="WApApprovalIDOrig" />
                 <ScalarProperty Name="WApAdcApproved" ColumnName="WApAdcApproved" />
                 <ScalarProperty Name="WApInvoicee" ColumnName="WApInvoicee" />
                 <ScalarProperty Name="WApWasteDescriptionMailMerge" ColumnName="WApWasteDescriptionMailMerge" />
@@ -1290,12 +1088,75 @@
           </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="LandFillNRLModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
-              <ScalarProperty Name="Id" ColumnName="RoleId" />
+              <ScalarProperty Name="Id" ColumnName="AspNetRoles_Id" />
             </EndProperty>
             <EndProperty Name="AspNetUsers">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
+              <ScalarProperty Name="Id" ColumnName="AspNetUsers_Id" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="spDocketGridGet" FunctionName="LandFillNRLModel.Store.spDocketGridGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LandFillNRLModel.spDocketGridGet_Result">
+                <ScalarProperty Name="DocketId" ColumnName="DocketId" />
+                <ScalarProperty Name="ManifestNo" ColumnName="ManifestNo" />
+                <ScalarProperty Name="Producer" ColumnName="Producer" />
+                <ScalarProperty Name="Lsd" ColumnName="Lsd" />
+                <ScalarProperty Name="WasteDescription" ColumnName="WasteDescription" />
+                <ScalarProperty Name="ApprovalCode" ColumnName="ApprovalCode" />
+                <ScalarProperty Name="Substance" ColumnName="Substance" />
+                <ScalarProperty Name="TruckerCompany" ColumnName="TruckerCompany" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="DestinatedFor" ColumnName="DestinatedFor" />
+                <ScalarProperty Name="ScaleTicket" ColumnName="ScaleTicket" />
+                <ScalarProperty Name="Gross" ColumnName="Gross" />
+                <ScalarProperty Name="Tare" ColumnName="Tare" />
+                <ScalarProperty Name="Net" ColumnName="Net" />
+                <ScalarProperty Name="Cell" ColumnName="Cell" />
+                <ScalarProperty Name="Grid" ColumnName="Grid" />
+                <ScalarProperty Name="GridNo" ColumnName="GridNo" />
+                <ScalarProperty Name="Elevation" ColumnName="Elevation" />
+                <ScalarProperty Name="JobDate" ColumnName="JobDate" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spDocketWasteGet" FunctionName="LandFillNRLModel.Store.spDocketWasteGet">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LandFillNRLModel.spDocketWasteGet_Result">
+                <ScalarProperty Name="DocketId" ColumnName="DocketId" />
+                <ScalarProperty Name="DocketNo" ColumnName="DocketNo" />
+                <ScalarProperty Name="WApApprovalcode" ColumnName="WApApprovalcode" />
+                <ScalarProperty Name="WApApprovalId" ColumnName="WApApprovalId" />
+                <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+                <ScalarProperty Name="DestinatedFor" ColumnName="DestinatedFor" />
+                <ScalarProperty Name="ScaleTicket" ColumnName="ScaleTicket" />
+                <ScalarProperty Name="Gross" ColumnName="Gross" />
+                <ScalarProperty Name="Tare" ColumnName="Tare" />
+                <ScalarProperty Name="Net" ColumnName="Net" />
+                <ScalarProperty Name="Cell" ColumnName="Cell" />
+                <ScalarProperty Name="Grid" ColumnName="Grid" />
+                <ScalarProperty Name="GridNo" ColumnName="GridNo" />
+                <ScalarProperty Name="Elevation" ColumnName="Elevation" />
+                <ScalarProperty Name="ReceivedDate" ColumnName="ReceivedDate" />
+                <ScalarProperty Name="TruckCompName" ColumnName="TruckCompName" />
+                <ScalarProperty Name="TruckCompAddr" ColumnName="TruckCompAddr" />
+                <ScalarProperty Name="TruckCompCity" ColumnName="TruckCompCity" />
+                <ScalarProperty Name="TruckCompProv" ColumnName="TruckCompProv" />
+                <ScalarProperty Name="TruckCompPostal" ColumnName="TruckCompPostal" />
+                <ScalarProperty Name="TruckCompPhone" ColumnName="TruckCompPhone" />
+                <ScalarProperty Name="TruckCompId" ColumnName="TruckCompId" />
+                <ScalarProperty Name="WApGeneratorId" ColumnName="WApGeneratorId" />
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="WApWasteDescrip" ColumnName="WApWasteDescrip" />
+                <ScalarProperty Name="WApSubId" ColumnName="WApSubId" />
+                <ScalarProperty Name="GeneratorName" ColumnName="GeneratorName" />
+                <ScalarProperty Name="SubstanceName" ColumnName="SubstanceName" />
+                <ScalarProperty Name="GenerLocationId" ColumnName="GenerLocationId" />
+                <ScalarProperty Name="GenerLocationLsd" ColumnName="GenerLocationLsd" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

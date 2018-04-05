@@ -45,7 +45,7 @@ namespace MLandfill.Controllers
         {
             string appcodebag;
 
-            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
+            LandFillDbContextCn lfDbContext = new LandFillDbContextCn();
 
             var generatorTypes = lfDbContext.tblGenerators.ToList();
             var substancesTypes = lfDbContext.tblSubstances.ToList();
@@ -54,7 +54,7 @@ namespace MLandfill.Controllers
 
             var genLocations = lfDbContext.tblGeneratorLocations.ToList();
 
-            var invoiceeTypes = lfDbContext.tblInvoiceesDds.ToList();
+            var invoiceeTypes = lfDbContext.tblInvoicees.ToList();
 
             //.Select( c => new {COURSE_ID = c.COURSE_ID, COURSE_TITLE = c.CIN + " " + c.COURSE_TITLE})
 
@@ -80,7 +80,7 @@ namespace MLandfill.Controllers
                                     select d;
 
             var invoiceesQuery = from d in invoiceeTypes
-                                 orderby d.InvoiceeName
+                                 orderby d.InvName
                                  select d;
 
            
@@ -92,7 +92,7 @@ namespace MLandfill.Controllers
                 ddSubstance = substancesTypes,
                 ddTruckCompany = truckCompTypes,
                 ddLocations = genLocations,
-                ddInvoiceeD = invoiceeTypes,
+                ddInvoicee = invoiceeTypes,
                 ddconsultants = consultantTypes
 
             };
@@ -150,7 +150,7 @@ namespace MLandfill.Controllers
         {
             DataAccessLayer objDb = new DataAccessLayer();
 
-            LandFillNRLEntities lfDbContext = new LandFillNRLEntities();
+            LandFillDbContextCn lfDbContext = new LandFillDbContextCn();
 
              
 
@@ -158,7 +158,7 @@ namespace MLandfill.Controllers
             var substances = lfDbContext.tblSubstances.ToList();
             var genContacts = lfDbContext.tblGeneratorContacts.ToList();
             var genLocations = lfDbContext.tblGeneratorLocations.ToList();
-            var invoicees = lfDbContext.tblInvoiceesDds.ToList();
+            var invoicees = lfDbContext.tblInvoicees.ToList();
             var consultant = lfDbContext.tblConsultants.ToList();
             var consultantContact = lfDbContext.tblConsultContacts.ToList();
 
@@ -183,7 +183,7 @@ namespace MLandfill.Controllers
                                    select d;
 
             var invoiceesQuery = from d in invoicees
-                                 orderby d.InvoiceeName
+                                 orderby d.InvName
                                     select d;
 
             var consultantQuery = from d in consultant

@@ -14,12 +14,6 @@ namespace MLandfill
     
     public partial class tblGenerator
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblGenerator()
-        {
-            this.tblWasteApprovals = new HashSet<tblWasteApproval>();
-        }
-    
         public int GeneratorId { get; set; }
         public string GeneratorName { get; set; }
         public string GenaratorAddr { get; set; }
@@ -30,7 +24,6 @@ namespace MLandfill
         public string GeneratorComments { get; set; }
         public bool GeneratorExcldInterest { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblWasteApproval> tblWasteApprovals { get; set; }
+        public virtual tblWasteApproval tblWasteApproval { get; set; }
     }
 }

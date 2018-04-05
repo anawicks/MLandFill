@@ -234,16 +234,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AspNetRole.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUser.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserClaim.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNetUserLogin.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DocketsController.cs" />
@@ -257,9 +257,6 @@
     <Compile Include="Controllers\ReportGenController.cs" />
     <Compile Include="Controllers\wasteApprovalController.cs" />
     <Compile Include="Core\Domain\MDockets.cs" />
-    <Compile Include="C__MigrationHistory.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
-    </Compile>
     <Compile Include="DataAccess\DataAccessLayer.cs" />
     <Compile Include="DataAccess\DataReportLayer.cs" />
     <Compile Include="dsRptDailyLandFill.Designer.cs">
@@ -275,20 +272,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LandFillNRLDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="LandFill_DBContext.Context.cs">
+    <Compile Include="LFDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LandFill_DBContext.Context.tt</DependentUpon>
+      <DependentUpon>LFDataModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="LandFill_DBContext.cs">
+    <Compile Include="LFDataModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="LandFill_DBContext.Designer.cs">
+    <Compile Include="LFDataModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LandFill_DBContext.edmx</DependentUpon>
+      <DependentUpon>LFDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DocketGrid.cs" />
@@ -304,61 +301,55 @@
     <Compile Include="Reports\InvoiceModel.cs" />
     <Compile Include="Reports\OtherReports.cs" />
     <Compile Include="Reports\WebReportRenderer.cs" />
+    <Compile Include="spDocketGridGet_Result.cs">
+      <DependentUpon>LFDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="spDocketWasteGet_Result.cs">
+      <DependentUpon>LFDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="tblChangeLog.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblConsultant.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblConsultContact.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGenerator.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGeneratorContact.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGeneratorLocation.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblInterestCharge.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblInvoice.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblInvoicee.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblInvoiceesDd.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblInvoicePartialPayment.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblLandFillWasteDocket.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblLandFillWasteDocketsHistory.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblPaymentMethod.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSubstance.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTruckCompany.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblWasteApproval.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="tblWasteDescriptionCode.cs">
-      <DependentUpon>LandFill_DBContext.tt</DependentUpon>
+      <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DocketViewModel.cs" />
   </ItemGroup>
@@ -417,15 +408,15 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="LandFillDbModel.edmx.sql" />
-    <Content Include="LandFill_DBContext.Context.tt">
+    <Content Include="LFDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LandFill_DBContext.edmx</DependentUpon>
-      <LastGenOutput>LandFill_DBContext.Context.cs</LastGenOutput>
+      <DependentUpon>LFDataModel.edmx</DependentUpon>
+      <LastGenOutput>LFDataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="LandFill_DBContext.tt">
+    <Content Include="LFDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LandFill_DBContext.edmx</DependentUpon>
-      <LastGenOutput>LandFill_DBContext.cs</LastGenOutput>
+      <DependentUpon>LFDataModel.edmx</DependentUpon>
+      <LastGenOutput>LFDataModel.cs</LastGenOutput>
     </Content>
     <Content Include="Reports\Images\Logo.png" />
     <Content Include="Scripts\bootbox.js" />
@@ -464,12 +455,12 @@
       <DependentUpon>LandFillNRLDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="Scripts\gridmvc.min.js.map" />
-    <EntityDeploy Include="LandFill_DBContext.edmx">
+    <EntityDeploy Include="LFDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LandFill_DBContext.Designer.cs</LastGenOutput>
+      <LastGenOutput>LFDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="LandFill_DBContext.edmx.diagram">
-      <DependentUpon>LandFill_DBContext.edmx</DependentUpon>
+    <Content Include="LFDataModel.edmx.diagram">
+      <DependentUpon>LFDataModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />

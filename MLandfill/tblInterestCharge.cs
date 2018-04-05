@@ -14,7 +14,7 @@ namespace MLandfill
     
     public partial class tblInterestCharge
     {
-        public decimal IntAmount { get; set; }
+        public int IntAmount { get; set; }
         public int IntDaysOverdue { get; set; }
     }
 }

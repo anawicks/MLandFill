@@ -21,5 +21,7 @@ namespace MLandfill
         public string TruckCompProv { get; set; }
         public string TruckCompPostal { get; set; }
         public string TruckCompPhone { get; set; }
+    
+        public virtual tblLandFillWasteDocket tblLandFillWasteDocket { get; set; }
     }
 }

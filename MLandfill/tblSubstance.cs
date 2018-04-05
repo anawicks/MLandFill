@@ -14,17 +14,10 @@ namespace MLandfill
     
     public partial class tblSubstance
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblSubstance()
-        {
-            this.tblWasteApprovals = new HashSet<tblWasteApproval>();
-        }
-    
         public int SubstanceId { get; set; }
         public string SubstanceName { get; set; }
         public string SubstanceCode { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblWasteApproval> tblWasteApprovals { get; set; }
+        public virtual tblWasteApproval tblWasteApproval { get; set; }
     }
 }
