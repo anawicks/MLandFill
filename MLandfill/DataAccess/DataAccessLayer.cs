@@ -112,7 +112,7 @@ namespace MLandfill.DataAccess
                 docket.DocketId = Convert.ToInt32(rdr["DocketId"]);
                 docket.DocketNo = rdr["DocketNo"].ToString();
                 docket.WApApprovalcode = rdr["WApApprovalcode"].ToString();  
-                //docket.WApApprovalId = Convert.ToInt32(rdr["WApApprovalId"]);
+                 
                 if (!(rdr["WApApprovalId"] is DBNull))
                     docket.WApApprovalId = 0 + Convert.ToInt32(rdr["WApApprovalId"]);
                 else
