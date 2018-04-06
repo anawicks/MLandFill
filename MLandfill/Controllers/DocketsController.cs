@@ -382,7 +382,7 @@ namespace MLandfill.Controllers
                         objDb.DocketAdd(docket);
                     else
                         objDb.prTruckCompId = Convert.ToInt32(Request["truckingCompanies"]);
-                        //objDb.prDocketNumber = Convert.ToInt32(Request["substancesNames"]);
+                        //objDb.prWasteAppCode = Convert.ToInt32(Request["wasteApprovalNames"]);
                         objDb.prWasteAppCodeId  = Convert.ToInt32(Request["wasteApprovalNames"]);
                         objDb.DocketUpdate(docket);
                     }

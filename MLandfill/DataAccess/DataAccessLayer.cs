@@ -142,17 +142,31 @@ namespace MLandfill.DataAccess
                 docket.TruckCompPhone = rdr["TruckCompPhone"].ToString();
 
                 docket.TruckCompId = Convert.ToInt32(rdr["TruckCompId"]);
-                docket.WApGeneratorId = Convert.ToInt32(rdr["WApGeneratorId"]);
+                //docket.WApGeneratorId = Convert.ToInt32(rdr["WApGeneratorId"]);
+                if (!(rdr["GeneratorId"] is DBNull))
+                    docket.WApGeneratorId = 0 + Convert.ToInt32(rdr["GeneratorId"]);
+                else
+                    docket.WApGeneratorId = 0;
                 docket.Memo = rdr["Memo"].ToString();
                 docket.WApWasteDescrip = rdr["WApWasteDescrip"].ToString();
 
-                docket.WApSubId = Convert.ToInt32(rdr["WApSubId"]);
+                if (!(rdr["SubstanceId"] is DBNull))
+                    docket.WApSubId = 0 + Convert.ToInt32(rdr["SubstanceId"]);
+                else
+                    docket.WApSubId = 0;
+
+                //docket.WApSubId = Convert.ToInt32(rdr["SubstanceId"]);
 
                 
                 docket.GeneratorName = rdr["GeneratorName"].ToString();
                 docket.SubstanceName = rdr["SubstanceName"].ToString();
 
-                docket.GenerLocationId = Convert.ToInt32(rdr["GenerLocationId"]);
+                if (!(rdr["GenerLocationId"] is DBNull))
+                    docket.GenerLocationId = 0 + Convert.ToInt32(rdr["GenerLocationId"]);
+                else
+                    docket.GenerLocationId = 0;
+
+                //docket.GenerLocationId = Convert.ToInt32(rdr["GenerLocationId"]);
 
                 docket.GenerLocationLsd = rdr["GenerLocationLsd"].ToString();
 
@@ -180,7 +194,7 @@ namespace MLandfill.DataAccess
                 cmd.Parameters.AddWithValue("@DocketId", docket.DocketId);
                 cmd.Parameters.AddWithValue("@DocketNo", docket.DocketNo);
 
-                cmd.Parameters.AddWithValue("@WasteApprovalCode", "");
+                cmd.Parameters.AddWithValue("@WasteApprovalCode", docket.WasteApprovalCode);
                 cmd.Parameters.AddWithValue("@WasteApprovalId", prWasteAppCodeId);
                 cmd.Parameters.AddWithValue("@TurckCompanyId", prTruckCompId); 
                 cmd.Parameters.AddWithValue("@DriverName", docket.DriverName);
@@ -547,7 +561,7 @@ namespace MLandfill.DataAccess
 
             List<tblMaintWasteApCode> nWstAppCode = new List<tblMaintWasteApCode>();
             con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString());
-            SqlCommand cmd = new SqlCommand("spWasteApprovalListGet", con);
+            SqlCommand cmd = new SqlCommand("spWasteApprovalGet", con);
             cmd.CommandType = CommandType.StoredProcedure;
             con.Open();
             SqlDataReader rdr = cmd.ExecuteReader();
@@ -1063,7 +1077,7 @@ namespace MLandfill.DataAccess
 
         #region "ApprovalCode"
         //DocketViewModel
-        public  DocketViewModel approvalCodeRelatedGet(int approvalCode)
+        public  DocketViewModel approvalCodeRelatedGet(int approvalCodeId)
         {
 
             SqlConnection con = null;
@@ -1071,7 +1085,7 @@ namespace MLandfill.DataAccess
             List<DocketViewModel> ndocketList = new List<DocketViewModel>();
             con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString());
             SqlCommand cmd = new SqlCommand("spWasteAppCodeReletedGet", con);
-            cmd.Parameters.AddWithValue("@WApApprovalId", approvalCode);
+            cmd.Parameters.AddWithValue("@WApApprovalId", approvalCodeId);
             cmd.CommandType = CommandType.StoredProcedure;
             DocketViewModel docket = new DocketViewModel();
             con.Open();
@@ -1080,7 +1094,6 @@ namespace MLandfill.DataAccess
             {
                
  
-                //docket.WasteApprovalCode = rdr["WasteApprovalCode"].ToString();
                 docket.GeneratorName = rdr["GeneratorName"].ToString();
                 docket.SubstanceName = rdr["SubstanceName"].ToString();
                 docket.GenerLocationLsd = rdr["GenerLocationLsd"].ToString();
