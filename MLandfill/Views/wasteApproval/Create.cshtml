@@ -284,7 +284,7 @@
                             @*@Html.DropDownListFor(model => model.WApInvoicee, new SelectList(Model.ddInvoiceeD, "InvoiceeID", "InvName"), "Select Invoicee", new { @class = "form-control" })*@
 
 
-                            @Html.EditorFor(model => model.WApInvoicee, new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.EditorFor(model => model.WApInvoicee, new { htmlAttributes = new { @class = "form-control" } })*@
                             @Html.ValidationMessageFor(model => model.WApInvoicee, "", new { @class = "text-danger" })
                         </div>
 
@@ -302,15 +302,6 @@
 
                             @Html.ValidationMessageFor(model => model.WApConsultantId, "", new { @class = "text-danger" })
                         </div>
-
-
-
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="row row-grid">
-
                         <div class="col-md-2">
                             @Html.LabelFor(model => model.ConsultantContactName, htmlAttributes: new { @class = "control-label col-md-2" })
                         </div>
@@ -319,13 +310,6 @@
                             @Html.ValidationMessageFor(model => model.ConsultantContactName, "", new { @class = "text-danger" })
                         </div>
 
-                        <div class="col-md-2">
-                            @Html.LabelFor(model => model.ConsultantContactPhone, htmlAttributes: new { @class = "control-label col-md-2" })
-                        </div>
-                        <div class="col-md-4">
-                            @Html.EditorFor(model => model.ConsultantContactPhone, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.ConsultantContactPhone, "", new { @class = "text-danger" })
-                        </div>
 
                     </div>
                 </div>
@@ -333,19 +317,70 @@
                 <div class="row">
                     <div class="row row-grid">
 
+
+
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.ConsultantContactPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.ConsultantContactPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConsultantContactPhone, "", new { @class = "text-danger" })
+                        </div>
                         <div class="col-md-2">
                             @Html.LabelFor(model => model.WApComments, htmlAttributes: new { @class = "control-label col-md-2" })
                         </div>
                         <div class="col-md-4">
-                            @Html.EditorFor(model => model.ConsultantContactPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.WApComments, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.WApComments, "", new { @class = "text-danger" })
                         </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row row-grid">
 
 
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApApproved, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApApproved, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApApproved, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApMailMerge, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApMailMerge, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApMailMerge, "", new { @class = "text-danger" })
+                        </div>
 
                     </div>
                 </div>
 
+
+                <div class="row">
+                    <div class="row row-grid">
+ 
+
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApAdcApproved, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApAdcApproved, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApAdcApproved, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApMinCharge, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApMinCharge, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApMinCharge, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+ 
             </div>
         </div>
 

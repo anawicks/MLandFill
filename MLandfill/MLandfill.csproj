@@ -546,10 +546,10 @@
     <Content Include="Views\Dockets\Create_Get.cshtml" />
     <Content Include="Views\Dockets\CreateDrop.cshtml" />
     <Content Include="Views\Generator\Create.cshtml" />
-    <Content Include="Views\WasteApprovals\Create.cshtml" />
-    <Content Include="Views\WasteApprovals\Delete.cshtml" />
-    <Content Include="Views\WasteApprovals\Details.cshtml" />
-    <Content Include="Views\WasteApprovals\Edit.cshtml" />
+    <Content Include="Views\YWasteApprovals\Create.cshtml" />
+    <Content Include="Views\YWasteApprovals\Delete.cshtml" />
+    <Content Include="Views\YWasteApprovals\Details.cshtml" />
+    <Content Include="Views\YWasteApprovals\Edit.cshtml" />
     <Content Include="Views\XwasteApproval\Index.cshtml" />
     <Content Include="Views\Shared\_TruckCompanyDetails.cshtml" />
     <Content Include="Views\Dockets\TryIndex.cshtml" />
@@ -576,6 +576,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\WasteApproval\Index.cshtml" />
     <Content Include="Views\WasteApproval\Create.cshtml" />
+    <Content Include="Views\WasteApproval\Edit.cshtml" />
+    <Content Include="Views\WasteApproval\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

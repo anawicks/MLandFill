@@ -135,6 +135,7 @@ namespace MLandfill.Controllers
                     objDb.prinvoiceId = Convert.ToInt32(Request["invoiceerNames"]);
 
                     objDb.WasteAppCodeAddNew(appCodeModel);
+
                     return RedirectToAction("Index");
                 }
                 return View();

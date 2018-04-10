@@ -1,0 +1,398 @@
+﻿@model MLandfill.Models.tblMaintWasteApCode
+
+@*@{
+        ViewBag.Title = "Edit";
+    }*@
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js" type="text/javascript"></script>
+
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="Stylesheet" type="text/css" />
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.validate.date.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element dataT
+        $('.date-picker').datepicker({ dateFormat: 'dd/mm/yy' });
+
+    })
+
+</script>
+
+
+<style>
+    textarea {
+        width: 400px;
+        height: 200px;
+    }
+
+    .marbot {
+        margin-bottom: 12px;
+    }
+
+    body {
+        padding-top: 40px;
+    }
+
+    .with-margin {
+        margin-bottom: 10px;
+    }
+
+    .spacer5 {
+        height: 5px;
+    }
+
+    div p {
+        font-weight: 600;
+    }
+
+    .text-on-pannel {
+        background: #fff none repeat scroll 0 0;
+        height: auto;
+        margin-left: 20px;
+        padding: 3px 5px;
+        position: absolute;
+        margin-top: -47px;
+        border: 1px solid #ff6a00;
+        border-radius: 5px;
+    }
+
+    .panel {
+        /* for text on pannel */
+        margin-top: 21px !important;
+    }
+
+    .panel-body {
+        padding-top: 27px !important;
+        margin-left: 30px;
+    }
+
+    legend.scheduler-border {
+        width: auto;
+        border-bottom: none;
+    }
+</style>
+
+
+
+
+<h3 style="margin-left:45px;color:#1e2a89;">Waste Approval Codes - Edit</h3>
+
+@using (Html.BeginForm("Edit", "WasteApproval"))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.WApApprovalId)
+        @Html.HiddenFor(model => model.GeneratorName)
+        @Html.HiddenFor(model => model.WApSubId)
+        @Html.HiddenFor(model => model.WApLocationId)
+        @Html.HiddenFor(model => model.WApGenContactId)
+        @Html.HiddenFor(model => model.WApConsultantId)
+
+        @Html.HiddenFor(model => model.WApInvoicee)
+        @Html.HiddenFor(model => model.WApConContactID)
+
+        <div class="panel panel-primary ">
+            <div class="panel-body" style="white-space:nowrap">
+                <h6 class="text-on-pannel text-primary"><strong class="text-uppercase">  Waste Approval Code : @Html.DisplayFor(model => model.WApApprovalcode) </strong></h6>
+                <div class="row">
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApCreateDate , htmlAttributes: new { @class = "control -label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+
+                            @Html.EditorFor(model => model.WApCreateDate, new { htmlAttributes = new { @class = "date-picker" } })
+                            @Html.ValidationMessageFor(model => model.WApCreateDate, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.GeneratorName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DropDownList("generatorsNames", null, new { htmlAttributes = new { @class = "form-control" } })
+
+                            @Html.ValidationMessageFor(model => model.GeneratorName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApWasteDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApWasteDescrip, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApWasteDescrip, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApSubId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DropDownList("substancesNames", null, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApSubId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApLocationId, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DropDownList("lsdLocationNames", null, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApLocationId, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApRate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApRate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApRate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApExtQuantity, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApExtQuantity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApExtQuantity, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApApproved, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.WApApproved)
+                                @Html.ValidationMessageFor(model => model.WApApproved, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApJobNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApJobNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApJobNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApAfeNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApAfeNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApAfeNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApPoNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApPoNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApPoNo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApMailMerge, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            <div class="checkbox">
+                                @Html.EditorFor(model => model.WApMailMerge)
+                                @Html.ValidationMessageFor(model => model.WApMailMerge, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApWasteDescriptionMailMerge, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApWasteDescriptionMailMerge, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApWasteDescriptionMailMerge, "", new { @class = "text-danger" })
+                        </div>
+                        @if (Model.WApMinCharge == true)
+                        {
+                            <div class="col-md-2">
+                                @Html.LabelFor(model => model.WApMinCharge, htmlAttributes: new { @class = "control-label col-md-2" })
+                            </div>
+                            <div class="col-md-4">
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.WApMinCharge)
+                                    @Html.ValidationMessageFor(model => model.WApMinCharge, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+
+
+
+
+
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.GenerContactName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.GenerContactName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.GenerContactName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.GenerContactPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.GenerContactPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.GenerContactPhone, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.ConsultantName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.ConsultantName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConsultantName, "", new { @class = "text-danger" })
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.ConsultantContactName, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.ConsultantContactName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConsultantContactName, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.ConsultantContactPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.ConsultantContactPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConsultantContactPhone, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+                            @Html.LabelFor(model => model.WApInvoicee, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.DropDownList("invoiceerNames", null, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.WApInvoicee, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+
+                            @Html.LabelFor(model => model.WApExpiryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+
+                            @Html.EditorFor(model => model.WApExpiryDate, new { htmlAttributes = new { @class = "date-picker" } })
+                            @Html.ValidationMessageFor(model => model.WApExpiryDate, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+                    <div class="row row-grid">
+                        <div class="col-md-2">
+
+                            @Html.LabelFor(model => model.WApComments, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.TextAreaFor(model => model.WApComments, new { htmlAttributes = new { @class = "form-control" } })
+
+                            @Html.ValidationMessageFor(model => model.WApComments, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+
+                            @Html.LabelFor(model => model.WApApprovalcode, htmlAttributes: new { @class = "control-label col-md-2" })
+                        </div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.WApApprovalcode, new { htmlAttributes = new { @class = "form-control" } })
+
+                            @Html.ValidationMessageFor(model => model.WApApprovalcode, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-warning btn-lg" />
+        </div>
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+}
+
+

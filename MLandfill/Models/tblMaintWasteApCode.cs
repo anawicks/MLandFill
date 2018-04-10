@@ -81,12 +81,13 @@ namespace MLandfill.Models
         public string WApPoNo { get; set; }
         public int WApConsultantId { get; set; }
         public int WApConContactID { get; set; }
-
+        [Display(Name = "ADC Approved ?")]
         public bool WApAdcApproved { get; set; }
         [Display(Name = "Invoicee")]
         public int WApInvoicee { get; set; }
         [Display(Name ="Merge Description")]
         public string WApWasteDescriptionMailMerge { get; set; }
+        [Display(Name = "Min/Bin Charged?")]
         public bool WApMinCharge { get; set; }
         [Display(Name = "Generator Contact")]
         

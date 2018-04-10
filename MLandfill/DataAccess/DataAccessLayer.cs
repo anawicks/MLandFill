@@ -1162,60 +1162,50 @@ namespace MLandfill.DataAccess
         public void WasteAppCodeUpdate(tblMaintWasteApCode wstAppCode)
         {
 
-
+            try
+            { 
             string connectionString = ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString();
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spWasteApprovalUpdate", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@WApApprovalcode", wstAppCode.WApApprovalcode);
+                 
                 cmd.Parameters.AddWithValue("@WApApprovalId", wstAppCode.WApApprovalId);
-                cmd.Parameters.AddWithValue("@WApCreateDate", wstAppCode.WApCreateDate);
+                cmd.Parameters.AddWithValue("@WApApprovalcode", wstAppCode.WApApprovalcode);
                 cmd.Parameters.AddWithValue("@WApGeneratorId", prgeneratorId);
-
                 cmd.Parameters.AddWithValue("@WApWasteDescrip", wstAppCode.WApWasteDescrip);
                 cmd.Parameters.AddWithValue("@WApSubId", prsubstanceId);
-                cmd.Parameters.AddWithValue("@WApLocationId", prlsdId);
+                cmd.Parameters.AddWithValue("@WApCreateDate", wstAppCode.WApCreateDate);
+                cmd.Parameters.AddWithValue("@WApGenContactId", prgeneratorContactId);
+                cmd.Parameters.AddWithValue("@WApExpiryDate", wstAppCode.WApExpiryDate);
                 cmd.Parameters.AddWithValue("@WApRate", wstAppCode.WApRate);
+                cmd.Parameters.AddWithValue("@WApComments", wstAppCode.WApComments);
                 cmd.Parameters.AddWithValue("@WApExtQuantity", wstAppCode.WApExtQuantity);
                 cmd.Parameters.AddWithValue("@WApApproved", wstAppCode.WApApproved);
-
-
+                cmd.Parameters.AddWithValue("@WApMailMerge", wstAppCode.WApMailMerge);
                 cmd.Parameters.AddWithValue("@WApJobNo", wstAppCode.WApJobNo);
                 cmd.Parameters.AddWithValue("@WApAfeNo", wstAppCode.WApAfeNo);
-                cmd.Parameters.AddWithValue("@WApPoNo", wstAppCode.WApPoNo);
-                cmd.Parameters.AddWithValue("@WApWasteDescriptionMailMerge", wstAppCode.WApWasteDescriptionMailMerge);
-                cmd.Parameters.AddWithValue("@WApGenContactId", prgeneratorContactId);
-
+                cmd.Parameters.AddWithValue("@WApPoNo", wstAppCode.WApPoNo);          
+                cmd.Parameters.AddWithValue("@WApLocationId", prlsdId);
                 cmd.Parameters.AddWithValue("@WApConsultantId", prconsultantId);
                 cmd.Parameters.AddWithValue("@WApConContactID", prconsultantContactId);
-                cmd.Parameters.AddWithValue("@WApInvoicee", prinvoiceId);
-                cmd.Parameters.AddWithValue("@WApExpiryDate", wstAppCode.WApExpiryDate);
-
-
-
-
-                cmd.Parameters.AddWithValue("@WApComments", wstAppCode.WApComments);
-                cmd.Parameters.AddWithValue("@WApMailMerge", wstAppCode.WApMailMerge);
                 cmd.Parameters.AddWithValue("@WApAdcApproved", wstAppCode.WApAdcApproved);
+                cmd.Parameters.AddWithValue("@WApInvoiceeId", prinvoiceId);
+                cmd.Parameters.AddWithValue("@WApWasteDescriptionMailMerge", wstAppCode.WApWasteDescriptionMailMerge);
                 cmd.Parameters.AddWithValue("@WApMinCharge", wstAppCode.WApMinCharge);
-
-
-
-
-
-
-
-
-
+                
 
                 con.Open();
 
                 cmd.ExecuteNonQuery();
             }
+            }
+            catch (Exception ex)
+            {
 
+                Debug.WriteLine(ex.Message);
+            }
 
         }
 
@@ -1224,7 +1214,8 @@ namespace MLandfill.DataAccess
 
 
             string connectionString = ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString();
-
+            try
+            { 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 SqlCommand cmd = new SqlCommand("spWasteApprovalAddNew", con);
@@ -1250,13 +1241,19 @@ namespace MLandfill.DataAccess
                 cmd.Parameters.AddWithValue("@WApConsultantId", wstAppCode.WApConsultantId);
                 cmd.Parameters.AddWithValue("@WApConContactID", wstAppCode.WApConContactID);
                 cmd.Parameters.AddWithValue("@WApAdcApproved", wstAppCode.WApAdcApproved);
-                cmd.Parameters.AddWithValue("@WApInvoicee", prinvoiceId);
+                cmd.Parameters.AddWithValue("@WApInvoiceeId", prinvoiceId);
                 cmd.Parameters.AddWithValue("@WApWasteDescriptionMailMerge", wstAppCode.WApWasteDescriptionMailMerge);
                 cmd.Parameters.AddWithValue("@WApMinCharge", wstAppCode.WApMinCharge);
 
                 con.Open();
 
                 cmd.ExecuteNonQuery();
+            }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(ex.Message);
             }
 
 

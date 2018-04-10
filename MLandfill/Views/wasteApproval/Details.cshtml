@@ -1,0 +1,181 @@
+﻿@model MLandfill.Models.tblMaintWasteApCode
+
+@*@{
+        ViewBag.Title = "Details";
+    }*@
+<style>
+    .marbot {
+        margin-bottom: 12px;
+    }
+
+    body {
+        padding-top: 40px;
+    }
+
+    .with-margin {
+        margin-bottom: 10px;
+    }
+
+    .spacer5 {
+        height: 5px;
+    }
+
+    div p {
+        font-weight: 600;
+    }
+
+    .text-on-pannel {
+        background: #fff none repeat scroll 0 0;
+        height: auto;
+        margin-left: 20px;
+        padding: 3px 5px;
+        position: absolute;
+        margin-top: -47px;
+        border: 1px solid #ff6a00;
+        border-radius: 5px;
+    }
+
+    .panel {
+        /* for text on pannel */
+        margin-top: 21px !important;
+    }
+
+    .panel-body {
+        padding-top: 27px !important;
+        margin-left: 30px;
+    }
+
+    legend.scheduler-border {
+        width: auto;
+        border-bottom: none;
+    }
+</style>
+
+<h3 style="margin-left:45px;color:#1e2a89;">Waste Docket Details</h3>
+
+<hr />
+@using (Html.BeginForm())
+{
+
+
+    <div class="panel panel-primary ">
+        <div class="panel-body">
+            <h6 class="text-on-pannel text-primary"><strong class="text-uppercase">  Waste Approval Code : @Html.DisplayFor(model => model.WApApprovalcode) </strong></h6>
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApCreateDate):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApCreateDate)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.GeneratorName):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.GeneratorName)</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApWasteDescrip):</div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApWasteDescrip)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.SubstanceName):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.SubstanceName, "Currency")</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.GenerLocationLsd):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.GenerLocationLsd)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApRate):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApRate)</div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApExtQuantity):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApExtQuantity)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApApproved):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApApproved)</div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApJobNo):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApJobNo)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApAfeNo):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApAfeNo)</div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApPoNo):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApPoNo)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApMailMerge):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApMailMerge)</div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApWasteDescriptionMailMerge):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApWasteDescriptionMailMerge)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApMinCharge):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApMinCharge)</div>
+
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.GenerContactName):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.GenerContactName)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.GenerContactPhone):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.GenerContactPhone)</div>
+
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.ConsultantName):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.ConsultantName)</div>
+
+
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.ConsultantContactName):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.ConsultantContactName)</div>
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.ConsultantContactPhone):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.ConsultantContactPhone)</div>
+
+                </div>
+                <div class="row row-grid">
+                    <div class="col-md-2"><p>@Html.DisplayNameFor(model => model.WApComments):</p></div>
+                    <div class="col-md-4">@Html.DisplayFor(model => model.WApComments, new { height = "250", width = "300" })</div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+}
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WApApprovalId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
