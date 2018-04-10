@@ -3,74 +3,268 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MLandfill.Core.Domain;
+using MLandfill.DataAccess;
+using MLandfill.Models;
+using MLandfill.ViewModel;
 
 namespace MLandfill.Controllers
 {
-    public class wasteApprovalController : Controller
+    public class WasteApprovalController : Controller
     {
-        // GET: wasteApproval
+        // GET: WasteApproval
+        // GET: WasteApproval
         public ActionResult Index()
         {
-            return View();
+
+
+            DataAccessLayer objDb = new DataAccessLayer();
+
+            List<tblMaintWasteApCode> wasteAppCodes = objDb.WasteApprovalCodeAllGet().ToList();
+
+
+
+            return View(wasteAppCodes);
         }
 
-        // GET: wasteApproval/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+
+
+            DataAccessLayer objDb = new DataAccessLayer();
+
+            //List<tblMaintWasteApCode> wasteAppCodeDetail = objDb.WasteAppCodeSingleGet(id).ToList();
+
+            // return View(wasteAppCodeDetail.First());
+            tblMaintWasteApCode wasteAppCodeDetail = objDb.WasteAppCodeSingleGet(id).First();
+
+            return View(wasteAppCodeDetail);
         }
 
-        // GET: wasteApproval/Create
+        // GET: WasteApproval/Create
         public ActionResult Create()
         {
-            return View();
+            string appcodebag;
+
+            LandFillDbContextCn lfDbContext = new LandFillDbContextCn();
+
+            var generatorTypes = lfDbContext.tblGenerators.ToList();
+            var substancesTypes = lfDbContext.tblSubstances.ToList();
+
+            var truckCompTypes = lfDbContext.tblTruckCompanies.ToList();
+
+            var genLocations = lfDbContext.tblGeneratorLocations.ToList();
+
+            var invoiceeTypes = lfDbContext.tblInvoicees.ToList();
+
+            //.Select( c => new {COURSE_ID = c.COURSE_ID, COURSE_TITLE = c.CIN + " " + c.COURSE_TITLE})
+
+            DataAccessLayer objDb = new DataAccessLayer();
+
+            tblTruckCompany truckModel = new tblTruckCompany();
+
+            var consultantTypes = lfDbContext.tblConsultants.ToList();
+
+            var generatorsQuery = from d in generatorTypes
+                                  orderby d.GeneratorName
+                                  select d;
+
+
+            var substancesQuery = from d in substancesTypes
+                                  orderby d.SubstanceName
+                                  select d;
+
+
+
+            var genLocationsQuery = from d in genLocations
+                                    orderby d.GenerLocationLsd
+                                    select d;
+
+            var invoiceesQuery = from d in invoiceeTypes
+                                 orderby d.InvName
+                                 select d;
+
+
+
+            var aviewModel = new tblMaintWasteApCode
+            {
+
+                ddGenerators = generatorTypes,
+                ddSubstance = substancesTypes,
+                ddTruckCompany = truckCompTypes,
+                ddLocations = genLocations,
+                ddInvoicee = invoiceeTypes,
+                ddconsultants = consultantTypes
+
+            };
+            appcodebag = "NRL " + objDb.ApprovalCodeIdNextGet();
+            ViewData["AppCode"] = appcodebag;
+
+            ViewData["generatorsNames"] = new SelectList(generatorsQuery, "GeneratorId", "GeneratorName", aviewModel.WApGeneratorId);
+
+
+            ViewData["substancesNames"] = new SelectList(substancesQuery, "SubstanceId", "SubstanceName", aviewModel.WApSubId);
+            ViewData["lsdLocationNames"] = new SelectList(genLocationsQuery, "GenerLocationId", "GenerLocationLsd", aviewModel.WApLocationId);
+            ViewData["invoiceerNames"] = new SelectList(invoiceesQuery, "InvoiceeID", "InvName", aviewModel.WApInvoicee);
+
+            return View(aviewModel);
         }
 
-        // POST: wasteApproval/Create
+        // POST: WasteApproval/Create  
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(tblMaintWasteApCode appCodeModel)
         {
             try
             {
-                // TODO: Add insert logic here
+                var errors = ModelState
+                .Where(x => x.Value.Errors.Count > 0)
+                .Select(x => new { x.Key, x.Value.Errors })
+                .ToArray();
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
+                var errorList = errors.ToList();
+
+                if (ModelState.IsValid)
+                {
+
+
+                    DataAccessLayer objDb = new DataAccessLayer();
+
+                    objDb.prgeneratorId = Convert.ToInt32(Request["generatorsNames"]);
+                    objDb.prsubstanceId = Convert.ToInt32(Request["substancesNames"]);
+                    objDb.prlsdId = Convert.ToInt32(Request["lsdLocationNames"]);
+                    objDb.prinvoiceId = Convert.ToInt32(Request["invoiceerNames"]);
+
+                    objDb.WasteAppCodeAddNew(appCodeModel);
+                    return RedirectToAction("Index");
+                }
                 return View();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return RedirectToAction("Edit");
             }
         }
 
-        // GET: wasteApproval/Edit/5
+        // GET: WasteApproval/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            DataAccessLayer objDb = new DataAccessLayer();
+
+            LandFillDbContextCn lfDbContext = new LandFillDbContextCn();
+
+
+
+            var generators = lfDbContext.tblGenerators.ToList();
+            var substances = lfDbContext.tblSubstances.ToList();
+            var genContacts = lfDbContext.tblGeneratorContacts.ToList();
+            var genLocations = lfDbContext.tblGeneratorLocations.ToList();
+            var invoicees = lfDbContext.tblInvoicees.ToList();
+            var consultant = lfDbContext.tblConsultants.ToList();
+            var consultantContact = lfDbContext.tblConsultContacts.ToList();
+
+
+
+
+            var generatorsQuery = from d in generators
+                                  orderby d.GeneratorName
+                                  select d;
+
+            var substancesQuery = from d in substances
+                                  orderby d.SubstanceName
+                                  select d;
+
+
+            var genContactsQuery = from d in genContacts
+                                   orderby d.GenerContactName
+                                   select d;
+
+            var genLocationsQuery = from d in genLocations
+                                    orderby d.GenerLocationLsd
+                                    select d;
+
+            var invoiceesQuery = from d in invoicees
+                                 orderby d.InvName
+                                 select d;
+
+            var consultantQuery = from d in consultant
+                                  orderby d.ConsultantName
+                                  select d;
+            var consultantContactQuery = from d in consultantContact
+                                         orderby d.ConsultantContactName
+                                         select d;
+
+            tblMaintWasteApCode wasteAppCodeDetail = objDb.WasteAppCodeSingleGet(id).First();
+
+            ViewData["generatorsNames"] = new SelectList(generatorsQuery, "GeneratorId", "GeneratorName", wasteAppCodeDetail.WApGeneratorId);
+            ViewData["substancesNames"] = new SelectList(substancesQuery, "SubstanceId", "SubstanceName", wasteAppCodeDetail.WApSubId);
+            ViewData["generatorContactsNames"] = new SelectList(genContactsQuery, "GenerContactId", "GenerContactName", wasteAppCodeDetail.WApGenContactId);
+            ViewData["lsdLocationNames"] = new SelectList(genLocationsQuery, "GenerLocationId", "GenerLocationLsd", wasteAppCodeDetail.WApLocationId);
+            ViewData["invoiceerNames"] = new SelectList(invoiceesQuery, "InvoiceeID", "InvName", wasteAppCodeDetail.WApInvoicee);
+
+            ViewData["ConsultantNames"] = new SelectList(consultantQuery, "ConsultantId", "ConsultantName", wasteAppCodeDetail.WApConsultantId);
+            ViewData["ConsultantContactNames"] = new SelectList(consultantContactQuery, "ConsultantContactId", "ConsultantContactName", wasteAppCodeDetail.WApConContactID);
+
+
+
+            return View(wasteAppCodeDetail);
         }
 
-        // POST: wasteApproval/Edit/5
+        // POST: WasteApproval/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(tblMaintWasteApCode wasteAppCode)
         {
+
             try
             {
-                // TODO: Add update logic here
 
-                return RedirectToAction("Index");
+
+                if (ModelState.IsValid)
+                {
+                    DataAccessLayer objDb = new DataAccessLayer();
+
+
+                    // TODO: Add update logic here
+                    try
+                    {
+                        objDb.prgeneratorId = Convert.ToInt32(Request["generatorsNames"]);
+                        objDb.prsubstanceId = Convert.ToInt32(Request["substancesNames"]);
+
+                        objDb.prgeneratorContactId = Convert.ToInt32(Request["generatorContactsNames"]);
+                        objDb.prlsdId = Convert.ToInt32(Request["lsdLocationNames"]);
+
+                        objDb.prinvoiceId = Convert.ToInt32(Request["invoiceerNames"]);
+                        objDb.prconsultantId = Convert.ToInt32(Request["ConsultantNames"]);
+
+                        objDb.prconsultantContactId = Convert.ToInt32(Request["ConsultantContactNames"]);
+
+                        if (wasteAppCode.WApApprovalId == 0)
+                            objDb.WasteAppCodeAddNew(wasteAppCode);
+                        else
+                            objDb.WasteAppCodeUpdate(wasteAppCode);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine(ex);
+                        return RedirectToAction("Edit");
+                    }
+                    return RedirectToAction("Details", "WasteApproval", new { @id = wasteAppCode.WApApprovalId });
+                }
+                return RedirectToAction("Edit");
             }
             catch
             {
-                return View();
+                return View(wasteAppCode);
             }
         }
 
-        // GET: wasteApproval/Delete/5
+        // GET: WasteApproval/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: wasteApproval/Delete/5
+        // POST: WasteApproval/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

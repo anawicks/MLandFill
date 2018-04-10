@@ -10,7 +10,7 @@ using MLandfill.ViewModel;
 
 namespace MLandfill.Controllers
 {
-    public class MaintWasteApprovalController : Controller
+    public class xMaintWasteApprovalController : Controller
     {
         // GET: MaintWasteApproval
         public ActionResult Index()
@@ -104,12 +104,12 @@ namespace MLandfill.Controllers
           
             ViewData["substancesNames"] = new SelectList(substancesQuery, "SubstanceId", "SubstanceName", aviewModel.WApSubId); 
             ViewData["lsdLocationNames"] = new SelectList(genLocationsQuery, "GenerLocationId", "GenerLocationLsd", aviewModel.WApLocationId);
-            ViewData["invoiceerNames"] = new SelectList(invoiceesQuery, "InvoiceeID", "InvoiceeName", aviewModel.WApInvoicee); 
+            ViewData["invoiceerNames"] = new SelectList(invoiceesQuery, "InvoiceeID", "InvName", aviewModel.WApInvoicee); 
 
             return View(aviewModel);
         }
 
-        // POST: MaintWasteApproval/Create  
+        // POST: WasteApproval/Create  
         [HttpPost]
         public ActionResult Create(tblMaintWasteApCode appCodeModel)
         {
@@ -145,7 +145,7 @@ namespace MLandfill.Controllers
             }
         }
 
-        // GET: MaintWasteApproval/Edit/5
+        // GET: WasteApproval/Edit/5
         public ActionResult Edit(int id)
         {
             DataAccessLayer objDb = new DataAccessLayer();
@@ -199,7 +199,7 @@ namespace MLandfill.Controllers
             ViewData["substancesNames"] = new SelectList(substancesQuery, "SubstanceId", "SubstanceName", wasteAppCodeDetail.WApSubId);
             ViewData["generatorContactsNames"] = new SelectList(genContactsQuery, "GenerContactId", "GenerContactName", wasteAppCodeDetail.WApGenContactId);
             ViewData["lsdLocationNames"] = new SelectList(genLocationsQuery, "GenerLocationId", "GenerLocationLsd", wasteAppCodeDetail.WApLocationId);            
-            ViewData["invoiceerNames"] = new SelectList(invoiceesQuery, "InvoiceeID", "InvoiceeName", wasteAppCodeDetail.WApInvoicee);
+            ViewData["invoiceerNames"] = new SelectList(invoiceesQuery, "InvoiceeID", "InvName", wasteAppCodeDetail.WApInvoicee);
 
             ViewData["ConsultantNames"] = new SelectList(consultantQuery, "ConsultantId", "ConsultantName", wasteAppCodeDetail.WApConsultantId);
             ViewData["ConsultantContactNames"] = new SelectList(consultantContactQuery, "ConsultantContactId", "ConsultantContactName", wasteAppCodeDetail.WApConContactID);
@@ -209,7 +209,7 @@ namespace MLandfill.Controllers
             return View(wasteAppCodeDetail);  
         }
 
-        // POST: MaintWasteApproval/Edit/5
+        // POST: WasteApproval/Edit/5
         [HttpPost]
         public ActionResult Edit(tblMaintWasteApCode wasteAppCode)
         {
@@ -247,7 +247,7 @@ namespace MLandfill.Controllers
                         Console.WriteLine(ex);
                         return RedirectToAction("Edit");
                     }
-                    return RedirectToAction("Details", "MaintWasteApproval" , new { @id = wasteAppCode.WApApprovalId });
+                    return RedirectToAction("Details", "WasteApproval" , new { @id = wasteAppCode.WApApprovalId });
                 }
                 return RedirectToAction("Edit");
             }
@@ -257,13 +257,13 @@ namespace MLandfill.Controllers
             }
         }
 
-        // GET: MaintWasteApproval/Delete/5
+        // GET: WasteApproval/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: MaintWasteApproval/Delete/5
+        // POST: WasteApproval/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

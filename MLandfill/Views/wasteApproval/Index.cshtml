@@ -1,153 +1,114 @@
-﻿@model IEnumerable<MLandfill.tblWasteApproval>
+﻿@model IEnumerable<MLandfill.Models.tblMaintWasteApCode>
+@using GridMvc.Html
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.WApApprovalId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApWasteDescrip)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApCreateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApGenContactId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApExpiryDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApRate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApComments)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApExtQuantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApApproved)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApMailMerge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApJobNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApAfeNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApPoNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApConsultantId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApConContactID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApAdcApproved)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApInvoicee)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApWasteDescriptionMailMerge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WApMinCharge)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tblGeneratorLocation.GenerLocationLsd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tblGenerator.GeneratorName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tblSubstance.SubstanceName)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApApprovalId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApWasteDescrip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApCreateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApGenContactId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApExpiryDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApRate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApComments)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApExtQuantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApApproved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApMailMerge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApJobNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApAfeNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApPoNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApConsultantId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApConContactID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApAdcApproved)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApInvoicee)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApWasteDescriptionMailMerge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WApMinCharge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tblGeneratorLocation.GenerLocationLsd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tblGenerator.GeneratorName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tblSubstance.SubstanceName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.WApApprovalcode }) |
-            @Html.ActionLink("Details", "Details", new { id=item.WApApprovalcode }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.WApApprovalcode })
-        </td>
-    </tr>
+@{
+    ViewBag.Title = "Contact";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>
+    @ViewBag.Message
+</h3>
+
+<style>
+    .marbot {
+        margin-bottom: 12px;
+    }
+
+    body {
+        padding-top: 40px;
+    }
+
+    .with-margin {
+        margin-bottom: 10px;
+    }
+
+    .spacer5 {
+        height: 5px;
+    }
+
+    div p {
+        font-weight: 600;
+    }
+
+    .text-on-pannel {
+        background: #fff none repeat scroll 0 0;
+        height: auto;
+        margin-left: 20px;
+        padding: 3px 5px;
+        position: absolute;
+        margin-top: -47px;
+        border: 1px solid #ff6a00;
+        border-radius: 5px;
+    }
+
+    .panel {
+        /* for text on pannel */
+        margin-top: 21px !important;
+    }
+
+    .panel-body {
+        padding-top: 27px !important;
+        margin-left: 30px;
+    }
+
+    legend.scheduler-border {
+        width: auto;
+        border-bottom: none;
+    }
+</style>
+
+
+@*<style>
+        .hidden {
+            display: none;
+        }
+
+        .Fontsize {
+            font-size: small;
+        }
+
+        p.ex1 {
+            margin-left: 2cm;
+        }
+    </style>*@
+
+
+
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")"></script>
+
+
+<h3 style="margin-left:45px;color:#0ab7b2;">Waste Approval Codes</h3>
+@using (Html.BeginForm("index", "Home", FormMethod.Post, new { id = "formIndex" }))
+{
+    <div style="width:100%;margin-left:45px;height:auto;border:1px solid">
+        @Html.Grid(Model).Columns(columns =>
+{
+
+    columns.Add()
+            .Encoded(false)
+            .Sanitized(false)
+            .SetWidth(30)
+            .Css("Fontsize")
+            .RenderValueAs(o => Html.ActionLink("Details", "Details", new { id = o.WApApprovalId }));
+
+    columns.Add(c => c.WApCreateDate).Titled("Create Date").Filterable(true).SetWidth(70).Format("{0:dd-MMM-yyyy}").Css("Fontsize");
+    columns.Add(c => c.WApApprovalcode).Titled("Approal Code").Filterable(true).SetWidth(65).Css("Fontsize");
+    columns.Add(c => c.GeneratorName).Titled("Generator Name").Filterable(true).SetWidth(115).Css("Fontsize");
+    columns.Add(c => c.WApWasteDescrip).Titled("Waste Description").Filterable(true).SetWidth(80).Css("Fontsize");
+    columns.Add(c => c.SubstanceName).Titled("Substance Name").Filterable(true).SetWidth(135).Css("Fontsize");
+    columns.Add(c => c.GenerLocationLsd).Titled("Lsd").Filterable(true).SetWidth(55).Css("Fontsize");
+
+
+
+}).WithPaging(20).Sortable(true)
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+    </div>
 }
 
-</table>

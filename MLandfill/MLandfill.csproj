@@ -252,13 +252,16 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InvoiceBatchController.cs" />
     <Compile Include="Controllers\InvoiceDocketsController.cs" />
-    <Compile Include="Controllers\MaintWasteApprovalController.cs" />
+    <Compile Include="Controllers\xMaintWasteApprovalController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportGenController.cs" />
-    <Compile Include="Controllers\wasteApprovalController.cs" />
+    <Compile Include="Controllers\WasteApprovalController.cs" />
     <Compile Include="Core\Domain\MDockets.cs" />
     <Compile Include="DataAccess\DataAccessLayer.cs" />
     <Compile Include="DataAccess\DataReportLayer.cs" />
+    <Compile Include="dsRptDailyLandFill.cs">
+      <DependentUpon>dsRptDailyLandFill.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsRptDailyLandFill.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -547,8 +550,7 @@
     <Content Include="Views\WasteApprovals\Delete.cshtml" />
     <Content Include="Views\WasteApprovals\Details.cshtml" />
     <Content Include="Views\WasteApprovals\Edit.cshtml" />
-    <Content Include="Views\WasteApprovals\Index.cshtml" />
-    <Content Include="Views\wasteApproval\Index.cshtml" />
+    <Content Include="Views\XwasteApproval\Index.cshtml" />
     <Content Include="Views\Shared\_TruckCompanyDetails.cshtml" />
     <Content Include="Views\Dockets\TryIndex.cshtml" />
     <Content Include="Views\Dockets\TryNewIndex.cshtml" />
@@ -572,6 +574,8 @@
     <Content Include="Views\Shared\_AppCodeRelatedDetails.cshtml" />
     <Content Include="Views\Shared\_AjaxGridPager.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\WasteApproval\Index.cshtml" />
+    <Content Include="Views\WasteApproval\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

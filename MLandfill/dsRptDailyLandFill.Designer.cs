@@ -5395,49 +5395,173 @@ namespace MLandfill.dsRptDailyLandFillTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.spRptGeneratorLoadSummary";
+            this._commandCollection[0].CommandText = "dbo.spDocketWasteAddNew";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@generatorName", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Approvalcode", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fromDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@toDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DocketNo", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WasteApprovalCodeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TurckCompanyId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DriverName", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DestinatedFor", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ScaleTicket", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Gross", global::System.Data.SqlDbType.Decimal, 13, global::System.Data.ParameterDirection.Input, 20, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Tare", global::System.Data.SqlDbType.Decimal, 13, global::System.Data.ParameterDirection.Input, 20, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Net", global::System.Data.SqlDbType.Decimal, 13, global::System.Data.ParameterDirection.Input, 20, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cell", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Grid", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GridNo", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Elevation", global::System.Data.SqlDbType.VarChar, 30, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DateReceived", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Memo", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InvoiceNo", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoadReceivingDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DocketIdOut", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.InputOutput, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(dsRptDailyLandFill.spRptGeneratorLoadSummaryDataTable dataTable, string generatorName, string Approvalcode, global::System.Nullable<global::System.DateTime> fromDate, global::System.Nullable<global::System.DateTime> toDate) {
+        public virtual int Fill(
+                    dsRptDailyLandFill.spRptGeneratorLoadSummaryDataTable dataTable, 
+                    string DocketNo, 
+                    global::System.Nullable<int> WasteApprovalCodeID, 
+                    global::System.Nullable<int> TurckCompanyId, 
+                    string DriverName, 
+                    string DestinatedFor, 
+                    string ScaleTicket, 
+                    global::System.Nullable<decimal> Gross, 
+                    global::System.Nullable<decimal> Tare, 
+                    global::System.Nullable<decimal> Net, 
+                    string Cell, 
+                    string Grid, 
+                    string GridNo, 
+                    string Elevation, 
+                    global::System.Nullable<global::System.DateTime> DateReceived, 
+                    string Memo, 
+                    string InvoiceNo, 
+                    global::System.Nullable<global::System.DateTime> LoadReceivingDate, 
+                    ref global::System.Nullable<int> DocketIdOut) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((generatorName == null)) {
+            if ((DocketNo == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(generatorName));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(DocketNo));
             }
-            if ((Approvalcode == null)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            if ((WasteApprovalCodeID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(WasteApprovalCodeID.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(Approvalcode));
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((fromDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(fromDate.Value));
+            if ((TurckCompanyId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(TurckCompanyId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((toDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(toDate.Value));
+            if ((DriverName == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(DriverName));
+            }
+            if ((DestinatedFor == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(DestinatedFor));
+            }
+            if ((ScaleTicket == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(ScaleTicket));
+            }
+            if ((Gross.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((decimal)(Gross.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((Tare.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((decimal)(Tare.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((Net.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((decimal)(Net.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((Cell == null)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(Cell));
+            }
+            if ((Grid == null)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(Grid));
+            }
+            if ((GridNo == null)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((string)(GridNo));
+            }
+            if ((Elevation == null)) {
+                this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[13].Value = ((string)(Elevation));
+            }
+            if ((DateReceived.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[14].Value = ((System.DateTime)(DateReceived.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            if ((Memo == null)) {
+                this.Adapter.SelectCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[15].Value = ((string)(Memo));
+            }
+            if ((InvoiceNo == null)) {
+                this.Adapter.SelectCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[16].Value = ((string)(InvoiceNo));
+            }
+            if ((LoadReceivingDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[17].Value = ((System.DateTime)(LoadReceivingDate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            if ((DocketIdOut.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[18].Value = ((int)(DocketIdOut.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
             int returnValue = this.Adapter.Fill(dataTable);
+            if (((this.Adapter.SelectCommand.Parameters[18].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[18].Value.GetType() == typeof(global::System.DBNull)))) {
+                DocketIdOut = new global::System.Nullable<int>();
+            }
+            else {
+                DocketIdOut = new global::System.Nullable<int>(((int)(this.Adapter.SelectCommand.Parameters[18].Value)));
+            }
             return returnValue;
         }
     }
