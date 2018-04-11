@@ -355,6 +355,13 @@
       <DependentUpon>LFDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\DocketViewModel.cs" />
+    <Compile Include="Views\ReportViewer\RptViewerLoadSummary.aspx.cs">
+      <DependentUpon>RptViewerLoadSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\ReportViewer\RptViewerLoadSummary.aspx.designer.cs">
+      <DependentUpon>RptViewerLoadSummary.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -499,6 +506,7 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Views\ReportViewer\RptViewerLoadSummary.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -584,7 +592,6 @@
     <Folder Include="Core\Repositories\" />
     <Folder Include="Persistence\Repositories\" />
     <Folder Include="Views\GridMvc\" />
-    <Folder Include="Views\ReportGen\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
