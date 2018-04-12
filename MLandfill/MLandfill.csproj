@@ -449,8 +449,8 @@
     </Content>
     <None Include="dsRptDailyLandFill.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsRptDailyLandFill.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>dsRptDailyLandFill1.Designer.cs</LastGenOutput>
     </None>
     <Content Include="dsRptDailyLandFill.xss">
       <DependentUpon>dsRptDailyLandFill.xsd</DependentUpon>

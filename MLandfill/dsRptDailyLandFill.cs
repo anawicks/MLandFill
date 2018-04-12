@@ -1,6 +1,8 @@
-﻿namespace MLandfill {
-    
-    
-    public partial class dsRptDailyLandFill {
+﻿namespace MLandfill
+{
+
+
+    public partial class dsRptDailyLandFill
+    {
     }
 }

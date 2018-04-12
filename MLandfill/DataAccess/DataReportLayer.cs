@@ -51,16 +51,7 @@ namespace MLandfill.DataAccess
                                 rptModel.LocationLSD = rdr["LocationLSD"].ToString();
                                 rptModel.ApprovalCode = rdr["ApprovalCode"].ToString();
 
-                                /*
-                                            rptModel.TotalAmount = Convert.ToInt32(rdr["TotalAmount"]);
-                                            rptModel.ApprovalCode = rdr["ApprovalCode"].ToString();
-                                            rptModel.Cell = rdr["Cell"].ToString();
-                                            rptModel.Grid = rdr["Grid"].ToString();
-                                            rptModel.GridNo = rdr["GridNo"].ToString();
-                                            rptModel.Grid = rdr["Elevation"].ToString();
-                                            rptModel.GridNo = rdr["Substance"].ToString();
-
-                                */
+                  
                                 rptList.Add(rptModel);
                             }
                         }
@@ -92,8 +83,6 @@ namespace MLandfill.DataAccess
                         cmd.Parameters.AddWithValue("@fromDate", fromDate);
                         cmd.Parameters.AddWithValue("@toDate", toDate);
 
-
-
                         con.Open();
                         using (SqlDataReader rdr = cmd.ExecuteReader())
                         {
@@ -113,9 +102,6 @@ namespace MLandfill.DataAccess
                                 rptModel.Elevation = rdr["Elevation"].ToString();
                                 rptModel.WasteLocation = rdr["WasteLocation"].ToString();
 
-
-
-
                                 rptList.Add(rptModel);
 
                             }
@@ -125,9 +111,9 @@ namespace MLandfill.DataAccess
             }
             catch (Exception ex)
             {
-
                 Debug.WriteLine(ex.Message);
             }
+
             return rptList;
 
         }
@@ -219,30 +205,15 @@ namespace MLandfill.DataAccess
                             {
                                 OtherReports rptModel = new OtherReports();
 
-                                rptModel.ScaleTicket = rdr["ScaleTicket"].ToString();
-                                rptModel.DocketNo = rdr["DocketNo"].ToString();
-                                rptModel.ReceivedDate = Convert.ToDateTime(rdr["ReceivedDate"]);
-                                rptModel.VtNet = Convert.ToDecimal(rdr["VtNet"]);
-                                rptModel.GeneratorName = rdr["GeneratorName"].ToString();
                                 rptModel.ApprovalCode = rdr["ApprovalCode"].ToString();
+                                rptModel.GeneratorName = rdr["GeneratorName"].ToString();
+                                rptModel.ChargedTotal = Convert.ToDecimal( rdr["ChargedTotal"]);
+                                rptModel.ChargedTotalWithGst = Convert.ToDecimal(rdr["ChargedTotalWithGst"]);
+                                //rptModel.ReceivedDate = Convert.ToDateTime(rdr["ReceivedDate"]); 
+                                
+                                
 
 
-
-                                /*
-                                            rptModel.Grid = rdr["Grid"].ToString();
-                                            rptModel.GridNo = rdr["GridNo"].ToString();
-                                            rptModel.Grid = rdr["Elevation"].ToString();
-                                            rptModel.TotalAmount = Convert.ToInt32(rdr["TotalAmount"]);
-                                            rptModel.ApprovalCode = rdr["ApprovalCode"].ToString();
-                                            rptModel.Cell = rdr["Cell"].ToString();
-                                            rptModel.Grid = rdr["Grid"].ToString();
-                                            rptModel.GridNo = rdr["GridNo"].ToString();
-                                            rptModel.Grid = rdr["Elevation"].ToString();
-                                            rptModel.GridNo = rdr["Substance"].ToString();
-                                            rptModel.ScaleTicket = rdr["ScaleTicket"].ToString();
-                                            rptModel.LocationLSD = rdr["LocationLSD"].ToString();
-
-                                */
                                 rptList.Add(rptModel);
 
                             }
@@ -341,14 +312,15 @@ namespace MLandfill.DataAccess
 
                                 //rptModel.GeneratorName = rdr["GeneratorName"].ToString();
 
-                                rptModel.ServiceMaterial = rdr["ServiceMaterial"].ToString();
-                                rptModel.ShipToParty = rdr["ShipToParty"].ToString();
-                                rptModel.Dow = rdr["Dow"].ToString();
-                                rptModel.DocumentDate = Convert.ToDateTime(rdr["DocumentDate"]);
-                                rptModel.WasteManifest = rdr["WasteManifest"].ToString();
-                                rptModel.TruckCompany = rdr["TruckCompany"].ToString();
-                                rptModel.TruckTicketNo = rdr["TruckTicketNo"].ToString();
-                                rptModel.ProcessingVolume = Convert.ToDecimal(rdr["ProcessingVolume"]);
+                                rptModel.ServiceMaterial = rdr["ServiceMaterial"].ToString(); //waste description
+                                rptModel.ShipToParty = rdr["ShipToParty"].ToString();//lsd                                
+                                rptModel.DocumentDate = Convert.ToDateTime(rdr["DocumentDate"]);//received date
+                                rptModel.Dow = rdr["Dow"].ToString();//Substance Name
+
+                                rptModel.WasteManifest = rdr["WasteManifest"].ToString();//Docket_No
+                                rptModel.TruckCompany = rdr["TruckCompany"].ToString();//truck company
+                                rptModel.TruckTicketNo = rdr["TruckTicketNo"].ToString();//scale ticket
+                                rptModel.ProcessingVolume = Convert.ToDecimal(rdr["ProcessingVolume"]);//Gross
                                 rptModel.GeneratorName = rdr["GeneratorName"].ToString();
 
 

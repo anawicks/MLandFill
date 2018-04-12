@@ -146,16 +146,10 @@ namespace MLandfill.Controllers
             DateTime dtToDate = new DateTime(2018, 1, 01);
 
             using (var renderer = new WebReportRenderer(@"~\Reports\rptLocationLoadSummary.rdlc", "rptLocationLoadSummary.pdf"))
-
             {
                 DataReportLayer objDb = new DataReportLayer();
 
-                //Microsoft.Reporting.WinForms.ReportDataSource rprtDTSource = new Microsoft.Reporting.WinForms.ReportDataSource(dt.TableName, dt); 
-
-
                 renderer.ReportInstance.DataSources.Add(new ReportDataSource("LocationLoadSummaryDs", objDb.rptLocationLoadSummaryGet(dtFromDate, dtToDate).ToList()));
-
-
 
                 renderer.ReportInstance.Refresh();
 
@@ -235,6 +229,31 @@ namespace MLandfill.Controllers
 
         }
         // GET: ReportGen
+
+        public FileResult SalesByCustomerSummary()
+        {
+
+            byte[] result;
+
+            DateTime dtFromDate = new DateTime(2017, 1, 01);
+            DateTime dtToDate = new DateTime(2018, 1, 01);
+
+            using (var renderer = new WebReportRenderer(@"~\Reports\rptSalesByCustomerSummary.rdlc", "rptSalesByCustomerSummary.pdf"))
+            {
+                DataReportLayer objDb = new DataReportLayer();
+
+                renderer.ReportInstance.DataSources.Add(new ReportDataSource("SaleByCustomerSummaryDs", objDb.rptSalesByCustomerSummaryGet(true,"June", 2016).ToList()));
+
+                renderer.ReportInstance.Refresh();
+
+                result = renderer.RenderToBytesPDF();
+
+            }
+
+            return File(result, "application/pdf", "rptSalesByCustomerSummary.pdf");
+
+        }
+
         public ActionResult Index()
         {
             return View();

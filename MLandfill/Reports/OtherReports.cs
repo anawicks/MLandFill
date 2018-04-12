@@ -31,6 +31,10 @@ namespace MLandfill.Reports
 
         public String WasteLocation { get; set; }
 
+        public Decimal ChargedTotal { get; set; }
+
+        public Decimal ChargedTotalWithGst { get; set; }
+
 
     }
 }
