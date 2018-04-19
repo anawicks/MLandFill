@@ -14,6 +14,7 @@ namespace MLandfill.Reports
         public string ScaleTicket { get; set; }
         public string ApprovalRate { get; set; }
         public DateTime DateReceived { get; set; }
+        public DateTime LastDateOfMonth { get; set; }
         public decimal NetWeight { get; set; }
         public decimal AmountCharge { get; set; }
 

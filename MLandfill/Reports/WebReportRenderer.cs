@@ -1,19 +1,11 @@
 ﻿using System;
 
 using System.Collections.Generic;
-
 using System.IO;
-
 using System.Linq;
-
 using System.Net.Mail;
-
 using System.Text;
-
 using System.Web;
-
-
-
 using Microsoft.Reporting.WebForms;
 
 
@@ -27,13 +19,9 @@ namespace MLandfill.Reports
         #region Private fields
 
         private string fullReportPath;
-
         private string downloadFileName;
-
         private LocalReport reportInstance;
-
         private MemoryStream reportMemoryStream;
-
         private string reportMimeType;
 
         #endregion
@@ -110,7 +98,7 @@ namespace MLandfill.Reports
 
         /// </summary>
 
-        /// <param name="pdfDeviceInfoSettings">The PDF device info settings (see http://msdn2.microsoft.com/en-us/library/ms154682.aspx).</param>
+        /// <param name="pdfDeviceInfoSettings">The PDF device info settings (see http://msdn2.microsoft.com/en-us/library/ms154682.aspx). </param>
 
         /// <returns></returns>
 
@@ -127,7 +115,7 @@ namespace MLandfill.Reports
             HttpContext.Current.Response.AddHeader("Content-Disposition", "attachment; filename=\"" + downloadFileName + "\"");
 
             reportInstance.Render("PDF", null, callback, out warnings);
-
+             
             return warnings;
 
         }
@@ -193,7 +181,7 @@ namespace MLandfill.Reports
                 attachment.Name = downloadFileName;
 
                 message.Attachments.Add(attachment);
-
+                 
                 client.Send(message);
 
             }
@@ -211,17 +199,16 @@ namespace MLandfill.Reports
         {
 
             string mimeType;
-
             string encoding;
-
             string fileNameExtension;
-
             string[] streams;
-
             Warning[] warnings;
-            return reportInstance.Render("PDF", null,out mimeType, out encoding, out fileNameExtension, out streams,
+
+            //reportInstance.ReportPath
+            //return reportInstance.Render("PDF", null,out mimeType, out encoding, out fileNameExtension, out streams,
+            //                             out warnings);
+            return reportInstance.Render("PDF", null, out mimeType, out encoding, out fileNameExtension, out streams,
                                          out warnings);
-            
 
         }
 

@@ -19,21 +19,55 @@ namespace MLandfill.Controllers
     public class InvoiceBatchController : Controller
     {
 
-        public FileResult WebFormMthd(int invoiceNumber = 5118)
+        public FileResult WebFormMthd_GoodApr19( )
         {
             //http://www.danielroot.info/2009/06/how-to-render-reporting-services.html
             byte[] result;
+            int invoiceNumber = 4041;
+            string Month = "11";
+            int year = 2016;
+            string ApprovalCode = "NRL 110169 5";
 
             using (var renderer = new WebReportRenderer(@"~\Reports\rptPrintInv.rdlc", "rptPrintInv.pdf"))
 
             {
-                DataAccessLayer objDb = new DataAccessLayer();
+                DataReportLayer objDb = new DataReportLayer();
                 
                 //Microsoft.Reporting.WinForms.ReportDataSource rprtDTSource = new Microsoft.Reporting.WinForms.ReportDataSource(dt.TableName, dt); 
 
 
-                renderer.ReportInstance.DataSources.Add(new ReportDataSource("ReportInvDataSet", objDb.InvoiceRptInfoGet(invoiceNumber).ToList()));
+                renderer.ReportInstance.DataSources.Add(new ReportDataSource("ReportInvDS", objDb.InvoiceRptInfoGet(invoiceNumber, Month,year, ApprovalCode).ToList()));
                 
+
+
+                renderer.ReportInstance.Refresh();
+
+                result = renderer.RenderToBytesPDF();
+
+            }
+
+            return File(result, "application/pdf", "rptPrintInv.pdf");
+
+        }
+        public FileResult WebFormMthd( string month , int year , string wasteApprovalCode )
+        {
+            //http://www.danielroot.info/2009/06/how-to-render-reporting-services.html
+            byte[] result;
+            int invoiceNumber = 4045;
+            //string Month = "11";
+            //int Year = 2016;
+            //string ApprovalCode = "NRL 110169 5";
+
+            using (var renderer = new WebReportRenderer(@"~\Reports\rptPrintInv.rdlc", "rptPrintInv.pdf"))
+
+            {
+                DataReportLayer objDb = new DataReportLayer();
+
+                //Microsoft.Reporting.WinForms.ReportDataSource rprtDTSource = new Microsoft.Reporting.WinForms.ReportDataSource(dt.TableName, dt); 
+
+
+                renderer.ReportInstance.DataSources.Add(new ReportDataSource("ReportInvDS", objDb.InvoiceRptInfoGet(invoiceNumber, month, year, wasteApprovalCode).ToList()));
+
 
 
                 renderer.ReportInstance.Refresh();
@@ -48,7 +82,7 @@ namespace MLandfill.Controllers
 
         public FileResult WebFormMthdA(string ReportType="pdf")
         {
-            DataAccessLayer objDb = new DataAccessLayer();
+            DataReportLayer objDb = new DataReportLayer();
 
             LocalReport invoiceReport = new LocalReport();
 
@@ -57,7 +91,7 @@ namespace MLandfill.Controllers
             ReportDataSource rptDataSource = new ReportDataSource();
 
             rptDataSource.Name = "datasetInvoice";
-            rptDataSource.Value = objDb.InvoiceRptInfoGet(3036).ToList();
+            rptDataSource.Value = objDb.InvoiceRptInfoGet(3036,"6",2017, "NRL1100018").ToList();
             DataTable dt = new DataTable();
 
            

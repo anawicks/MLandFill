@@ -88,7 +88,9 @@ namespace MLandfill.Controllers
             InvoiceDocket InvoiceModel = new InvoiceDocket();
 
 
-            //ViewData["InvoiceModelVDat"] = InvoiceModel;
+            ViewData["genMonth"] = month;
+            ViewData["genYear"] = year;
+            ViewData["genWasteApprovalCode"] = wasteApprovalCode;
 
 
             return View(InvoiceDockets);
@@ -188,6 +190,7 @@ namespace MLandfill.Controllers
         public JsonResult CreateInvoiceNo(int month, int year, int generatorId, string wasteApprovalCode)
         {
             int newInvoiceNumber;
+            
 
             DataAccessLayer objDb = new DataAccessLayer();
 

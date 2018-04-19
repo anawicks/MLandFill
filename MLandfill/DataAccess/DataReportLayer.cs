@@ -45,8 +45,8 @@ namespace MLandfill.DataAccess
                                 rptModel.ScaleTicket = rdr["ScaleTicket"].ToString();
                                 rptModel.DocketNo = rdr["DocketNo"].ToString();
                                 rptModel.VtNet = Convert.ToDecimal(rdr["VtNet"]);
-                                if (!(rdr["ReceivedDate"] is DBNull))
-                                    rptModel.ReceivedDate = Convert.ToDateTime(rdr["ReceivedDate"]);
+                                if (!(rdr["DateReceived"] is DBNull))
+                                    rptModel.ReceivedDate = Convert.ToDateTime(rdr["DateReceived"]);
 
                                 rptModel.LocationLSD = rdr["LocationLSD"].ToString();
                                 rptModel.ApprovalCode = rdr["ApprovalCode"].ToString();
@@ -399,6 +399,174 @@ namespace MLandfill.DataAccess
 
         }
         #endregion
+
+
+        public IEnumerable<InvoiceModel> InvoiceRptInfoGet(int invoiceNumber, string Month, int year, string ApprovalCode)
+        { //invoiceNumber, Month,year, ApprovalCode
+
+            SqlConnection con = null;
+
+            List<InvoiceModel> ndocketList = new List<InvoiceModel>();
+            try
+            {
+                using (con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString()))
+                {
+                    //spInvoicePrintGet
+                    using (SqlCommand cmd = new SqlCommand("spInvoicePrintGet", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@InvoiceNo", invoiceNumber);
+                        cmd.Parameters.AddWithValue("@Month", Month);
+                        cmd.Parameters.AddWithValue("@Year", year);
+                        cmd.Parameters.AddWithValue("@ApprovalCode", ApprovalCode);
+
+
+
+
+                        con.Open();
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
+                        {
+
+                            while (rdr.Read())
+                            {
+                                InvoiceModel docket = new InvoiceModel();
+
+                                docket.InvoiceNumber = Convert.ToInt32(rdr["InvoiceNumber"]);
+                                docket.DocketNumber = rdr["DocketNumber"].ToString();
+                                docket.ScaleTicket = rdr["ScaleTicket"].ToString();
+                                docket.ApprovalRate = rdr["ApprovalRate"].ToString();
+                                docket.DateReceived = Convert.ToDateTime(rdr["DateReceived"]);
+                                docket.NetWeight = Convert.ToDecimal(rdr["NetWeight"]);
+                                docket.AmountCharge = Convert.ToDecimal(rdr["AmountCharge"]);
+
+                                docket.WasteApprovalCode = rdr["WasteApprovalCode"].ToString();
+                                
+                                docket.RecvMonth = Convert.ToInt32(rdr["RecvMonth"]);
+                                docket.RecvYear = Convert.ToInt32(rdr["RecvYear"]);
+                                docket.LastDateOfMonth = Convert.ToDateTime(rdr["LastDateOfMonth"]);
+
+                                docket.WasteDescription = rdr["WasteDescription"].ToString(); 
+                                docket.GeneratorLocationLsd = rdr["GeneratorLocationLsd"].ToString();
+                                docket.JOBNo = rdr["JOBNo"].ToString();
+                                docket.AFENo = rdr["AFENo"].ToString();
+                                docket.PONo = rdr["PONo"].ToString();
+
+                                docket.ExcludeInterest = Convert.ToBoolean(rdr["ExcludeInterest"]);
+
+                                docket.GenContactName = rdr["GenContactName"].ToString();
+                                docket.ConsultantName = rdr["ConsultantName"].ToString();
+                                docket.ConsultantAddr = rdr["ConsultantAddr"].ToString();
+                                docket.ConsultantCity = rdr["ConsultantCity"].ToString();
+                                docket.ConsultantProv = rdr["ConsultantProv"].ToString();
+                                docket.ConsultantPostal = rdr["ConsultantPostal"].ToString();
+
+
+                                docket.InvoiceeName = rdr["InvoiceeName"].ToString();
+                                if (!(rdr["GeneratorId"] is DBNull))
+                                    docket.GeneratorId = 0 + Convert.ToInt32(rdr["GeneratorId"]);
+                                else
+                                    docket.GeneratorId = 11;
+                                ndocketList.Add(docket);
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(ex.Message);
+            }
+            return ndocketList;
+
+        }
+
+
+        public string InvoiceRptFileNameGet(string approvalCode, string month, int year)
+        {
+            string invoiceFileName = string.Empty;
+
+            SqlConnection con = null;
+            try
+            {
+                using (con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString()))
+                {
+                    using (SqlCommand cmd = new SqlCommand("spInvoiceFileNameGet", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@ApprovalCode", approvalCode);
+                        cmd.Parameters.AddWithValue("@month", month);
+                        cmd.Parameters.AddWithValue("@year", year);
+
+                        con.Open();
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
+                        {
+
+                            while (rdr.Read())
+                            {
+                                invoiceFileName = " " + rdr["InvoiceFileName"].ToString();
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(ex.Message);
+            }
+            return invoiceFileName;
+
+
+
+        }
+        public int InvoiceNumberCreate(String approvalCode, DateTime invoiceDate)
+        {
+            int InvoiceNoOut = 0;
+
+            string connectionString = ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+
+
+                using (SqlCommand cmd = new SqlCommand("spInvoiceGenerateSingle", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    try
+                    {
+                        cmd.Parameters.Clear();
+
+
+
+                        cmd.Parameters.AddWithValue("@ApprovalCode", approvalCode);
+                        cmd.Parameters.AddWithValue("@InvoiceDate", invoiceDate);
+                        cmd.Parameters.Add("@InvoiceNumberOut", SqlDbType.Int);
+                        cmd.Parameters["@InvoiceNumberOut"].Direction = ParameterDirection.Output;
+
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                        InvoiceNoOut = Convert.ToInt32(cmd.Parameters["@InvoiceNumberOut"].Value);
+                    }
+
+
+                    catch (Exception ex)
+                    {
+
+                        Debug.WriteLine(ex.Message);
+                    }
+
+                }
+            }
+
+            return InvoiceNoOut;
+        }
+
+
     }
 }
  

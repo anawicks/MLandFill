@@ -275,6 +275,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LandFillNRLDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="LandFillNRLInvoiceDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LandFillNRLInvoiceDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LFDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -472,6 +477,17 @@
     <Content Include="LFDataModel.edmx.diagram">
       <DependentUpon>LFDataModel.edmx</DependentUpon>
     </Content>
+    <Content Include="LandFillNRLInvoiceDataSet.xsc">
+      <DependentUpon>LandFillNRLInvoiceDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="LandFillNRLInvoiceDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LandFillNRLInvoiceDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="LandFillNRLInvoiceDataSet.xss">
+      <DependentUpon>LandFillNRLInvoiceDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
@@ -611,6 +627,7 @@
     <EmbeddedResource Include="Reports\rptLocationLoadSummary.rdlc" />
     <EmbeddedResource Include="Reports\rptMonthlyLoadSummary.rdlc" />
     <EmbeddedResource Include="Reports\rptPrintInv.rdlc" />
+    <EmbeddedResource Include="Reports\rptPrintInvoice.rdlc" />
     <EmbeddedResource Include="Reports\rptSalesByCustomerSummary.rdlc" />
     <EmbeddedResource Include="Reports\rptSubstanceLoadSummary.rdlc" />
   </ItemGroup>

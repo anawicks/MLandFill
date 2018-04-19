@@ -58,24 +58,27 @@
 
 
 
-        //alert(selMonth);
-        //alert(selYear);
-        //alert(selGeneratorId);
-        //alert(selApprovalCode);
+        alert(selMonth);
+        alert(selYear);
+        alert(selGeneratorId);
+        alert(selApprovalCode);
 
         $.ajax({
-                    url: '/InvoiceDockets/CreateInvoiceNo',
+            url: '/InvoiceBatch/WebFormMthd_GoodApr19',
                     type: 'GET',
                     datatype: 'application/json',
                     contentType: 'application/json',
                     data:  {
-                        month: selMonth, year: selYear, generatorId: selGeneratorId, wasteApprovalCode: selApprovalCode
+                        month: selMonth, year: selYear, wasteApprovalCode: selApprovalCode
                     } ,
                     cache: false,
                     success: function (result) {
                          
                         $('#UserName').val(result);
-                    }
+                    },
+                    error: function () {
+                        alert("TestButtonClick   Method: Something went wrong..")
+                    },
             
 
         })
@@ -228,6 +231,8 @@
     }
 </style>
 <h2>IndexNew</h2>
+
+@Html.ActionLink("Create Invoice", "WebFormMthd_GoodApr19", "InvoiceBatch" )
 @{
     var dataT = ViewData["InvoiceModelVDat"];
 }
@@ -279,7 +284,7 @@
 
  
 
-    </div>@Html.TextBox("UserName","", new { @class = "text-box single-line readonly", @readonly = "readonly", disabled = "disabled" })
+    </div>@*@Html.TextBox("UserName","", new { @class = "text-box single-line readonly", @readonly = "readonly", disabled = "disabled" })*@
     
 
         <span id="Gaduspan">
