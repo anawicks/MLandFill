@@ -7,8 +7,8 @@ using System.Net.Mail;
 using System.Text;
 using System.Web;
 using Microsoft.Reporting.WebForms;
-
-
+using System.Web.UI;
+using System.Web.UI.WebControls; 
 
 namespace MLandfill.Reports
 {
@@ -27,6 +27,12 @@ namespace MLandfill.Reports
         #endregion
 
         #region Constructor
+
+        public string GetFullReportPath(string filePath)
+        {
+            return HttpContext.Current.Server.MapPath(filePath);
+
+        }
 
         /// <summary>
 
@@ -192,8 +198,6 @@ namespace MLandfill.Reports
 
 
 
-
-
         public byte[] RenderToBytesPDF()
 
         {
@@ -209,6 +213,35 @@ namespace MLandfill.Reports
             //                             out warnings);
             return reportInstance.Render("PDF", null, out mimeType, out encoding, out fileNameExtension, out streams,
                                          out warnings);
+
+            
+
+        }
+
+        public void  RenderToBytesPDFAW(string reportPath, string filename)
+
+        {
+
+            string mimeType;
+            string encoding;
+            string fileNameExtension;
+            string[] streams;
+            Warning[] warnings;
+
+            //reportInstance.ReportPath
+            //return reportInstance.Render("PDF", null,out mimeType, out encoding, out fileNameExtension, out streams,
+            //                             out warnings);
+            byte[] bytes = reportInstance.Render("PDF", null, out mimeType, out encoding, out fileNameExtension, out streams,
+                                         out warnings);
+
+            string sfullReportPath = "E:\\LandFillApplication\\InvoiceReports\\rptPrintInv.rdlc";
+            //HttpContext.Current.Server.MapPath(reportPath);
+
+            sfullReportPath = sfullReportPath.Replace("rptPrintInv.rdlc", filename);
+
+            FileStream fs = new FileStream(sfullReportPath, FileMode.Create, FileAccess.Write);
+            fs.Write(bytes, 0, bytes.Length);
+            fs.Close();
 
         }
 

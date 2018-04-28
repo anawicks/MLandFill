@@ -46,7 +46,7 @@
     columns.Add(c => c.WApApprovalcode).Titled("Waste App. Code").Filterable(true).SetWidth(60).Css("Fontsize");
     columns.Add(c => c.WApWasteDescrip).Titled("Waste Description").Filterable(false).SetWidth(70).Css("Fontsize");
     columns.Add(c => c.WApRate).Titled("Rate").Format("${0:#,###0.00}").Filterable(true).SetWidth(50).Css("Fontsize");
-    columns.Add(c => c.NetTotal).Titled("Total").Format("${0:#,###0.00}").SetWidth(40).Css("Fontsize");
+    columns.Add(c => c.NetTotal).Titled("Total").Format("{0:#,###0.00}").SetWidth(40).Css("Fontsize");
     columns.Add(c => c.Amount).Titled("Amount").Format("${0:#,###0.00}").SetWidth(40).Css("Fontsize");
     columns.Add(c => c.GeneratorId).Titled("Generator Id").SetWidth(40).Css("Fontsize");
     columns.Add(c => c.WApComments).Titled("WApComments").Titled("Comments").SetWidth(140).Css("Fontsize");

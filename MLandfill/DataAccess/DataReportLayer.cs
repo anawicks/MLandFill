@@ -400,6 +400,62 @@ namespace MLandfill.DataAccess
         }
         #endregion
 
+       
+        public IEnumerable<InvoiceBatchGrid> InvoiceBatchGridGet(string Month, int year)
+        { //invoiceNumber, Month,year, ApprovalCode
+
+            //InvoiceBatchGrid objInvoiceDockets = new InvoiceBatchGrid();
+
+            SqlConnection con = null;
+
+            List<InvoiceBatchGrid> ndocketList = new List<InvoiceBatchGrid>();
+            try
+            {
+                using (con = new SqlConnection(ConfigurationManager.ConnectionStrings["DataAccessCn"].ToString()))
+                {
+                    //spInvoicePrintGet
+                    using (SqlCommand cmd = new SqlCommand("spInvoicePrintBatchGet", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure; 
+                        cmd.Parameters.AddWithValue("@Month", Month);
+                        cmd.Parameters.AddWithValue("@Year", year); 
+
+
+
+
+                        con.Open();
+                        using (SqlDataReader rdr = cmd.ExecuteReader())
+                        {
+                             
+                            while (rdr.Read())
+                            {
+                                InvoiceBatchGrid docket = new InvoiceBatchGrid();
+
+                                docket.WApApprovalcode = rdr["WasteApprovalCode"].ToString();
+                                docket.GeneratorName = rdr["GeneratorName"].ToString();
+                                docket.WApWasteDescrip = rdr["WasteDescription"].ToString();
+                                docket.WApRate = Convert.ToDecimal(rdr["ApprovalRate"]);
+                                docket.NetTotal = Convert.ToDecimal(rdr["NetWeight"]);
+                                docket.Amount = Convert.ToDecimal(rdr["AmountCharge"]);
+
+
+
+
+                                ndocketList.Add(docket);
+
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Debug.WriteLine(ex.Message);
+            }
+            return ndocketList;
+
+        }
 
         public IEnumerable<InvoiceModel> InvoiceRptInfoGet(int invoiceNumber, string Month, int year, string ApprovalCode)
         { //invoiceNumber, Month,year, ApprovalCode

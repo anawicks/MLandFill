@@ -203,13 +203,25 @@ namespace MLandfill.Controllers
 
         public ActionResult _InvoiceBatchDetailsGet(string month, int year)
         {
+
+             
+            int thisval;
+            string desiredMonth = month;
+            string[] MonthNames = CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
+            thisval = Array.IndexOf(MonthNames, desiredMonth) + 1;
+
+
             InvoiceBatchGrid objInvoiceDockets = new InvoiceBatchGrid();
 
-            DataAccessLayer objDb = new DataAccessLayer();
+            DataReportLayer objDb = new DataReportLayer();
 
-            List<InvoiceBatchGrid> InvoiceDockets = objDb.InvoiceBatchGridGet(month, year).ToList();
- 
+            List<InvoiceBatchGrid> InvoiceDockets = objDb.InvoiceBatchGridGet(Convert.ToString(thisval),  year).ToList();
 
+            ViewData["genMonth"] = month;
+            ViewData["genYear"] = year;
+
+            
+             
             return View(InvoiceDockets);
 
              

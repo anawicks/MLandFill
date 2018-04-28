@@ -2,48 +2,11 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Textbox Name="Textbox16">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value xml:space="preserve"> </Value>
-                <Style>
-                  <FontSize>9pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <Format>dd-MMM-yyyy</Format>
-                  <Color>DimGray</Color>
-                </Style>
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Right</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox16</rd:DefaultName>
-        <Top>0.06721in</Top>
-        <Left>1.38211in</Left>
-        <Height>0.2564in</Height>
-        <Width>2.15414in</Width>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
       <Rectangle Name="Rectangle2">
         <KeepTogether>true</KeepTogether>
         <Top>0.31513in</Top>
         <Height>0.03819in</Height>
         <Width>3.89014in</Width>
-        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -75,7 +38,7 @@
         <Left>0.07501in</Left>
         <Height>0.25in</Height>
         <Width>1.67015in</Width>
-        <ZIndex>2</ZIndex>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -110,7 +73,7 @@
         <Left>2.39002in</Left>
         <Height>0.25in</Height>
         <Width>1.12848in</Width>
-        <ZIndex>3</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -145,7 +108,7 @@
         <Left>0.20001in</Left>
         <Height>0.25in</Height>
         <Width>1.05556in</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -180,7 +143,7 @@
         <Left>1.30252in</Left>
         <Height>0.25in</Height>
         <Width>1.12848in</Width>
-        <ZIndex>5</ZIndex>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -215,7 +178,7 @@
         <Left>2.39002in</Left>
         <Height>0.25in</Height>
         <Width>1.12848in</Width>
-        <ZIndex>6</ZIndex>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -250,7 +213,7 @@
         <Left>0.20001in</Left>
         <Height>0.25in</Height>
         <Width>1.54515in</Width>
-        <ZIndex>7</ZIndex>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -266,7 +229,7 @@
         <Left>4.12027in</Left>
         <Height>2.71416in</Height>
         <Width>0in</Width>
-        <ZIndex>8</ZIndex>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border>
             <Color>Silver</Color>
@@ -385,7 +348,7 @@
         <Left>4.20014in</Left>
         <Height>1.40373in</Height>
         <Width>3.03337in</Width>
-        <ZIndex>9</ZIndex>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -554,7 +517,7 @@
         <Top>1.45094in</Top>
         <Height>1.13683in</Height>
         <Width>4.06051in</Width>
-        <ZIndex>10</ZIndex>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -570,7 +533,7 @@
         <Left>0.02501in</Left>
         <Height>0in</Height>
         <Width>7.14601in</Width>
-        <ZIndex>11</ZIndex>
+        <ZIndex>10</ZIndex>
         <Style>
           <Border>
             <Color>Silver</Color>
@@ -717,7 +680,7 @@
         <Left>4.20014in</Left>
         <Height>1.18523in</Height>
         <Width>3.03337in</Width>
-        <ZIndex>12</ZIndex>
+        <ZIndex>11</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -752,7 +715,7 @@
         <Left>2.39002in</Left>
         <Height>0.25in</Height>
         <Width>1.12848in</Width>
-        <ZIndex>13</ZIndex>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -787,7 +750,7 @@
         <Left>2.39002in</Left>
         <Height>0.25in</Height>
         <Width>1.12848in</Width>
-        <ZIndex>14</ZIndex>
+        <ZIndex>13</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -823,7 +786,7 @@
         <Left>1.30252in</Left>
         <Height>0.25in</Height>
         <Width>1.12848in</Width>
-        <ZIndex>15</ZIndex>
+        <ZIndex>14</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -859,7 +822,7 @@
         <Left>0.20001in</Left>
         <Height>0.25in</Height>
         <Width>1.05556in</Width>
-        <ZIndex>16</ZIndex>
+        <ZIndex>15</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -875,7 +838,7 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.60687in</Width>
+              <Width>1.63447in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>0.55694in</Width>
@@ -1017,7 +980,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Docket#</Value>
+                              <Value>Docket #</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -1155,7 +1118,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.25in</Height>
+              <Height>0.19792in</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -1303,7 +1266,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=CDec(Fields!ApprovalRate.Value)</Value>
+                              <Value>=FormatNumber(CDec(Fields!ApprovalRate.Value),2)</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -1328,7 +1291,6 @@
                         <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
-                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -1343,7 +1305,7 @@
                               <Value>=Fields!DateReceived.Value</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
-                                <Format>dd-MMM-yyyy</Format>
+                                <Format>d-MMM-yy</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -1375,7 +1337,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!AmountCharge.Value</Value>
+                              <Value>="$ " &amp; FormatNumber(Fields!AmountCharge.Value,2) &amp; "   "</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -1383,7 +1345,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -1416,7 +1378,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Total V(t)</Value>
+                              <Value>Total Net(t)</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
@@ -1525,7 +1487,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!AmountCharge.Value)</Value>
+                              <Value>=Sum(Fields!AmountCharge.Value) &amp; "   "</Value>
                               <Style>
                                 <FontSize>8pt</FontSize>
                                 <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -1533,7 +1495,7 @@
                             </TextRun>
                           </TextRuns>
                           <Style>
-                            <TextAlign>Center</TextAlign>
+                            <TextAlign>Right</TextAlign>
                           </Style>
                         </Paragraph>
                       </Paragraphs>
@@ -1588,9 +1550,9 @@
         <DataSetName>ReportInvDS</DataSetName>
         <Top>2.77972in</Top>
         <Left>0.40001in</Left>
-        <Height>0.75in</Height>
-        <Width>6.13122in</Width>
-        <ZIndex>17</ZIndex>
+        <Height>0.69792in</Height>
+        <Width>6.15882in</Width>
+        <ZIndex>16</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1606,6 +1568,7 @@
               <TextRun>
                 <Value>=Sum(Fields!AmountCharge.Value)</Value>
                 <Style>
+                  <FontWeight>Bold</FontWeight>
                   <Format>'$'#,0.00;('$'#,0.00)</Format>
                 </Style>
               </TextRun>
@@ -1617,10 +1580,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>3.77409in</Top>
-        <Left>5.53123in</Left>
+        <Left>5.55883in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>18</ZIndex>
+        <ZIndex>17</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1650,10 +1613,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
         <Top>3.77409in</Top>
-        <Left>4.28471in</Left>
+        <Left>4.22221in</Left>
         <Height>0.25in</Height>
-        <Width>1in</Width>
-        <ZIndex>19</ZIndex>
+        <Width>1.08176in</Width>
+        <ZIndex>18</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1682,10 +1645,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
         <Top>4.09354in</Top>
-        <Left>4.28471in</Left>
+        <Left>4.22221in</Left>
         <Height>0.25in</Height>
-        <Width>1.17708in</Width>
-        <ZIndex>20</ZIndex>
+        <Width>1.5887in</Width>
+        <ZIndex>19</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1714,10 +1677,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
         <Top>4.42486in</Top>
-        <Left>4.28471in</Left>
+        <Left>4.22221in</Left>
         <Height>0.25in</Height>
-        <Width>1.17708in</Width>
-        <ZIndex>21</ZIndex>
+        <Width>1.25884in</Width>
+        <ZIndex>20</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1737,9 +1700,8 @@
               <TextRun>
                 <Value>Total</Value>
                 <Style>
-                  <FontSize>12pt</FontSize>
                   <FontWeight>Bold</FontWeight>
-                  <TextDecoration>Underline</TextDecoration>
+                  <TextDecoration>None</TextDecoration>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -1750,10 +1712,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox11</rd:DefaultName>
         <Top>4.92694in</Top>
-        <Left>4.28471in</Left>
+        <Left>4.22221in</Left>
         <Height>0.25in</Height>
-        <Width>1.14514in</Width>
-        <ZIndex>22</ZIndex>
+        <Width>1.2269in</Width>
+        <ZIndex>21</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1773,6 +1735,7 @@
               <TextRun>
                 <Value>=Sum(Fields!AmountCharge.Value) * .05</Value>
                 <Style>
+                  <FontWeight>Bold</FontWeight>
                   <Format>'$'#,0.00;('$'#,0.00)</Format>
                 </Style>
               </TextRun>
@@ -1784,10 +1747,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>4.42486in</Top>
-        <Left>5.53123in</Left>
+        <Left>5.55883in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>23</ZIndex>
+        <ZIndex>22</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1808,6 +1771,7 @@
               <TextRun>
                 <Value>=Sum(Fields!AmountCharge.Value) * 1.05</Value>
                 <Style>
+                  <FontWeight>Bold</FontWeight>
                   <Format>'$'#,0.00;('$'#,0.00)</Format>
                   <TextDecoration>Underline</TextDecoration>
                 </Style>
@@ -1820,10 +1784,10 @@
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
         <Top>4.92694in</Top>
-        <Left>5.53123in</Left>
+        <Left>5.55883in</Left>
         <Height>0.25in</Height>
         <Width>1in</Width>
-        <ZIndex>24</ZIndex>
+        <ZIndex>23</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -1833,6 +1797,75 @@
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
           <rd:FormatSymbolCulture>en-CA</rd:FormatSymbolCulture>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>="Invoice #: " &amp; Fields!InvoiceNumber.Value</Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox3</rd:DefaultName>
+        <Top>0.02778in</Top>
+        <Left>0.07501in</Left>
+        <Height>0.21791in</Height>
+        <Width>1.67015in</Width>
+        <ZIndex>24</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox6">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>=Fields!LastDateOfMonth.Value</Value>
+                <Style>
+                  <FontSize>11pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <Format>dd-MMM-yyyy</Format>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Right</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox3</rd:DefaultName>
+        <Top>0.04167in</Top>
+        <Left>2.03448in</Left>
+        <Height>0.21791in</Height>
+        <Width>1.85566in</Width>
+        <ZIndex>25</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
     </ReportItems>
